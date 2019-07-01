@@ -1,5 +1,5 @@
 library(tibble)
-df <- data_frame(month=as.character(1:4), Freq=c(.09,.23,.31,.27))
+df <- data_frame(month=as.character(1:4), Freq=c(.19,.23,.31,.27))
 p<-barplot(df$Freq, ylim=c(0,.5), names.arg = df$month, space=0.25, axes=F)
 xval = seq(0, .5, .05)
 axis(side = 2, at = xval, labels = FALSE, xpd=T)
