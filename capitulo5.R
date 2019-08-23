@@ -216,3 +216,18 @@ X<-R;gen=1;Cont=TRUE;plot=FALSE;p.val_min=-1;criteria=2;DPQR=T
 }
 Compe
 write.csv(Compe,"resultados1.csv")
+
+
+
+##########Separación de la muestra
+set.seed(1)
+R1<-kmeans(R,2)
+
+#Separamos la muestra
+Muestras<-purrr::map(1:max(R1$cluster),~R[R1$cluster==.x])
+
+x11();par(mfrow=c(1,3))
+plot(density(R))
+plot(density(Muestras[[2]]),main=paste0("Len ",length(Muestras[[2]])))
+plot(density(Muestras[[1]]),main=paste0("Len ",length(Muestras[[1]])))
+
