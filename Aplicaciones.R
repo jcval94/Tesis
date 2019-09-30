@@ -2,6 +2,9 @@
 library(FitUltD)
 library(modes)
 library(tidyverse)
+library(plotly)
+library(distr)
+
 #Tratamiento de datos
 
 #Leer
@@ -24,11 +27,11 @@ summary(data[,c("Time","Amount")])
 # Max.   :172792   Max.   :25691.16  
 
 # Como podemos observar, la variable tiempo muestra una diferencia entre la mediana y la moda y dado el volumen de datos, podemos descartar la distribución normal
-# Por otro lado, todos los quantiles presentan diferencias similares, por lo que al hacer la prueba de outliers con rango intercuantílico seguramente veremos pocos
+# Por otro lado, todos los cuantiles presentan diferencias similares, por lo que al hacer la prueba de outliers con rango intercuantílico seguramente veremos pocos
 
-# Respecto a la variable monto, hay una clara diferencia entre el tercer quantil y el máximo, y entonces, podemos esperar la presencia de outliers en nuestra distribución, de igual forma, vemos una notable diferencia entre mediana y moda, por lo que esperamos que la distribución esté cargada hacia la izquierda, pues la media es incluso mayor al tercer quantil
+# Respecto a la variable monto, hay una clara diferencia entre el tercer quantil y el máximo, y entonces, podemos esperar la presencia de outliers en nuestra distribución, de igual forma, vemos una notable diferencia entre mediana y media, por lo que esperamos que la distribución esté cargada hacia la izquierda, pues la media es incluso mayor al tercer quantil
 
-# También vemos que ambas muestras tienen su mínimo en el valor 0, por lo que no será necesario realizar transformaciones para ajustar distribuciones que se encuentren definidas en R+, como la exponencial por ejemplo.
+# También vemos que ambas variables tienen su mínimo en el valor 0, por lo que no será necesario realizar transformaciones para ajustar distribuciones que se encuentren definidas en R+, como la exponencial por ejemplo.
 
 #Variables de estudio
 monto<-data$Amount
@@ -41,7 +44,7 @@ hist(monto,main="Monto")
 
 #aplicaremos la función logaitmo a la variable monto para tener una mejor visualización de los datos
 #No obstante, agregaremos un épsilon para no tener -Inf en la nueva variable
-epsilon<-sort(unique(monto))[2]/1000
+epsilon<-sort(unique(monto))[2]/10
 l_monto<-log(monto+epsilon)
 hist(tiempo,main="Tiempo")
 hist(l_monto,main="Log(Monto)")
@@ -58,18 +61,22 @@ boxplot(l_monto)
 boxplot(tiempo)
 
 #Rango intercuantílico
-
-
+IR<-quantile(tiempo)
+IR_diff<-IR[4]-IR[2]
+Inter_Q<-as.numeric(c(IR[2]-IR_diff,IR[4]+IR_diff))
+Inter_Q
 
 #Kurtosis
+modes::kurtosis(tiempo,T)
 
-
-
+#Bimodalidad
+modes::bimodality_coefficient(tiempo)>5/9
 
 #Ajuste
 Ajuste_tiempo<-FDist(tiempo,plot = T)
 Ajuste_monto<-FDist(monto,plot = T)
 
+#No hubo ajuste con las distribuciones usuales como era de esperar
 #Ajustaremos también la transformación de la variable monto
 
 Ajuste_l_monto<-FDist(l_monto,plot = T)
@@ -84,14 +91,15 @@ muestra_tiempo<-dplyr::sample_frac(data.frame(tiempo),.05)[[1]]
 smt<-summary(muestra_tiempo)
 st<-summary(tiempo)
 
-plot(density(tiempo))
+par(mfrow=c(1,1))
+plot(density(tiempo),main="Tiempo vs Muestra Tiempo")
 lines(density(muestra_tiempo),col="red")
 
-
-mod1 <- mclust::Mclust(tiempo)$classification
+#mod1 <- mclust::Mclust(tiempo)$classification
 
 set.seed(31109)
-Ajuste_tiempo_Full<-FDistUlt(X = muestra_tiempo,plot = T,p.val_min = 0.01,n.obs=length(muestra_tiempo))
+#3-5 minutos aprox
+Ajuste_tiempo_Full<-FDistUlt(X = muestra_tiempo,crt = 1,plot = T,p.val_min = 0.01,n.obs=length(muestra_tiempo))
 
 
 Ajuste_tiempo_Full[[1]]
@@ -103,21 +111,26 @@ lines(density(Ajuste_tiempo_Full[[2]]),col="blue")
 
 #Prueba de fuego:
 #Pertenecen a la misma distribución?
-ks.test(Ajuste_tiempo_Full[[2]],tiempo)
+#Dado que hay números repetidos para una variable que conceptualmente es contínua
+#añadiremos un poco de ruido a la misma 
+
+ks.test(Ajuste_tiempo_Full[[2]],jitter(tiempo,amount = 1))
+#########
+#Si pasó la prueba (si funciona jaja)
+#########
 
 
-
+#Qué pasa si disminuímos el p.valor?
 set.seed(31109)
 Ajuste_tiempo_Full<-FDistUlt(X = muestra_tiempo,plot = T,p.val_min = 0.001,n.obs=length(muestra_tiempo))
-#Qué pasa si disminuímos el p.valor
 
-#Deberíaos tener un odelo con menos variables aleatorias, pero y KS?
+#Deberíaos tener un modelo con menos variables aleatorias, pero y KS?
 length(Ajuste_tiempo_Full[[1]])
 
 #Aún pasa la prueba de k.s y reducimos conciderablemente el número de variables aleatorias
-ks.test(Ajuste_tiempo_Full[[2]],tiempo)
+ks.test(Ajuste_tiempo_Full[[2]],jitter(tiempo,amount = 1))
 
-plot(density(tiempo))
+plot(density(tiempo),main="Ajuste vs Modelo")
 lines(density(Ajuste_tiempo_Full[[2]]),col="blue")
 
 
@@ -130,17 +143,18 @@ n<-0
 Tiempo<-system.time({
 for(i in 1:length(p_val)){
   set.seed(31109)
-  M_candidato[[i]]<-FDistUlt(X = muestra_tiempo,plot = T,p.val_min = p_val[i],n.obs=length(muestra_tiempo)*10)
-  for(k in i:10){
+  M_candidato[[i]]<-FDistUlt(X = jitter(muestra_tiempo,amount = 1),plot = T,crt=1,p.val_min = p_val[i],n.obs=length(muestra_tiempo)*10)
+  for(k in 1:10){
     n<-n+1
-    P.value[[n]]<-ks.test(sample(M_candidato[[i]][[2]],length(muestra_tiempo)),tiempo)
+    P.value[[n]]<-ks.test(sample(M_candidato[[i]][[2]],length(muestra_tiempo)),jitter(tiempo,amount = 1))
+    print(P.value[[n]]$p.value)
   }
 }
 })
 #Aproximadaente 611.1 segundos por cada 28K obs
 Tiempo
 
-print(paste0("Horas de ejecución: ",Tiempo[3]/3600))
+print(paste0("Horas d e ejecución: ",Tiempo[3]/3600))
 
 #Uno de los resultdos nos arroja valores muy negativos, lo que significa que el p.valor no debe ser tan cercano a cero y que además, debemos aregar la posibilidad de ajustar distribuciones con colas pesadas
 
@@ -149,12 +163,13 @@ print(paste0("Horas de ejecución: ",Tiempo[3]/3600))
 
 M_candidato[[12]][[4]]
 
-DF<-data.frame(p_val_min=p_val,
-NROW=purrr::map_int(M_candidato,~nrow(.x[[3]])),
+DF<-data.frame(p_val_min=rep(p_val,each=10),
+NROW=rep(purrr::map_int(M_candidato,~nrow(.x[[3]])),each=10),
 P.VAL=purrr::map_dbl(P.value,~.x[["p.value"]]))
+Mean<-reshape2::dcast(data = DF,formula = p_val_min~.,mean,value.var = "P.VAL")
 
-
-plot(DF)
+Mean[[1]]<-as.factor(Mean[[1]])
+plot(Mean)
 
 library(plotly)
 plot_ly(x=DF[[1]], y=DF[[2]], z=DF[[3]], type="scatter3d", mode="markers", color=DF[[3]])
@@ -190,7 +205,7 @@ for (i in semilla) {
   Muestras<-purrr::map(Funciones_generadoras,~.x())
   Muestra_completa<-do.call(c,Muestras)
   
-  k.s<-c(k.s,ks.test(Muestra_completa,tiempo)$p.value)
+  k.s<-c(k.s,ks.test(Muestra_completa,jitter(tiempo,1))$p.value)
 }
 #Distribución de los p.valores
 plot(density(k.s))
@@ -214,7 +229,10 @@ qqplot(Muestra_completa,tiempo)
 #Por qué el onceavo modelo fue rechazado?
 #Realicemos nuevamente validación cruzada:
 
-Funciones_generadoras<-M_candidato[[11]][[1]]
+
+modelo<-1
+
+Funciones_generadoras<-M_candidato[[modelo]][[1]]
 semilla<-31109:31129
 k.s<-c()
 for (i in semilla) {
@@ -223,34 +241,45 @@ for (i in semilla) {
   Muestra_completa<-do.call(c,Muestras)
   
   k.s<-c(k.s,ks.test(Muestra_completa,tiempo)$p.value)
+  # S_MC<-summary(Muestra_completa)
+  # S_T<-summary(tiempo)
+  # (S_MC-S_T)/S_MC
 }
 #Distribución de los p.valores
 plot(density(k.s))
 #Resultó ser un valor atípico, pues recordemos que la prueba K.S es más sensible a outliers
 
 #Volviendo a nuestra tabla de resultados
-M_candidato[[12]][[3]]
+M_candidato[[modelo]][[3]]
 #Qué proporción de la distribución no pasó la hpiótesis nula?
-DF_12<-M_candidato[[12]][[3]]
+DF_12<-M_candidato[[modelo]][[3]]
 sum(DF_12[DF_12$AD_p.v<.05 & DF_12$KS_p.v<.05,"Dist_Prop"])
 sum(DF_12[DF_12$AD_p.v<.05 | DF_12$KS_p.v<.05,"Dist_Prop"])
-
 
 sum(DF_12[DF_12$AD_p.v<.01 & DF_12$KS_p.v<.01,"Dist_Prop"])
 sum(DF_12[DF_12$AD_p.v<.01 | DF_12$KS_p.v<.01,"Dist_Prop"])
 
-#Por qué un conjunto de distribuciones que por separado no pasan la hip.nula en su conjunto forman un modelo que si lo logra.
+plot(density(tiempo))
+lines(density(Muestra_completa),col="red")
+lines(density(Muestra_completa2),col="blue")
+#Por qué un conjunto de distribuciones que por separado no pasan la hip.nula en su conjunto forman un modelo que si lo logra?
 
-#Esta pregunta ha sido antes abordada en el estudio del modelo estadístico Random Forest.
-#Conceptualmente
+##########################################################
+##########################################################
+##########################################################
+#Aquí es donde todo se derrumbó dentro de mi, dentro de mi
+##########################################################
+##########################################################
+##########################################################
 
 
+#Distribución generada por el modelo 12
+#12 es el modelo, 4 es la parte de las gráficas, 1 es la primera gráfica
+M_candidato[[12]][[4]][[1]]
 
 
 #Cuál es la distribución del tiempo?
 #Es el momento de asignar formalmente una distribución
-library(distr)
-v1<-as.character(DF_12[1,1])
 
 get_dist<-function(Dist){
   firstup <- function(x) {
@@ -269,12 +298,50 @@ get_dist<-function(Dist){
   }
   text_eval(paste0("distr::",firstup(Dist)))
 }
-
+library(distr)
+#Transformo los nobres de las distribuciones en funciones en R
 Dists<-purrr::map(as.character(DF_12[,1]),get_dist)
 
+#Utilizo rfunc
+Distss<-purrr::map2(Dists,len,~r(.x)(.y))
+
+#Hasta aquí todo parec bien (salvo las proporciones de las muestras)
+plot(density(tiempo))
+lines(density(do.call(c,Distss)),col="red")
+
+####################Prueba modelo 2
+#########################
+modelo<-3
+
+DF_12<-M_candidato[[modelo]][[3]]
+A<-M_candidato[[modelo]][[3]][,1]
+B<-M_candidato[[modelo]][[3]][,"Dist_Prop"]*length(M_candidato[[modelo]][[2]])
+
+Dists<-purrr::map(as.character(A),get_dist)
+Distss<-purrr::map2(Dists,B,~r(.x)(.y))
+
+plot(density(tiempo))
+lines(density(do.call(c,Distss)),col="blue")
+
+############################
+
 Dist<-UnivarMixingDistribution(Dlist = Dists,mixCoeff = DF_12$Dist_Prop)
+#por separado
+plot(Dist)
 
 
+muestra<-r(Dist)(25000)
+summary(muestra)
+summary(tiempo)
+
+ks.test(muestra,tiempo)
+
+sum_D<-Dists[[1]]*DF_12$Dist_Prop[1]
+for(i in 2:(nrow(DF_12))){
+  sum_D<-sum_D+Dists[[i]]*DF_12$Dist_Prop[i]
+}
+
+plot(sum_D)
 #Podríamos obtener un modelo mejor?
 
 #Los resultdos indican que si, en caso de que reduzcamos aún más el p.valor mínimo
@@ -295,7 +362,7 @@ M_candidato
 
 c(p_val,as.vector(P.value))
 
-#Después de anaizar los resultados es necesario observar la importancia de hacer el corte en el munto adecuado, pues dicho factor diferencia el total de las subconjuntos obtenidos que se ajustan a la distribución, la velocidad de ejecución y la exactitud del modelo
+#Después de anaizar los resultados es necesario observar la importancia de hacer el corte en el Punto adecuado, pues dicho factor diferencia el total de lOs subconjuntos obtenidos que se ajustan a la distribución, la velocidad de ejecución y la exactitud del modelo
 #Si vemos los resultados 
 
 Ajuste_tiempo_Full<-FDistUlt(tiempo,plot = T,subplot = T)
@@ -304,3 +371,13 @@ Ajuste_l_monto_Full<-FDistUlt(l_monto,plot = T,subplot = T)
 
 save.image("~/Lib/Tesis/tesis.RData")
 #system("shutdown -s")
+
+
+
+
+##
+U<-unique(df[["CL"]])
+par(mfrow=c(3,3))
+purrr::map(U,~plot(density(df[df[["CL"]]==.x,2])))
+par(mfrow=c(1,1))
+
