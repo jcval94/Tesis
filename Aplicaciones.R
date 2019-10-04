@@ -37,10 +37,40 @@ summary(data[,c("Time","Amount")])
 monto<-data$Amount
 tiempo<-data$Time
 
+monto_1<-data[data$Class==1,]$Amount
+monto_0<-data[data$Class==0,]$Amount
+tiempo_1<-data[data$Class==1,]$Time
+tiempo_0<-data[data$Class==0,]$Time
+clas<-data$Class
 #Histograma y distribución mediante el kernel
 par(mfrow=c(1,2))
 hist(tiempo,main="Tiempo")
 hist(monto,main="Monto")
+library(ggplot2)
+plot.density<-function(X1,cat,title,xlb){
+  Clase<-rbind(data.frame(Fraude=as.factor(cat),DT=X1))
+  p <- ggplot(Clase,aes(x=Clase$DT,fill=Clase$Fraude)) + geom_density(alpha=0.4) +ggtitle(title)+xlab(xlb)
+  p
+}
+plot.bar<-function(X1,cat,title,xlb){
+  Clase<-rbind(data.frame(Fraude=as.factor(cat),DT=X1))
+  p <- ggplot(Clase,aes(x=Fraude,y=DT)) + geom_boxplot(alpha=0.4) +ggtitle(title)+xlab(xlb)
+  p
+}
+
+pt<-plot.density(X1 = tiempo,cat = as.factor(clas),title="Densidad Tiempo",xlb = "Tiempo")
+# plot.density(X1 = exp(tiempo/10000),cat = as.factor(clas),title="Densidad Tiempo",xlb = "Tiempo")
+
+pm<-plot.density(X1 = monto,cat = as.factor(clas),title="Densidad Monto",xlb = "Monto")
+m1<-plot.density(l_monto,cat = as.factor(clas),title="Densidad log(Monto)",xlb = "log(Monto)")
+outl_monto<-monto < quantile(monto,.975)
+m2<-plot.density(monto[outl_monto],cat = as.factor(clas[outl_monto]),title="Densidad Monto percentil 99%",xlb = "Monto")
+
+library(cowplot)
+
+cowplot::plot_grid(pt,pm,nrow = 2)
+cowplot::plot_grid(m1,m2,nrow = 2)
+
 
 #aplicaremos la función logaitmo a la variable monto para tener una mejor visualización de los datos
 #No obstante, agregaremos un épsilon para no tener -Inf en la nueva variable
@@ -57,8 +87,10 @@ hist(l_monto,main="Log(Monto)")
 
 
 #BoxPlot ()
-boxplot(l_monto)
-boxplot(tiempo)
+plot.bar(X1 = tiempo,cat = as.factor(clas),title="Tiempo",xlb = "Fraude")
+plot.bar(X1 = l_monto,cat = as.factor(clas),title="log(Monto)",xlb = "Fraude")
+
+plot.bar(X1 = monto[outl_monto],cat = as.factor(clas[outl_monto]),title="Monto percentil 97.5%",xlb = "Fraude")
 
 #Rango intercuantílico
 IR<-quantile(tiempo)
@@ -81,9 +113,7 @@ Ajuste_monto<-FDist(monto,plot = T)
 
 Ajuste_l_monto<-FDist(l_monto,plot = T)
 
-
 #Ahora revisemos los resultados y apliquemos nuestro procedimiento completo
-
 set.seed(31109)
 muestra_tiempo<-dplyr::sample_frac(data.frame(tiempo),.05)[[1]]
 #Una pequeña comparación de estadísticos entre la muestra y la realidad
@@ -155,11 +185,11 @@ for(i in 1:length(p_val)){
 Tiempo
 
 print(paste0("Horas d e ejecución: ",Tiempo[3]/3600))
+#save.image("~/Lib/Tesis/.RData")
 
 #Uno de los resultdos nos arroja valores muy negativos, lo que significa que el p.valor no debe ser tan cercano a cero y que además, debemos aregar la posibilidad de ajustar distribuciones con colas pesadas
 
 #Veamos cada uno de los resultados
-
 
 M_candidato[[12]][[4]]
 
@@ -167,9 +197,12 @@ DF<-data.frame(p_val_min=rep(p_val,each=10),
 NROW=rep(purrr::map_int(M_candidato,~nrow(.x[[3]])),each=10),
 P.VAL=purrr::map_dbl(P.value,~.x[["p.value"]]))
 Mean<-reshape2::dcast(data = DF,formula = p_val_min~.,mean,value.var = "P.VAL")
+Median<-reshape2::dcast(data = DF,formula = p_val_min~.,median,value.var = "P.VAL")
 
 Mean[[1]]<-as.factor(Mean[[1]])
+Median[[1]]<-as.factor(Median[[1]])
 plot(Mean)
+plot(Median)
 
 library(plotly)
 plot_ly(x=DF[[1]], y=DF[[2]], z=DF[[3]], type="scatter3d", mode="markers", color=DF[[3]])
@@ -223,21 +256,25 @@ len/sum(len)-Estudio$Dist_Prop
 #El gráfico quantil-quantil para ver si hay anomalias
 qqplot(Muestra_completa,tiempo)
 #El modelo encaja en cada uno de sus percentiles respecto a la muestra original
+`%c%` <- function(e1, e2) as.numeric(e1)>=as.numeric(e2[1]) & as.numeric(e1)<=as.numeric(e2[2])
+
+muestra_tiempo[muestra_tiempo %c% M_candidato[[12]][[3]][1,c(13,14)]]
 
 
 ####Análisis más profundo:
 #Por qué el onceavo modelo fue rechazado?
 #Realicemos nuevamente validación cruzada:
 
-
-modelo<-1
+modelo<-11
 
 Funciones_generadoras<-M_candidato[[modelo]][[1]]
+#Funciones_generadoras<-A_X[[1]]
 semilla<-31109:31129
 k.s<-c()
 for (i in semilla) {
   set.seed(i)
   Muestras<-purrr::map(Funciones_generadoras,~.x())
+  limits<-purrr::map(Muestras,~c(min(.x),max(.x)))
   Muestra_completa<-do.call(c,Muestras)
   
   k.s<-c(k.s,ks.test(Muestra_completa,tiempo)$p.value)
@@ -245,6 +282,21 @@ for (i in semilla) {
   # S_T<-summary(tiempo)
   # (S_MC-S_T)/S_MC
 }
+summary(Muestra_completa)
+################
+
+M_candidato[[7]][[4]]
+
+summary(M_candidato[[7]][[2]])
+
+
+################
+
+# all_lim<-do.call(c,limits)
+# Z<-c(runif(A_X[[3]]$Dist_Prop[1]*length(X),limits[[1]][1],limits[[1]][2]),
+# runif(A_X[[3]]$Dist_Prop[2]*length(X),limits[[2]][1],limits[[2]][2]),
+# runif(A_X[[3]]$Dist_Prop[3]*length(X),limits[[3]][1],limits[[3]][2]))
+# hist(Z)
 #Distribución de los p.valores
 plot(density(k.s))
 #Resultó ser un valor atípico, pues recordemos que la prueba K.S es más sensible a outliers
@@ -253,6 +305,7 @@ plot(density(k.s))
 M_candidato[[modelo]][[3]]
 #Qué proporción de la distribución no pasó la hpiótesis nula?
 DF_12<-M_candidato[[modelo]][[3]]
+DF_12<-A_X[[3]]
 sum(DF_12[DF_12$AD_p.v<.05 & DF_12$KS_p.v<.05,"Dist_Prop"])
 sum(DF_12[DF_12$AD_p.v<.05 | DF_12$KS_p.v<.05,"Dist_Prop"])
 
@@ -261,7 +314,7 @@ sum(DF_12[DF_12$AD_p.v<.01 | DF_12$KS_p.v<.01,"Dist_Prop"])
 
 plot(density(tiempo))
 lines(density(Muestra_completa),col="red")
-lines(density(Muestra_completa2),col="blue")
+#lines(density(Muestra_completa2),col="blue")
 #Por qué un conjunto de distribuciones que por separado no pasan la hip.nula en su conjunto forman un modelo que si lo logra?
 
 ##########################################################
@@ -281,12 +334,21 @@ M_candidato[[12]][[4]][[1]]
 #Cuál es la distribución del tiempo?
 #Es el momento de asignar formalmente una distribución
 
-get_dist<-function(Dist){
+#Veremos primero si los parámetros de las distribuciones no generarán conflicto al cambiar de paquetería
+#Entonces vamos a 
+#######################
+#stats vs distr
+
+get_dist_args<-function(Dist){
+  
   firstup <- function(x) {
     FL<-toupper(substr(x, 1, 1))
     #si es una gamma agrego la d para que pueda ser leida por "distr"
     if(FL=="G"){
       x<-gsub("gamma","gammad",x)
+    }
+    if(FL=="T"){
+      x<-gsub("t","td",x)
     }
     substr(x, 1, 1) <- FL
     
@@ -296,6 +358,40 @@ get_dist<-function(Dist){
     if(class(a)!="character"){return()}
     eval(parse(text = a))
   }
+  purrr::map(c(paste0("distr::",firstup(Dist)),
+               paste0("stats::r",Dist)),~formalArgs(text_eval(.x)))
+}
+
+Args<-purrr::map(c("exp","pois","beta","gamma","lnorm","norm","weibull",
+                      "nbinom","hyper","cauchy","binom","unif","t"),~get_dist_args(.x))
+
+get_dist("gamma(364.537, 0.009)")
+#warnings: sólo la dist. gamma
+#
+
+#######################
+
+get_dist<-function(Dist){
+  text_eval<-function(a){
+    if(class(a)!="character"){return()}
+    eval(parse(text = a))
+  }
+  firstup <- function(x) {
+    FL<-toupper(substr(x, 1, 1))
+    #si es una gamma agrego la d para que pueda ser leida por "distr"
+    if(FL=="G"){
+      x<-gsub("gamma","gammad",x)
+      param_split<-strsplit(x,",")[[1]]
+      param2<-param_split[2]
+      x<-paste0(param_split[1],",",1/text_eval(substr(param2,1,nchar(param2)-1)),")")
+    }
+    if(FL=="T"){
+      x<-gsub("t","td",x)
+    }
+    substr(x, 1, 1) <- FL
+    x
+  }
+  
   text_eval(paste0("distr::",firstup(Dist)))
 }
 library(distr)
@@ -303,17 +399,26 @@ library(distr)
 Dists<-purrr::map(as.character(DF_12[,1]),get_dist)
 
 #Utilizo rfunc
-Distss<-purrr::map2(Dists,len,~r(.x)(.y))
+Tott<-list()
+for(i in 1:length(Dists)){
+  Tott[[i]]<-r(Dists[[i]])(DF_12[,"Obs"][[i]])
+}
+Distss<-do.call("c",Tott)
 
+Distss<-purrr::map2(Dists,DF_12[,"Obs"],~r(.x)(.y))
+limits<-purrr::map(Distss,~c(min(.x),max(.x)))
+
+max(purrr::map_dbl(limits,max))
 #Hasta aquí todo parec bien (salvo las proporciones de las muestras)
 plot(density(tiempo))
-lines(density(do.call(c,Distss)),col="red")
+lines(density(Distss),col="red")
 
 ####################Prueba modelo 2
 #########################
-modelo<-3
+modelo<-10
 
 DF_12<-M_candidato[[modelo]][[3]]
+table(DF_12$Dist)
 A<-M_candidato[[modelo]][[3]][,1]
 B<-M_candidato[[modelo]][[3]][,"Dist_Prop"]*length(M_candidato[[modelo]][[2]])
 
@@ -321,14 +426,32 @@ Dists<-purrr::map(as.character(A),get_dist)
 Distss<-purrr::map2(Dists,B,~r(.x)(.y))
 
 plot(density(tiempo))
-lines(density(do.call(c,Distss)),col="blue")
+m.a.<-do.call(c,Distss)
+lines(density(m.a.),col="blue")
+summary(m.a.)
+summary(tiempo)
 
+qtl_diff<-quantile(m.a.,1:100/100)-quantile(tiempo,1:100/100)
+quant<-names(qtl_diff[abs(qtl_diff)==max(abs(qtl_diff))])
+quant
+quant_n<-.18
+cond_df<-DF_12[,13] < quantile(m.a.,quant_n) & DF_12[,14] > quantile(m.a.,quant_n)
+DF_12[cond_df,]
+
+
+ks.test(jitter(tiempo,amount = 1),m.a.)
+qqplot(jitter(tiempo,amount = 1),m.a.)
+plot(ecdf(tiempo));lines(ecdf(m.a.),col="red")
 ############################
-
+#Me interesa saber también si hay huecos entre distribuciones?
 Dist<-UnivarMixingDistribution(Dlist = Dists,mixCoeff = DF_12$Dist_Prop)
 #por separado
 plot(Dist)
 
+par(mfrow=c(1,2))
+hist(tiempo,breaks = 500)
+hist(m.a.,breaks = 500)
+par(mfrow=c(1,1))
 
 muestra<-r(Dist)(25000)
 summary(muestra)
@@ -336,15 +459,71 @@ summary(tiempo)
 
 ks.test(muestra,tiempo)
 
-sum_D<-Dists[[1]]*DF_12$Dist_Prop[1]
-for(i in 2:(nrow(DF_12))){
-  sum_D<-sum_D+Dists[[i]]*DF_12$Dist_Prop[i]
-}
+ks.test(m.a.[m.a.<quantile(m.a.,.995) & m.a. > quantile(m.a.,.005)],tiempo)
 
 plot(sum_D)
 #Podríamos obtener un modelo mejor?
 
 #Los resultdos indican que si, en caso de que reduzcamos aún más el p.valor mínimo
+pdistodaro<-p(Dist)
+library(ADGofTest)
+ADGofTest::ad.test(muestra,pdistodaro)
+ADGofTest::ad.test(muestra_tiempo,pdistodaro)
+
+plot(density(muestra_tiempo))
+lines(density(muestra),col="blue")
+summary(muestra)
+summary(muestra_tiempo)
+
+quantile_critic<-function(x,y){
+  qtl_diff<<-quantile(x,1:100/100)-quantile(y,1:100/100)
+  cond<-abs(qtl_diff)==max(abs(qtl_diff))
+  quant<-(1:100)[cond]/100
+  diff<-qtl_diff[cond]
+  return(c(quant,quantile(x,quant),quantile(y,quant),diff))
+}
+
+quantile_critic(muestra,muestra_tiempo)
+qtl_diff
+KS<-ks.test(jitter(muestra,amount = 1),
+            jitter(muestra_tiempo,amount = 1))
+
+KS
+
+ADGofTest::ad.test(tiempo,pdistodaro)
+
+#Por qué la muestra si y el total no?
+#Dos opciones posibles:
+#La muestra no es representativa o la prueba
+
+#Es sufuciente K.S. para saber si la muestra es rep.?
+ks.test(muestra_tiempo,tiempo)
+ks.test(muestra_tiempo,muestra)
+tiempo
+ks.test(M_candidato[[7]][[2]],tiempo)
+
+ks.test(muestra,tiempo)
+#Que es lo que hace distinto el test ks respecto a AD?
+
+#El estadístico de KS (La diferencia máxima de las F(x)) 
+#Resulta ser suficiente como para pasar la prueba con un p.valor de .6
+
+#Al buscar la máxima de estas diferencias, encontramos "huecos" en la distribución
+#Dichos huecos pueden deberse a la existencia de un corte "fijo"
+
+#Entonces, definiremos el alcance de la distribución
+
+#Recordemos que hay distribuciones cuyos límites están buen definidos (unif y beta por ejemplo)
+#Y recordemos que también las hay de colas pesadas, lo que implica la aparición de outliers que no hacen sentido (cmo tiempos negativos)
+#Entonces, debemos resringir el tipo de distribución que estamos empleando al momento del cálculo
+
+
+
+#Quien es responsable de los outliers?
+summary(M_candidato[[7]][[2]])
+M_candidato[[7]][[3]]
+
+
 
 
 #Cuáles son las ventajas sobre la ditribución empírica
@@ -380,4 +559,14 @@ U<-unique(df[["CL"]])
 par(mfrow=c(3,3))
 purrr::map(U,~plot(density(df[df[["CL"]]==.x,2])))
 par(mfrow=c(1,1))
+
+
+
+#Los cortes están bien definidos, pero qué pasa si no doy un intervalo
+#definido sino una zona "aleatoria"
+
+X<-sort(X)
+X[c(F,diff(mod1)!=0)]
+
+
 
