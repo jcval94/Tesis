@@ -72,6 +72,11 @@ cowplot::plot_grid(pt,pm,nrow = 2)
 cowplot::plot_grid(m1,m2,nrow = 2)
 
 
+ks.test(monto[clas==1],monto[clas==0])
+
+ks.test(tiempo[clas==1],tiempo[clas==0])
+
+
 #aplicaremos la función logaitmo a la variable monto para tener una mejor visualización de los datos
 #No obstante, agregaremos un épsilon para no tener -Inf en la nueva variable
 epsilon<-sort(unique(monto))[2]/10
@@ -111,29 +116,44 @@ Ajuste_monto<-FDist(monto,plot = T)
 #No hubo ajuste con las distribuciones usuales como era de esperar
 #Ajustaremos también la transformación de la variable monto
 
-Ajuste_l_monto<-FDist(l_monto,plot = T)
+#Ajuste_l_monto<-FDist(l_monto,plot = T)
+
+A<-data.frame(seed=0,ks=0)[-1,]
+
+for (seed in 1:1460) {
+  set.seed(seed)
+  muestra_t<-tiempo[sample(1:length(tiempo),floor(length(tiempo)*.05))]
+  A<-rbind(A,data.frame(seed=seed,ks=ks.test(tiempo,muestra_t)$statistic))
+}
 
 #Ahora revisemos los resultados y apliquemos nuestro procedimiento completo
 set.seed(31109)
-muestra_tiempo<-dplyr::sample_frac(data.frame(tiempo),.05)[[1]]
+#muestra_tiempo<-dplyr::sample_frac(data.frame(tiempo),.05)[[1]]
+#Best seed
+set.seed(A[A$ks==min(A[A$ks!=0,]$ks),1])
+#
+ind<-sample(1:length(tiempo),floor(length(tiempo)*.05))
+clas[ind]
+muestra_tiempo<-tiempo[ind]
+
+muestra_tiempo_0<-muestra_tiempo[clas[ind]==0]
+
 #Una pequeña comparación de estadísticos entre la muestra y la realidad
 
 smt<-summary(muestra_tiempo)
 st<-summary(tiempo)
 
 par(mfrow=c(1,1))
-plot(density(tiempo),main="Tiempo vs Muestra Tiempo")
+graphics::plot(density(tiempo),main="Tiempo vs Muestra Tiempo")
 lines(density(muestra_tiempo),col="red")
-
 #mod1 <- mclust::Mclust(tiempo)$classification
 
-set.seed(31109)
-#3-5 minutos aprox
-Ajuste_tiempo_Full<-FDistUlt(X = muestra_tiempo,crt = 1,plot = T,p.val_min = 0.01,n.obs=length(muestra_tiempo))
+# set.seed(31109)
+# 3-5 minutos aprox
+# Ajuste_tiempo_Full<-FDistUlt(X = muestra_tiempo,crt = 1,plot = T,p.val_min = 0.01,n.obs=length(muestra_tiempo))
 
 
 Ajuste_tiempo_Full[[1]]
-
 Ajuste_tiempo_Full[[2]]
 
 plot(density(tiempo))
@@ -152,31 +172,57 @@ ks.test(Ajuste_tiempo_Full[[2]],jitter(tiempo,amount = 1))
 
 #Qué pasa si disminuímos el p.valor?
 set.seed(31109)
-Ajuste_tiempo_Full<-FDistUlt(X = muestra_tiempo,plot = T,p.val_min = 0.001,n.obs=length(muestra_tiempo))
+Ajuste_tiempo_Full<-FDistUlt(X = muestra_tiempo_0,plot = T,p.val_min = 0.01,n.obs=length(muestra_tiempo))
+set.seed(31109)
+Ajuste_tiempo_Fraud<-FDistUlt(X = tiempo[clas==1],plot = T,p.val_min = 0.01,n.obs=length(muestra_tiempo))
 
-#Deberíaos tener un modelo con menos variables aleatorias, pero y KS?
+#Deberíamos tener un modelo con menos variables aleatorias, pero y KS?
 length(Ajuste_tiempo_Full[[1]])
+length(Ajuste_tiempo_Fraud[[1]])
 
 #Aún pasa la prueba de k.s y reducimos conciderablemente el número de variables aleatorias
 ks.test(Ajuste_tiempo_Full[[2]],jitter(tiempo,amount = 1))
+ks.test(Ajuste_tiempo_Fraud[[2]],jitter(tiempo[clas==1],amount = 1))
 
-plot(density(tiempo),main="Ajuste vs Modelo")
-lines(density(Ajuste_tiempo_Full[[2]]),col="blue")
+summary(Ajuste_tiempo_Fraud[[2]])
 
+Ajuste_tiempo_Full[[4]]
+Ajuste_tiempo_Fraud[[4]]
+
+View(Ajuste_tiempo_Fraud[[3]])
+
+
+Nombres=c("exp","pois","beta","gamma","lnorm","norm","weibull","nbinom","hyper","binom","unif","t")
+set.seed(31109)
+Ajuste_tiempo_Fraud_No_Cauchy<-FDistUlt(X = tiempo[clas==1],plot = T,p.val_min = 0.01,n.obs=length(muestra_tiempo))
+rm("Nombres")
+
+summary(Ajuste_tiempo_Fraud_No_Cauchy[[2]])
+
+summary(Ajuste_tiempo_Full[[2]])
+summary(muestra_tiempo_0)
+
+Ajuste_tiempo_Fraud_No_Cauchy[[4]]
+
+View(Ajuste_tiempo_Fraud_No_Cauchy[[3]])
+
+ks.test(Ajuste_tiempo_Fraud_No_Cauchy[[2]],jitter(tiempo[clas==1],amount = 1))
+
+summary(Ajuste_tiempo_Fraud_No_Cauchy[[2]])
 
 #A partir de qué p.valor mínimo aceptable se sigue cumpliendo la prueba de k.s y se seguirán reduciendo el número de v.a's?
 #Esta idea se asemeja al concepto de bosque aleatorio, en donde empleamos una gran cantidad de predictores para llegar a la predicción final
 
 P.value<-M_candidato<-list()
-p_val<-c(.05,.025,0.01,0.005,0.0025,0.001,0.0005,0.00025,0.0001,0.00005,0.000025,0.00001,0)
+p_val<-c(.05,.025,0.015,0.005,0.0025,0.001,0.0005,0.00025,0.0001,0.00005,0.000025,0.00001)
 n<-0
 Tiempo<-system.time({
 for(i in 1:length(p_val)){
   set.seed(31109)
-  M_candidato[[i]]<-FDistUlt(X = jitter(muestra_tiempo,amount = 1),plot = T,crt=1,p.val_min = p_val[i],n.obs=length(muestra_tiempo)*10)
+  M_candidato[[i]]<-FDistUlt(X = jitter(muestra_tiempo_0,amount = 1),plot = T,crt=1,p.val_min = p_val[i],n.obs=length(muestra_tiempo)*20)
   for(k in 1:10){
     n<-n+1
-    P.value[[n]]<-ks.test(sample(M_candidato[[i]][[2]],length(muestra_tiempo)),jitter(tiempo,amount = 1))
+    P.value[[n]]<-ks.test(sample(M_candidato[[i]][[2]],length(muestra_tiempo_0)),jitter(tiempo,amount = 1))
     print(P.value[[n]]$p.value)
   }
 }
