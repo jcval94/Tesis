@@ -3,6 +3,7 @@ library(FitUltD)
 library(modes)
 library(tidyverse)
 library(plotly)
+library(mclust)
 library(distr)
 
 #Tratamiento de datos
@@ -15,7 +16,7 @@ cond_fraude<-data[["Class"]]==1
 data_Fraude<-data[cond_fraude,]
 data_No_Fraude<-data[!cond_fraude,]
 
-#Breve resumen
+ #Breve resumen
 summary(data[,c("Time","Amount")])
 
 # Time            Amount        
@@ -210,6 +211,12 @@ ks.test(Ajuste_tiempo_Fraud_No_Cauchy[[2]],jitter(tiempo[clas==1],amount = 1))
 
 summary(Ajuste_tiempo_Fraud_No_Cauchy[[2]])
 
+
+purrr::map(Ajuste_tiempo_Fraud_No_Cauchy[[6]],~.x$Lim_inf)
+
+View(Ajuste_tiempo_Fraud_No_Cauchy[[6]][[1]])
+Ajuste_tiempo_Fraud_No_Cauchy[[6]][[7]]
+
 #A partir de qué p.valor mínimo aceptable se sigue cumpliendo la prueba de k.s y se seguirán reduciendo el número de v.a's?
 #Esta idea se asemeja al concepto de bosque aleatorio, en donde empleamos una gran cantidad de predictores para llegar a la predicción final
 
@@ -219,7 +226,7 @@ n<-0
 Tiempo<-system.time({
 for(i in 1:length(p_val)){
   set.seed(31109)
-  M_candidato[[i]]<-FDistUlt(X = jitter(muestra_tiempo_0,amount = 1),plot = T,crt=1,p.val_min = p_val[i],n.obs=length(muestra_tiempo)*20)
+  M_candidato[[i]]<-FDistUlt(X = jitter(muestra_tiempo_0,amount = 1),plot = T,crt=1,p.val_min = p_val[i],n.obs=length(muestra_tiempo_0)*20)
   for(k in 1:10){
     n<-n+1
     P.value[[n]]<-ks.test(sample(M_candidato[[i]][[2]],length(muestra_tiempo_0)),jitter(tiempo,amount = 1))
@@ -227,6 +234,79 @@ for(i in 1:length(p_val)){
   }
 }
 })
+
+###############################
+
+P.value_F<-M_candidato_F<-list()
+n<-0
+Nombres=c("exp","pois","beta","gamma","lnorm","norm","weibull","nbinom","hyper","binom","unif","t")
+Tiempo_F<-system.time({
+  for(i in 1:length(p_val)){
+    set.seed(31109)
+    M_candidato_F[[i]]<- FDistUlt(X = tiempo[clas==1],plot = T,crt=1,p.val_min = p_val[i],n.obs=length(tiempo[clas==1]))
+    for(k in 1:10){
+      n<-n+1
+      P.value_F[[n]]<-ks.test(M_candidato_F[[i]][[2]],jitter(tiempo[clas==1],amount = 1))
+      print(P.value_F[[n]]$p.value)
+    } 
+  }
+})
+rm("Nombres")
+
+
+purrr::map(M_candidato_F,~dim(.x[[3]]))
+
+Fit4<-M_candidato_F[[4]]
+
+summary(Fit4[[2]])
+
+Fit4[[4]]
+
+Fit4[[3]]
+
+#sustitución normal x weibull
+#summary(rnorm(10000,24794.587, 9796.326))
+Fit4[[6]][[1]]
+summary(rweibull(1000,2.778059,2.980933e+04))
+#
+
+qqq<-rweibull
+formals(qqq)[1]<-length(Fit4[[1]][[1]]())
+formals(qqq)[2]<-2.778059
+formals(qqq)[3]<-2.980933e+04
+
+Fit4[[1]][[1]]<-qqq
+
+semilla<-31109:31129
+k.s<-c()
+for (i in semilla) {
+  set.seed(i)
+  Muestras<-purrr::map(Fit4[[1]],~.x())
+  limits<-purrr::map(Muestras,~c(min(.x),max(.x)))
+  Muestra_completa<-do.call(c,Muestras)
+  
+  k.s<-c(k.s,ks.test(Muestra_completa,tiempo[clas==1])$p.value)
+}
+summary(Muestra_completa)
+summary(tiempo[clas==1])
+
+ #Después de ver el análisis, vemos que el número de separaciones cambia muy drásticamente, por lo que fijaremos el número de k centroides en dos, debido al número de modas en la distribución
+set.seed(31109)
+#ejecutar 2 veces
+#revisar el error en la primera corrida
+Nombres=c("exp","pois","beta","gamma","lnorm","weibull","nbinom","hyper","binom","unif","t")
+Prueba_2<-FDistUlt(X = tiempo[clas==1],plot = T,crt=1,p.val_min = .01,n.obs=length(tiempo[clas==1]),ref = 2)
+rm("Nombres")
+
+
+qqplot(Prueba_2[[2]],tiempo[clas==1])
+summary(Prueba_2[[2]])
+ks.test(jitter(tiempo[clas==1],amount=1),Prueba_2[[2]])
+Prueba_2[[4]]
+write.csv(Prueba_2[[3]],"pruebas2.csv")
+
+#Ahora vemos una mejora muy significativa, pasando de 10 distribuciones distintas a solamente tres
+
 #Aproximadaente 611.1 segundos por cada 28K obs
 Tiempo
 
@@ -324,11 +404,13 @@ for (i in semilla) {
   Muestra_completa<-do.call(c,Muestras)
   
   k.s<-c(k.s,ks.test(Muestra_completa,tiempo)$p.value)
-  # S_MC<-summary(Muestra_completa)
-  # S_T<-summary(tiempo)
-  # (S_MC-S_T)/S_MC
 }
 summary(Muestra_completa)
+
+
+# S_MC<-summary(Muestra_completa)
+# S_T<-summary(tiempo)
+# (S_MC-S_T)/S_MC
 ################
 
 M_candidato[[7]][[4]]
