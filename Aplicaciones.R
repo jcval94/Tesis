@@ -7,7 +7,7 @@ library(mclust)
 library(distr)
 
 #Tratamiento de datos
-
+libraries()
 #Leer
 data<-read.csv(paste0(getwd(),"/creditcard.csv"))
 
