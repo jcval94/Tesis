@@ -8,6 +8,9 @@ library(distr)
 
 #Tratamiento de datos
 libraries()
+ctx <- try(rstudioapi::getActiveDocumentContext(), silent = TRUE)
+
+
 #Leer
 data<-read.csv(paste0(getwd(),"/creditcard.csv"))
 
