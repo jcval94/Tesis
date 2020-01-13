@@ -105,7 +105,7 @@ A mis amigos, Luis Orozco Córdoba, Jesús González Moreno, Alan Sánchez, Ruth
 \section{Introducci\'on}
 %\section{Historia}
 
-Divide et impera
+\textit{Divide et impera}
 
 -Julio Cesar
 
@@ -124,7 +124,7 @@ En economía aplicamos la descomposición para realizar el análisis de series d
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.7]{desc_time.png}
-    \caption{Ejemplo de una serie de tiempo en cada una de sus componentes (Fuente data set AirPassengers)}
+    \caption{Ejemplo de una serie de tiempo en cada una de sus componentes (Fuente data set AirPassengers).}
 \end{figure}
 
 En el análisis multivariado y ciencias computacionales, aplicamos algoritmos de clasificación como Máquina Vector Soporte y K-Medias, para entender cómo puede dividirse cierta muestra y perfilar cada uno de los grupos obtenidos.
@@ -132,7 +132,7 @@ En el análisis multivariado y ciencias computacionales, aplicamos algoritmos de
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.7]{desc_k_medias.png}
-    \caption{Ejemplo del algoritmo K-Medias en las medidas del tallo y pétalo de las flores (Fuente data set Iris)}
+    \caption{Ejemplo del algoritmo K-Medias en las medidas del tallo y pétalo de las flores (Fuente data set Iris).}
     \label{}
 \end{figure} 
 
@@ -141,7 +141,7 @@ En la ingeniería se emplean Series de Fourier para analizar una onda de sonido 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.45]{tesis_cos.png}
-    \caption{Ejemplo de descomposición de una función de distribución}
+    \caption{Ejemplo de descomposición de una función de distribución.}
     \label{}
 \end{figure} 
 
@@ -152,31 +152,31 @@ Si observamos cuidadosamente en este último ejemplo, al aislar una sección de 
 Algunos ejemplos en donde observamos este tipo de comportamientos:
 
 Biología:
-Distribución de las tasas de crecimiento entre los individuos
+Distribución de las tasas de crecimiento entre los individuos.
 
 Seguros:
-Identificación de siniestros con una alta suma asegurada
+Identificación de siniestros con una alta suma asegurada.
 
 Finanzas:
-Valor de una divisa por intervalos estacionales
+Valor de una divisa por intervalos estacionales.
 
 Tiempo de una transacción por tarjeta de crédito para la identificación de fraudes
 
 Pricing:
-Estimación del valor de un producto por medio de la distribución de sus precios (este efecto aumenta cuando hay un incremento brusco en los precios de cierto producto)
+Estimación del valor de un producto por medio de la distribución de sus precios (este efecto aumenta cuando hay un incremento brusco en los precios de cierto producto).
 
 Física:
-La cantidad de luz en el espectro visible indica la composición química del astro observado, la distribución de dicha luz puede ser representada mediante una variable aleatoria.
+La cantidad de luz en el espectro visible, indica la composición química del astro observado, la distribución de dicha luz puede ser representada mediante una variable aleatoria.
 
-Al pensarlo con detenimiento, contamos con las herramientas teóricas necesarias para realizar este análisis y medir la diferencia que existe entre los datos observados y el ajuste a un modelo paramétrico, puesto que en la práctica si estos fallan, procedemos a calcular estadísticos con modelos no paramétricos o a trabajar bajo hipótesis que empíricamente no se cumplen.
+Al pensarlo con detenimiento, contamos con las herramientas teóricas necesarias para realizar este análisis y medir la diferencia que existe entre los datos observados y el ajuste a un modelo paramétrico, puesto que en la práctica, si estos fallan, procedemos a calcular estadísticos con modelos no paramétricos o a trabajar bajo hipótesis que empíricamente no se cumplen.
 
 Esta nueva visión es una propuesta al análisis de outliers, a la separación en panza y cola de una función de densidad o una nueva forma de análisis ante la incógnita de no poder ajustar cierta distribución nuestros datos.
 
-Empezaremos por describir qué es una variable aleatoria y casos discretos y continuos, posteriormente, veremos funciónes de distribución multimodales cuya forma sugiere una descomposición en partes más simples.
+Empezaremos por describir qué es una variable aleatoria y casos discretos y continuos, posteriormente, veremos funciones de distribución multimodales cuya forma sugiere una descomposición en partes más simples.
 
 Se verán pruebas de bondad y ajuste para estimar la distribución y parámetros de una muestra observada y se emplearán indicadores para definir si una distribución debe ser o no separada y diversos métodos para clasificar estos grupos.
 
-Habiendo definido lo anterior se describirá una propuesta para ajustar todo tipo de distribuciones, se definirá una forma de evaluarla 
+Habiendo definido lo anterior se describirá una propuesta para ajustar todo tipo de distribuciones y se definirá una forma de evaluarla.
 %\section{Actualidad}
 %Cantidad de materias que necesitan el ajuste de una distribución
 
@@ -185,7 +185,7 @@ Habiendo definido lo anterior se describirá una propuesta para ajustar todo tip
 
 Para entender el concepto de variable aleatoria, introduciremos primero los conceptos de experimento aleatorio y espacio muestral.
 
-Consideremos un experimento cuyo resultado depende completamente del azar, es decir, es desconocido, a este suceso le llamaremos experimento aleatorio, por ejemplo: 
+Consideremos un experimento cuyo resultado depende completamente del azar, es decir, es desconocido; a este suceso le llamaremos experimento aleatorio, por ejemplo: 
 \begin{enumerate}
 \item El resultado de lanzamiento de un dado.
 \item El resultado de una canica al girar en la ruleta.
@@ -195,9 +195,9 @@ Consideremos un experimento cuyo resultado depende completamente del azar, es de
 Y un espacio muestral es el conjunto de todos los posibles resultados de un experimento aleatorio, siendo los de nuestros ejemplos: 
 
 \begin{enumerate}
-\item S = \{1,2,3,4,5,6\} 
-\item S = \{1,2,...,38\} 
-\item S = \{"Águila","Sol"\} 
+\item S = \{1, 2, 3, 4, 5, 6\}.
+\item S = \{1, 2 , ..., 38\}.
+\item S = \{"Águila", "Sol"\}.
 \end{enumerate}
 
 Al realizar un experimento, nos interesamos en los resultados obtenidos al hacerlo una y otra vez, por ejemplo: 
@@ -217,108 +217,102 @@ Decimos que una variable aleatoria $X$ tiene distribución discreta si el rango 
 Definimos la función de masa de probabilidades de la variable aleatoria $X$ como: $f(x) = P(X = x)$ es decir, la probabilidad de que $X$ tome el valor $x$.
 
 Esta función para el espacio muestral $S = \{x_1, x_2, ...\}$ debe cumplir con:
+\begin{enumerate}
+\item \[f(x_{i}) \geq 0\ \text{ } \forall i \in S\].
 
-1.-\[f(x_{i}) \geq 0\ \text{ } \forall i \in S\]
-
-2.-\[\sum_{i=1}^{\infty}f(x_{i})=1\]
-
+\item \[\sum_{i=1}^{\infty}f(x_{i})=1\].
+\end{enumerate}
 Gráficamente puede verse de la siguiente forma:
 
-$$P(X=1) = .19,   P(X=2) = .23,   P(X=3) = .31,   P(X = 4) = .27$$
+$$P(X=1) = .19,   P(X=2) = .23,   P(X=3) = .31,   P(X = 4) = .27 .$$
 \textbf{}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.7]{plot_1.png}
-    \caption{Ejemplo Función de Probabilidad Discreta}
+    \caption{Función de Probabilidad Discreta.}
     \label{}
 \end{figure} 
 
-A continuación, describiremos una de estas funciónes
+La función de distribución acumulada o función de distribución de la variable aleatoria $X$ es representada mediante $F(x) = P(X \leq x)$ significando la probabilidad de que la variable aleatoria $X$ sea menor o igual a un valor dado $x$. 
+
+Definiremos también la esperanza o valor esperado de la variable aleatoria $X$ como $E(X) = \sum_{i=1}^{n}x_{i}f(x_{i})$ y representa el valor promedio que se obtendría al repetir el experimento. A continuación, describiremos una de estas funciones y sus características.
 
 Distribución Poisson.
 
 Sea X una variable aleatoria, decimos que X se distribuye Poisson o:
 
-$X \sim Poisson(\lambda)$ con parámetro $\lambda>0$
+$X \sim Poisson(\lambda)$ con parámetro $\lambda>0$.
 
 Si su función de densidad se define como:
 
-$$f\left( x \right) = \frac{{e^{ - \lambda } \lambda ^x }}{{x!}}$$ para $x = 0, 1, 2, ...$
+$$f\left( x \right) = \frac{{e^{ - \lambda } \lambda ^x }}{{x!}} \text{, para } x = \{ 0, 1, 2, ...\} . $$
 
 %Gráfica de una poisson con l=1 
 
-Algunas de las características importantes de esta son:
+La esperanza de una variable aleatoria Poisson se define como:
 
-La esperanza o valor esperado de una variable aleatoria se define como:
-
-\[E(X) = \sum_{i=1}^{n}x_{i}f(x_{i})\]
-
-Para $X \sim Poisson(\lambda)$
+\[E(X) = \sum_{i=1}^{n}x_{i}f(x_{i}) \text{ para } X \sim Poisson(\lambda).\]
 
 \[E(X) = \sum_{i=1}^{n}x_{i}\frac{{e^{ - \lambda } \lambda ^ {x_{i}} }}{{x_{i}!}} = \sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {x_{i}} }}{{(x_{i}-1)!}}
- = \lambda \sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {x_{i}-1} }}{{(x_{i}-1)!}}\]
+ = \lambda \sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {x_{i}-1} }}{{(x_{i}-1)!}}.\]
 
-Si realizamos el cambio de variable $z_{i}=x_{i}-1$ tenemos que la parte 
+Si realizamos el cambio de variable $z_{i}=x_{i}-1$ obtenemos que:
 
-\[\sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {x_{i}-1} }}{{(x_{i}-1)!}} = \sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {z_{i}} }}{{(z_{i})!}} = 1\]
+\[\sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {x_{i}-1} }}{{(x_{i}-1)!}} = \sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {z_{i}} }}{{(z_{i})!}} = 1.\]
 
-por lo tanto
+por lo tanto,
 
-\[E(X) =  \lambda \]
+\[E(X) =  \lambda .\]
 
-Varianza:
+Y la varianza puede definirse como:
 
-La varianza puede definirse como:
+\[V(X)=E(X^2)-E^2(X).\]
 
-\[V(X)=E(X^2)-E^2(X)\]
-
-Dado que ya conocemos el valor de $E(X) = \lambda$, la incógnita reside en $E(X^2)$, y empleando la fórmula para la esperanza
+Dado que ya conocemos el valor de $E(X) = \lambda$, la incógnita reside en $E(X^2)$, y empleando la fórmula para la esperanza:
 %referenciar fórmula
 
-\[E(X^2) = E(X^2-X+X) = E((X(X-1)+X)) = E(X(X-1))+E(X) \]
+\[E(X^2) = E(X^2-X+X) = E((X(X-1)+X)) = E(X(X-1))+E(X).\]
 
-\[E(X(X-1)) = \sum_{i=1}^{n}x_{i}(x_{i}-1)\frac{{e^{ - \lambda } \lambda ^ {x_{i}} }}{{x_{i}!}} = \lambda^2 \sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {(x_{i}-2)} }}{{(x_{i}-2)!}}\]
+\[E(X(X-1)) = \sum_{i=1}^{n}x_{i}(x_{i}-1)\frac{{e^{ - \lambda } \lambda ^ {x_{i}} }}{{x_{i}!}} = \lambda^2 \sum_{i=1}^{n}\frac{{e^{ - \lambda } \lambda ^ {(x_{i}-2)} }}{{(x_{i}-2)!}}.\]
 
 Aplicamos nuevamente un cambio de variable con $z_{i}=x_{i}-2$ y llegaremos a que  
 
 \[E(X(X-1)) = \lambda^2\] entonces, \[E(X^2) = \lambda^2 + \lambda\]
 
-por lo tanto 
+por lo tanto, 
 
-\[V(X) = \lambda^2 + \lambda\ - \lambda^2 = \lambda\]
+\[V(X) = \lambda^2 + \lambda\ - \lambda^2 = \lambda.\]
 
-Función generadora de momentos:
+La función generadora de momentos o función generatriz de momentos de una variable aleatoria $X$ se define como:
 
-La función generadora de momentos o función generatriz de momentos de una variable aleatoria $X$ es
-
-$$ M_{x}(t) = E(e^{tX}),    t \in \mathbb{R} $$
+$$ M_{x}(t) = E(e^{tX}),    t \in \mathbb{R}. $$
 
 Para este caso
 
-$$M_{x}(t) = \sum_{i=1}^{n} e^{tx_{i}} \frac{{e^{ - \lambda } \lambda ^ {x_{i}} }}{{x_{i}!}} = e^{-\lambda} \sum_{i=1}^{n} \frac{(\lambda e^{t})^{x_{i}} }{{x_{i}!}}$$
+$$M_{x}(t) = \sum_{i=1}^{n} e^{tx_{i}} \frac{{e^{ - \lambda } \lambda ^ {x_{i}} }}{{x_{i}!}} = e^{-\lambda} \sum_{i=1}^{n} \frac{(\lambda e^{t})^{x_{i}} }{{x_{i}!}}. $$
 
 Si recordamos el desarrollo en serie de la función exponencial, veremos que 
 
-\[e^t =  \sum_{x=0}^{\infty} \frac{t^{x}}{x!},   \forall t \in \mathbb{R}  \]
+\[e^t =  \sum_{x=0}^{\infty} \frac{t^{x}}{x!},   \forall t \in \mathbb{R}. \]
 
 En este punto, hay que recalcar que para la esperanza 
 
-$$\sum_{x=0}^{\infty}x_{i}f(x_{i}) = \sum_{x=0}^{n}x_{i}f(x_{i}) + \sum_{x=n+1}^{\infty}x_{i}f(x_{i})$$ 
+$$\sum_{i=0}^{\infty}x_{i}f(x_{i}) = \sum_{i=0}^{n}x_{i}f(x_{i}) + \sum_{i=n+1}^{\infty}x_{i}f(x_{i}).$$ 
 
-en dónde 
+en dónde,
 
-\[\sum_{x=n+1}^{\infty}x_{i}f(x_{i}) = 0\]
+\[\sum_{i=n+1}^{\infty}x_{i}f(x_{i}) = 0. \]
 
-dado que todos los valores de $f(x_{i}) = 0$ para valores que estén fuera del espacio muestral, entonces, al utilizar la forma en serie de la función exponencial llegamos a
+dado que todos los valores de $f(x_{i}) = 0$ para valores que estén fuera del espacio muestral, entonces, al utilizar la forma en serie de la función exponencial llegamos a:
 
-$$M_{x}(t) = e^{-\lambda}e^{\lambda e^{t}} = exp({\lambda(e^t-1)})$$
+$$M_{x}(t) = e^{-\lambda}e^{\lambda e^{t}} = exp({\lambda(e^t-1)}).$$
 
-Visualización de una variable aleatoria $X \sim Poisson(1)$
+Visualización de una variable aleatoria $X \sim Poisson(1)$:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.7]{poison.png}
-    \caption{Distribución Poisson}
+    \caption{Distribución Poisson.}
     \label{}
 \end{figure} 
 
@@ -339,7 +333,7 @@ Ejemplo de código en R para la función generadora de números aleatorios, func
 
 Ejemplificaremos entonces el uso de esta distribución:
 
-Una empresa observa el número de clientes que requieren de sus servicios durante 10 horas, el número de clientes siguie una distribución Poisson y se sabe que el promedio que reciben es de 15
+Una empresa observa el número de clientes que requieren de sus servicios durante 9 horas, el número de clientes siguie una distribución Poisson y se sabe que el promedio que reciben es de 15.
 
 ¿Cuál es la probabilidad de que lleguen 20 clientes?
 
@@ -347,47 +341,45 @@ Una empresa observa el número de clientes que requieren de sus servicios durant
 
 ¿Cuál es la función que describe que llegue al menos un cliente en cualquier cantidad de horas?
 
-Primero debemos observar que el valor $\lambda$ corresponde tanto a la esperanza como a la varianza de la distribución, entonces
+Primero debemos observar que el valor $\lambda$ corresponde tanto a la esperanza como a la varianza de la distribución, entonces:
 
-$$f\left( x \right) = \frac{{e^{ - 15 } 15 ^x }}{{x!}} $$
+$$f\left( x \right) = \frac{{e^{ - 15 } 15 ^x }}{{x!}}. $$
 
 Ahora ya somos capaces de responder la primera pregunta:
 
-$$f\left( 20 \right) = \frac{{e^{ - 15 } 15 ^{20} }}{{20!}} = 0.04181 $$
+$$f\left( 20 \right) = \frac{{e^{ - 15 } 15 ^{20} }}{{20!}} = 0.04181. $$
 
 Supongamos que los clientes llegan de forma regular durante esas 9 horas, es decir, que esperamos una media de 5 clientes al cabo de 3 horas, por lo que deberemos tratar con una distribución con parámetro $\lambda_{k} = 5$, donde k es el número de clientes que habrán llegado a las 3 horas, así, nuestra función de densidad toma la siguiente forma: 
 
-$$f\left( x \right) = \frac{{e^{ - 5 } 5 ^x }}{{x!}}$$
+$$f\left( x \right) = \frac{{e^{ - 5 } 5 ^x }}{{x!}}.$$
 
-entonces, la probabilidad de que no lleguen clientes es 
+entonces, la probabilidad de que no lleguen clientes es:
 
-$$f\left( 0 \right) = \frac{{e^{ - 5 } 5 ^0 }}{{0!}} = e^{ - 5 } = 0.00674 $$
+$$f\left( 0 \right) = \frac{{e^{ - 5 } 5 ^0 }}{{0!}} = e^{ - 5 } = 0.00674. $$
 
 La última pregunta sugiere el siguiente planteamiento: $P(X>0)$, es decir, la probabilidad de que llegue al menos un cliente, sin embargo, podemos plantearlo como $1 - P(X=0)$, es decir, que tome todos los valores exceptuando el $0$, y sustituyendo, obtenemos:
 
-$$1 - f(0) = 1 - \frac{{e^{ - \lambda } \lambda ^0 }}{{0!}} = 1- e^{ - \lambda }$$
+$$1 - f(0) = 1 - \frac{{e^{ - \lambda } \lambda ^0 }}{{0!}} = 1- e^{ - \lambda }.$$
 
 Y entonces, la función que buscamos con $\lambda = $ número de horas es:
 
-$$f(\lambda) =1 - e^{-\lambda}$$
+$$f(\lambda) =1 - e^{-\lambda}.$$
 
 \section{Distribuciones Continuas}
 
-Estas variables aleatorias son definidas de forma distinta, pues no es posible calcular la probabilidad puntual de la misma, es decir, $P(X = a)$, no obstante, es posible definir la probabilidad acumulada hasta cierto valor como $P(X \leq a)$, en otras palabras, la probabilidad de que el valor $X$ sea menor a $a$. Por ejemplo, que el valor de los montos de la reclamación de una póliza sea menor a cierta cantidad, o que la suma de las ventas de un producto en un día sea mayor a un monto o que el tiempo promedio de vida de una persona sea mayor a tantos años.
+Estas variables aleatorias son definidas de forma distinta, pues no es posible calcular la probabilidad puntual de la misma, es decir, $P(X = a)$, no obstante, es posible definir la probabilidad acumulada hasta cierto valor como $P(X \leq a)$, en otras palabras, la probabilidad de que el valor $X$ sea menor a $a$. Por ejemplo, que el valor de los montos de la reclamación de una póliza sea menor a cierta cantidad, o que la suma de las ventas de un producto en un día sea mayor a un monto o que el tiempo promedio de vida de una persona sea mayor a tantos años y a diferencia de una distribución discreta, la esperanza se define como: \[E(X) = \int_{-\infty}^{\infty} x f(x) dx .\]
 
 Distribución Exponencial.
 
 Sea X una variable aleatoria, decimos que X se distribuye Exponencial o:
 
-$X \sim exp(\lambda)$ con parámetro $\lambda>0$
-
-Si su función de distribución acumulada se define como:
+$X \sim exp(\lambda)$ con parámetro $\lambda>0$ si su función de distribución acumulada se define como:
 
 \[
 F(x) = P(X \leq x) = 
 \begin{dcases}
     1 - e^{-\lambda x},& \text{si } x\geq 0\\
-    0,              & \text{e.o.c}
+    0              & \text{e.o.c}
 \end{dcases}
 \]
 es decir, su función de densidad se define como:
@@ -396,73 +388,71 @@ es decir, su función de densidad se define como:
 f(x) = P(X = x) = 
 \begin{dcases}
     \lambda e^{-\lambda x},& \text{si } x\geq 0\\
-    0,              & \text{e.o.c}
-\end{dcases}
+    0              & \text{e.o.c}
+\end{dcases}.
 \]
 
 Esperanza:
-$$E(X) = \int_{-\infty}^{\infty} x f(x) dx$$
+$$E(X) = \int_{-\infty}^{\infty} x f(x) dx. $$
 
 Que para este ejemplo resulta:
 
 $$ E(X) = \int_{-\infty}^{0} x * 0 dx + 
- \int_{0}^{\infty} x \lambda e^{-\lambda x} dx  = \int_{0}^{\infty} x \lambda e^{-\lambda x} dx$$
+ \int_{0}^{\infty} x \lambda e^{-\lambda x} dx  = \int_{0}^{\infty} x \lambda e^{-\lambda x} dx. $$
 
-$$ =[-xe^{-\lambda x}]_{0}^{\infty} + \int_{0}^{\infty} \lambda e^{-\lambda x} dx  = 0 + [\frac{-1}{\lambda} e^{-\lambda x}]_{0}^{\infty} = 0 + \frac{1}{\lambda}$$
+$$ =[-xe^{-\lambda x}]_{0}^{\infty} + \int_{0}^{\infty} \lambda e^{-\lambda x} dx  = 0 + [\frac{-1}{\lambda} e^{-\lambda x}]_{0}^{\infty} = 0 + \frac{1}{\lambda}.$$
 
-por lo tanto
+Por lo tanto,
 
-$$E(X) = \frac{1}{\lambda}$$
+$$E(X) = \frac{1}{\lambda}.$$
 
 Varianza:
 
 La definición de la varianza en función de la esperanza es análoga a la de las variables discretas.
 
-\[V(X) = E(X^2)-E^2(X)\]
+\[V(X) = E(X^2)-E^2(X).\]
 
 Por lo que deberemos hallar el valor de $E(X^2)$ que por definición es:
 
 $$ E(X^2) = \int_{0}^{\infty} x^2 \lambda e^{-\lambda x} dx 
-= [-x^2 e^{-\lambda x} ]_{0}^{\infty} + \int_{0}^{\infty}  2x e^{-\lambda x} dx $$
+= [-x^2 e^{-\lambda x} ]_{0}^{\infty} + \int_{0}^{\infty}  2x e^{-\lambda x} dx. $$
 $$ = 0 + \frac{2}{\lambda} \int_{0}^{\infty}  x e^{-\lambda x} dx
-= \frac{2}{\lambda} E(X) = \frac{2}{\lambda^2} $$
+= \frac{2}{\lambda} E(X) = \frac{2}{\lambda^2}. $$
 
-entonces
+entonces,
 
-\[V(X) = E(X^2)-E^2(X) = \frac{2}{\lambda^2} - \frac{1}{\lambda^2}  \]
+\[V(X) = E(X^2)-E^2(X) = \frac{2}{\lambda^2} - \frac{1}{\lambda^2}. \]
 
-por lo tanto
+por lo tanto,
 
-\[V(X) = \frac{1}{\lambda^2}\]
+\[V(X) = \frac{1}{\lambda^2}. \]
 
-Función generadora de momentos:
+En cuanto a la función generadora de momentos la definición se conserva:
 
-La definición se conserva, es decir:
+$$ M_{x}(t) = E(e^{tX}),    t \in \mathbb{R}. $$
 
-$$ M_{x}(t) = E(e^{tX}),    t \in \mathbb{R} $$
+Para este caso:
 
-Para este caso
+$$M_{x}(t)  = \int_{0}^{\infty} exp{(tx)} \lambda e^{-\lambda x} dx = \lambda \int_{0}^{\infty} exp{((t-\lambda)x)} dx. $$
+$$\lambda [\frac{exp{((t-\lambda)x)}}{t-\lambda}]_{0}^{\infty} = \frac{\lambda}{\lambda - t} . $$
 
-$$M_{x}(t)  = \int_{0}^{\infty} exp{(tx)} \lambda e^{-\lambda x} dx = \lambda \int_{0}^{\infty} exp{((t-\lambda)x)} dx$$
-$$\lambda [\frac{exp{((t-\lambda)x)}}{t-\lambda}]_{0}^{\infty} = \frac{\lambda}{\lambda - t}$$
+Hay que destacar que para que el valor de la ecuación se haga 0 cuando x tienda a infinito, se debe cumplir que $t-\lambda < 0$, de esa forma el factor al evaluar en infinito se convierte en 0.
 
-Hay que destacar que para que el valor de la ecuación se haga 0 cuando x tienda a infinito, se debe cumplir que $t-\lambda < 0$, de esa forma el factor al evaluar en infinito se convierte en 0
-
-A continuación, podemos ver una representación gráfica de una variable aleatoria $X \sim exp(1)$
+A continuación, podemos ver una representación gráfica de una variable aleatoria $X \sim exp(1)$.
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.7]{expon.png}
-    \caption{Distribución Exponencial}
+    \caption{Distribución Exponencial.}
     \label{}
 \end{figure} 
 
 Algunas aplicaciones para esta distribución son:
 El tiempo que tarda una máquina en proceso de producción en crear un objeto es de 9 minutos, supongamos que este sigue una distribución exponencial.
 
-¿Cuál es la probabilidad de que la máquina tarde menos de 7 minutos?
+¿Cuál es la probabilidad de que la máquina tarde menos de 7 minutos?.
 
-¿Cuál es la probabilidad de que la máquina tarde más de 15 minutos?
+¿Cuál es la probabilidad de que la máquina tarde más de 15 minutos?.
 
 Aquí también observamos que el parámetro $1 / \lambda$ corresponde con la media de la distribución, es decir, la función de distribución acumulada se define como:
 
@@ -470,7 +460,7 @@ Aquí también observamos que el parámetro $1 / \lambda$ corresponde con la med
 F(x) = 
 \begin{dcases}
     1 - e^{-x/9},& \text{si } x\geq 0\\
-    0,              & \text{e.o.c}
+    0              & \text{e.o.c}
 \end{dcases}
 \]
 
@@ -480,9 +470,9 @@ Ahora podemos obtener las repuestas que buscábamos:
 F(7) = 
 \begin{dcases}
     1 - e^{-7/9},& \text{si } x\geq 0\\
-    0,              & \text{e.o.c}
+    0              & \text{e.o.c}
 \end{dcases}
- = 0.5405742 \]
+ = 0.5405742 . \]
  
 Y análogamente: 
 
@@ -490,77 +480,75 @@ Y análogamente:
 1 - F(15) = 
 \begin{dcases}
     e^{-15/9},& \text{si } x\geq 0\\
-    0,              & \text{e.o.c}
+    0              & \text{e.o.c}
 \end{dcases}
- = 0.1888756 \]
+ = 0.1888756 .\]
  
 
 \section{Distribuciones Bimodales}
 
-Ya sentadas las bases, podemos entrar en un terreno de estudio más escabroso en el que la distribución de los datos parecería estar compuesta por más de un componente, que tienen la peculiaridad de no ser fácilmente representadas mediante funciónes de dos o menos parámetros y con un mayor número de puntos críticos que cambian el orden ascendente o descendente de la misma.
+Ya sentadas las bases, podemos entrar en un terreno de estudio más escabroso en el que la distribución de los datos parecería estar compuesta por la suma o composición de dos o más variables aleatorias, que tienen la peculiaridad de no ser fácilmente representadas mediante funciones de dos o menos parámetros y que tienen un mayor número máximos locales o modas que cambian el orden ascendente o descendente de la misma.
 
 En la naturaleza es difícil hallar objetos de estudio o comportamientos que se ajusten a una varibale aleatoria si no se trata de un experimento controlado, es frecuente que nos lleguemos a encontrar con comportamientos más atípicos a los que pareciera que no se le puede ajustar una distribución pero que resulta necesario hacerlo.
 
-Para estos casos, se suelen atender separando la distribución de los outliers que impiden su ajuste y posteriormente añadirlos al análisis, proceso que no siempre es posible debido a la forma de la distribución.
-
 %https://www.jstor.org/stable/2985156?seq=1#page_scan_tab_contents
 
-Para ello, son introducidas las distribuciones bimodales o en algunos casos encontradas como casos particulares de variables aleatorias mixtas. El término bimodal proviene del sufijo bi que significa dos y modal que significa moda, y son aquellas distribuciones que tienen dos modas y que gráficamente tienen más de un valor máximo local tal y como se muestra a continuación:
+Estos casos, se suelen atender separando la distribución de los valores extremos (outliers) que impiden su ajuste y posteriormente añadirlos al análisis, proceso que no siempre es posible debido a la forma de la distribución, para ello, son introducidas las distribuciones bimodales o en algunos casos encontradas como variables aleatorias mixtas. El término bimodal proviene del sufijo bi que significa dos y modal que significa moda, y son aquellas distribuciones que tienen dos modas y que gráficamente tienen más de un valor máximo local tal y como se muestra a continuación:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.5]{multimo.png}
-    \caption{Distribución Multimodal}
+    \caption{Distribución Bimodal}
     \label{}
 \end{figure} 
 
-Un primer enfoque consiste en suponer que estamos observando una distribución cuya función de distribución está compuesta por dos funciónes más simples.
+Un primer enfoque consiste en suponer que estamos observando una distribución cuya función de distribución está compuesta por dos funciones más simples.
 
-$$F(x) = p F1(x) + (1 − p) F2(x)$$
+$$F(x) = p F1(x) + (1-p) F2(x). $$
 
 Para la gráfica anterior estamos uniendo una distribución Normal estándar y una función Gamma(9,2) en partes iguales (p=0.5), por lo que se puede sustituir de la siguiente forma:
 
-$$F(x)=\frac{F1(x)}{2}+\frac{F2(x)}{2}$$
+$$F(x)=\frac{F1(x)}{2}+\frac{F2(x)}{2}. $$
 
 El cálculo de dicha función de distribución no es para nada trivial, pues las componentes de la función toman los valores:
 
-$$F1(x) = \displaystyle \Phi (x)={\frac {1}{\sqrt {2\pi }}}\int _{-\infty }^{x}e^{-t^{2}/2}\,dt$$
+$$F1(x) = \displaystyle \Phi (x)={\frac {1}{\sqrt {2\pi }}}\int _{-\infty }^{x}e^{-t^{2}/2}\,dt. $$
 
-$$ F2(x)=\int _{0}^{x}\frac{u^{k-1}e^{-\frac{u}{\theta}}}{\theta^k\Gamma(k)} \quad du \text{ para } x > 0 \text{ y } k, \theta > 0.$$
+$$ F2(x)=\int _{0}^{x}\frac{u^{k-1}e^{-\frac{u}{\theta}}}{\theta^k\Gamma(k)} \quad du \text{ para } x > 0 \text{ y } k, \theta > 0. $$
 
 
-Es por ello que debemos asegurarnos que no hemos hallado una distribución que cumpla con las hipótesis de las pruebas de bondad y ajuste, pues una distribución bimodal requiere de un cálculo analítico complejo o que no tiene una expresión explícita, tal y como se muestra en el ejemplo anterior.
+Es por ello que debemos asegurarnos que no hemos hallado una distribución que cumpla con las hipótesis de las pruebas de bondad y ajuste, pues una distribución bimodal requiere de un cálculo analítico complejo y que puede no tener una expresión analítica explícita, tal y como se muestra en el ejemplo anterior.
 
 \subsection{Distribución Beta-Normal}
 %https://www.researchgate.net/publication/238865380_Beta-normal_distribution_and_its_application
 %file:///C:/Users/cody8/Downloads/beta_normal%20(1).pdf
 
-En la literatura es común encontrar funciónes bimodales compuestas por dos distribuciones continuas, es el caso de la Normal-Normal, Beta-Normal, Weibull-Normal, entre otras, los nombres de dichas distribuciones indican la forma o distribución de cada componente asociada a las modas observadas o en este caso una composición de funciónes.
+En la literatura es común encontrar funciones bimodales compuestas por dos distribuciones continuas, es el caso de la Normal-Normal, Beta-Normal, Weibull-Normal, entre otras, los nombres de dichas distribuciones indican la forma o distribución de cada componente asociada a las modas observadas o en este caso una composición de funciones.
 
 Sea F(x) la función de distribución acumulada de la variable aleatoria X. La función de distribución acumulada para una clase generalizada de distribuciones para X puede definirse de la siguiente forma:
 
-$$G(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\int_0^{F(x)}t^{\alpha-1}(1-t)^{\beta-1}dt \text{ con } \alpha>0, \beta<\infty$$
+$$G(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\int_0^{F(x)}t^{\alpha-1}(1-t)^{\beta-1}dt \text{ con } \alpha>0, \beta<\infty. $$
 
 %EUGENE, LEE, AND FAMOYE
 La función de densidad de la clase generalizada de distribuciones G(x) es
 %Aquí entiendo una clase generalizada como una función que arroja distintas distribuciones dependiendo de sus parámetros % Si, justo es eso
 
-$$g(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}F(x)^{\alpha-1}(1-F(x))^{\beta-1}F^{'}(x) $$
+$$g(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}F(x)^{\alpha-1}(1-F(x))^{\beta-1}F^{'}(x). $$
 
 
 Donde F(x) es la función de distribución acumulada de una variable aleatoria normal.
 
 Entonces, decimos que la variable aleatoria X se distribuye Beta-Normal cuando su función de distribución acumulada es:
 
-$$BN(\alpha,\beta,\mu,\sigma) = G(\Phi(\frac{x-\mu}{\sigma})) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\Phi(\frac{x-\mu}{\sigma})^{\alpha-1}(1-\Phi(\frac{x-\mu}{\sigma}))^{\beta-1}\sigma^{-1}\phi(\frac{x-\mu}{\sigma})$$
+$$BN(\alpha,\beta,\mu,\sigma) = G(\Phi(\frac{x-\mu}{\sigma})) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\Phi(\frac{x-\mu}{\sigma})^{\alpha-1}(1-\Phi(\frac{x-\mu}{\sigma}))^{\beta-1}\sigma^{-1}\phi(\frac{x-\mu}{\sigma}). $$
 
 Esta distribución se caracteriza por tener cuatro parámetros que juntos describen la localización, la escala y la forma.
 
 \begin{figure}[H]
     \includegraphics[scale=.5]{bn1.png}
-    \caption{Beta-Normal simétrica}
+    \caption{Beta-Normal simétrica.}
     \includegraphics[scale=.5]{bn2.png}
-    \caption{Beta-Normal asimétrica}
+    \caption{Beta-Normal asimétrica.}
     \label{}
 \end{figure} 
 
@@ -568,7 +556,7 @@ Ya que hemos tenido una breve visión de nuestra distribución, realizaremos el 
 
 Una segunda forma de escribir la distribución beta-normal es la siguiente:
 
-$$\frac{dG_0}{dx} = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\{\Phi(\frac{x-\mu}{\sigma})\}^{\alpha-1}\{1-\Phi(\frac{x-\mu}{\sigma})\}^{\beta-1}\sigma^{-1}\phi(\frac{x-\mu}{\sigma})$$
+$$\frac{dG_0}{dx} = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}\{\Phi(\frac{x-\mu}{\sigma})\}^{\alpha-1}\{1-\Phi(\frac{x-\mu}{\sigma})\}^{\beta-1}\sigma^{-1}\phi(\frac{x-\mu}{\sigma}). $$
 
 Definimos
 
@@ -576,48 +564,48 @@ $$G_{i+1}(x)=exp((x-\mu)^2/2\sigma^2)\frac{dG_i}{dx} \forall i = 0,1,2,...$$
 
 Entonces,
 
-$$G_{1}(x)=exp((x-\mu)^2/2\sigma^2)\frac{dG_0}{dx}$$
+$$G_{1}(x)=exp((x-\mu)^2/2\sigma^2)\frac{dG_0}{dx}. $$
 
-$$G_{2}(x)=exp((x-\mu)^2/2\sigma^2)\{\frac{d^2G_0}{dx^2}+\frac{x-\mu}{\sigma^2}\frac{dG_0}{dx}\}$$ 
+$$G_{2}(x)=exp((x-\mu)^2/2\sigma^2)\{\frac{d^2G_0}{dx^2}+\frac{x-\mu}{\sigma^2}\frac{dG_0}{dx}\}. $$ 
 
-$$\iff \int_{-\infty}^\infty \frac{d^2G_0}{dx^2}dx +  \int_{-\infty}^\infty\frac{(x-\mu)}{\sigma^2}\frac{dG_0}{dx}dx = \int_{-\infty}^\infty(exp(-(x-\mu))^2/\sigma^2)G_2(x)dx
+$$\iff \int_{-\infty}^\infty \frac{d^2G_0}{dx^2}dx +  \int_{-\infty}^\infty\frac{(x-\mu)}{\sigma^2}\frac{dG_0}{dx}dx = \int_{-\infty}^\infty(exp(-(x-\mu))^2/\sigma^2)G_2(x)dx.
 $$
 
 Dado que la primera integral en el lado izquierdo es cero, obtenemos
 
-$$E(X) = \int_{-\infty}^\infty x \frac{dG_0}{dx}dx = \mu+\sigma^2 \int_{-\infty}^\infty(exp(-(x-\mu)^2/2\sigma^2)\frac{dG_1(x)}{dx})dx$$
+$$E(X) = \int_{-\infty}^\infty x \frac{dG_0}{dx}dx = \mu+\sigma^2 \int_{-\infty}^\infty(exp(-(x-\mu)^2/2\sigma^2)\frac{dG_1(x)}{dx})dx. $$
 
 %The integral on the right hand side of (2.5), in general, has no closed form
 %solution except for some selected  and . For this purpose we define
 	
-$$I_{n}(a)=\int_{-\infty}^{\infty} \Phi(a(x-\mu)+\mu)^{n} \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) dx$$
+$$I_{n}(a)=\int_{-\infty}^{\infty} \Phi(a(x-\mu)+\mu)^{n} \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) dx. $$
 
-Cuando n es un número impar de la forma $n=2m+1$ el integrando de la función anterior es también impar y podemos expresarlo de la siguiente manera
+Cuando n es un número impar de la forma $n=2m+1$ el integrando de la función anterior es también impar y podemos expresarlo de la siguiente manera:
 
 $$\int_{-\infty}^{\infty}\left\{\Phi[a(x-\mu)+\mu]-\frac{1}{2}\right\}^{n} \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x=0$$
 
-Utilizando el teorema Binomial en el resultado anterior obtenemos
+Utilizando el teorema Binomial en el resultado anterior obtenemos:
 
-$$\int_{-\infty}^{\infty} \sum_{i=0}^{2 m+1}(-1)^{i}(\Phi(a(x-\mu)+\mu))^{2 m+1-i}\left(\frac{1}{2}\right)^{i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right) \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x=0$$
+$$\int_{-\infty}^{\infty} \sum_{i=0}^{2 m+1}(-1)^{i}(\Phi(a(x-\mu)+\mu))^{2 m+1-i}\left(\frac{1}{2}\right)^{i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right) \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x = 0.$$
 
 Gacias a la propiedad de convergencia uniforme, podemos reescribir la integral de la suma como la suma de las integrales.
 
-$$\sum_{i=0}^{2 m-1} \int_{-\infty}^{\infty}(-1)^{i}(\Phi[a(x-\mu)+\mu])^{2 m+1-i}\left(\frac{1}{2}\right)^{i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right)\exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x=0$$
+$$\sum_{i=0}^{2 m-1} \int_{-\infty}^{\infty}(-1)^{i}(\Phi[a(x-\mu)+\mu])^{2 m+1-i}\left(\frac{1}{2}\right)^{i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right)\exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x=0. $$
 
-entonces,
+Entonces,
 
-$$\begin{aligned} I_{2 m+1}(a)=& \int_{-\infty}^{\infty}(\Phi(a(x-\mu)+\mu))^{2 m+1} \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x \\=& \sum_{i=1}^{2 m+1}(-1)^{i+1}(\Phi(a(x-\mu)+\mu))^{2m+1-i}\left(\frac{1}{2}\right)^{i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right) \\ & \* \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) \\ &=\sum_{i=1}^{2 m+1}(-1)^{i+1} 2^{-i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right) I_{2 m+1-i}(a) \end{aligned}$$
+$$\begin{aligned} I_{2 m+1}(a)=& \int_{-\infty}^{\infty}(\Phi(a(x-\mu)+\mu))^{2 m+1} \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x \\=& \sum_{i=1}^{2 m+1}(-1)^{i+1}(\Phi(a(x-\mu)+\mu))^{2m+1-i}\left(\frac{1}{2}\right)^{i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right) \\ & \* \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) \\ &=\sum_{i=1}^{2 m+1}(-1)^{i+1} 2^{-i}\left(\begin{array}{c}{2 m+1} \\ {i}\end{array}\right) I_{2 m+1-i}(a) \end{aligned}. $$
 
 De esta última fórmula, podemos obtener las soluciones para $n= 1$ y $n= 3$ (recordemos que es para n impar).
 
-$$I_{1}(1)=\frac{1}{2} I_{0}(1)=\frac{\sigma \sqrt{\pi}}{2}$$
+$$I_{1}(1)=\frac{1}{2} I_{0}(1)=\frac{\sigma \sqrt{\pi}}{2}. $$
 
-$$I_{3}(1)=\frac{3}{2} I_{2}(1)-\frac{1}{4} I_{0}(1)$$
+$$I_{3}(1)=\frac{3}{2} I_{2}(1)-\frac{1}{4} I_{0}(1). $$
 
 Cuando n es par, no hay una forma analítica concreta de $I_n(1)$ para $n > 2$
 Así pues, obtendremos el valor para $n=2$ derivando $I_n(a)$ respecto a $a$
 
-$$\begin{aligned} I_{2}^{\prime}(a) &=\int_{-\infty}^{\infty} 2 \Phi(a(x-\mu)+\mu) \Phi^{\prime}(a(x-\mu)+\mu) \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x \\ &=\int_{-\infty}^{\infty} 2 \Phi(a(x-\mu)+\mu)\left(\frac{x-\mu}{\sigma \sqrt{2 \pi}}\right) \exp \left(-\left(a^{2}+2\right)(x-\mu)^{2} / 2 \sigma^{2}\right) d x \end{aligned}$$
+$$\begin{aligned} I_{2}^{\prime}(a) &=\int_{-\infty}^{\infty} 2 \Phi(a(x-\mu)+\mu) \Phi^{\prime}(a(x-\mu)+\mu) \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x \\ &=\int_{-\infty}^{\infty} 2 \Phi(a(x-\mu)+\mu)\left(\frac{x-\mu}{\sigma \sqrt{2 \pi}}\right) \exp \left(-\left(a^{2}+2\right)(x-\mu)^{2} / 2 \sigma^{2}\right) d x \end{aligned}. $$
 
 Integraremos por partes con 
 
@@ -628,129 +616,120 @@ $dv = (x-\mu) \exp\left(-\left(a^{2}+2\right)(x-\mu)^{2}/2\sigma^{2}\right)$
 Así obtenemos
 \\
 
-$\begin{aligned} I_{2}^{\prime}(a) &=\int_{-\infty}^{\infty} 2 \Phi(a(x-\mu)+\mu) \Phi^{\prime}(a(x-\mu)+\mu) \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x \\ &=\frac{a}{\left(a^{2}+2\right) \pi} \int_{-\infty}^{\infty} \exp \left(-\left(a^{2}+1\right)(x-\mu)^{2} / \sigma^{2}\right) d x \\ &=\frac{a \sigma}{\left(a^{2}+2\right) \sqrt{a^{2}+1} \sqrt{\pi}} \end{aligned}$
+$\begin{aligned} I_{2}^{\prime}(a) &=\int_{-\infty}^{\infty} 2 \Phi(a(x-\mu)+\mu) \Phi^{\prime}(a(x-\mu)+\mu) \exp \left(-(x-\mu)^{2} / \sigma^{2}\right) d x \\ &=\frac{a}{\left(a^{2}+2\right) \pi} \int_{-\infty}^{\infty} \exp \left(-\left(a^{2}+1\right)(x-\mu)^{2} / \sigma^{2}\right) d x \\ &=\frac{a \sigma}{\left(a^{2}+2\right) \sqrt{a^{2}+1} \sqrt{\pi}} \end{aligned}.$
 
-Por lo tanto
+Por lo tanto,
 
-$$I_{2}(a) = \int_{-\infty}^{\infty} \frac{a \sigma}{\left(a^{2}+2\right) \sqrt{a^{2}+1} \sqrt{\pi}} = \frac{\sigma}{\sqrt{\pi}} \arctan \sqrt{a^{2}+1}$$
+$$I_{2}(a) = \int_{-\infty}^{\infty} \frac{a \sigma}{\left(a^{2}+2\right) \sqrt{a^{2}+1} \sqrt{\pi}} = \frac{\sigma}{\sqrt{\pi}} \arctan \sqrt{a^{2}+1}. $$
 
 %realizar para otros parámetros
-Obtendremos los valores para $\alpha=4$ y $\beta=2$
-
-Sea
+Obtendremos los valores para $\alpha=4$ y $\beta=2$.
 
 $$\frac{d G_{0}}{d x}=\frac{\Gamma(6)}{\Gamma(4) \Gamma(2)}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{3}\left\{1-\Phi\left(\frac{x-\mu}{\sigma}\right)\right\} \sigma^{-1} \phi\left(\frac{x-\mu}{\sigma}\right)$$\\
 
-y
+también,
 
-$$G_{1}(x)=\frac{20}{\sigma \sqrt{2 \pi}}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{3}\left\{1-\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}$$\\
+$$G_{1}(x)=\frac{20}{\sigma \sqrt{2 \pi}}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{3}\left\{1-\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}. $$
 
 Entonces,
 
-$$\begin{aligned} \frac{d G_{1}}{d x}=& \frac{60}{\sigma \sqrt{2 \pi}}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{2} \sigma^{-1} \phi\left(\frac{x-\mu}{\sigma}\right) \\ &-\frac{80}{\sigma \sqrt{2 \pi}}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{3} \sigma^{-1} \phi\left(\frac{x-\mu}{\sigma}\right) \end{aligned}$$
+$$\begin{aligned} \frac{d G_{1}}{d x}=& \frac{60}{\sigma \sqrt{2 \pi}}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{2} \sigma^{-1} \phi\left(\frac{x-\mu}{\sigma}\right) \\ &-\frac{80}{\sigma \sqrt{2 \pi}}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{3} \sigma^{-1} \phi\left(\frac{x-\mu}{\sigma}\right) \end{aligned}. $$
 
-Ahora poseemos todas las herramientas para el cálculo de $E(X)$
+Ahora poseemos todas las herramientas para el cálculo de $E(X)$:
 
-$$E(X)=\mu+\sigma^{2} \int_{-\infty}^{\infty} \exp \left(-(x-\mu)^{2} / 2 \sigma^{2}\right) \frac{d G_{1}}{d x}$$
+$$E(X)=\mu+\sigma^{2} \int_{-\infty}^{\infty} \exp \left(-(x-\mu)^{2} / 2 \sigma^{2}\right) \frac{d G_{1}}{d x}. $$
 
-Y utilizando la definición de $I_{n}(a)$
+Y utilizando la definición de $I_{n}(a)$:
 
 \newline
 
-$\begin{aligned}=& \mu+\frac{30}{\pi} \int_{-\infty}^{\infty}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{2} \exp \left(-\left(\frac{x-\mu}{\sigma}\right)^{2}\right) d x \\ &-\frac{40}{\pi} \int_{-\infty}^{\infty}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{3} \exp \left(-\left(\frac{x-\mu}{\sigma}\right)^{2}\right) d x \\=& \mu+\frac{30}{\pi} I_{2}(a)-\frac{40}{\pi} I_{3}(a) \\=& \mu+\frac{30 \sigma}{\pi \sqrt{\pi}} \arctan \sqrt{2}-\frac{40}{\pi}\left[\frac{3}{2} I_{2}(a)-\frac{1}{4} I_{0}(a)\right] \\=& \mu+\frac{30 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})-\frac{60 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})+\frac{10}{\pi} I_{0}(a) \\=& \mu+\frac{30 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})-\frac{60 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})+\frac{10 \sigma}{\sqrt{\pi}} \\=& \mu+\frac{10 \sigma}{\sqrt{\pi}}-\frac{30 \sigma}{\pi \sqrt{\pi}} \arctan \sqrt{2} \end{aligned}$
+$\begin{aligned}=& \mu+\frac{30}{\pi} \int_{-\infty}^{\infty}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{2} \exp \left(-\left(\frac{x-\mu}{\sigma}\right)^{2}\right) d x \\ &-\frac{40}{\pi} \int_{-\infty}^{\infty}\left\{\Phi\left(\frac{x-\mu}{\sigma}\right)\right\}^{3} \exp \left(-\left(\frac{x-\mu}{\sigma}\right)^{2}\right) d x \\=& \mu+\frac{30}{\pi} I_{2}(a)-\frac{40}{\pi} I_{3}(a) \\=& \mu+\frac{30 \sigma}{\pi \sqrt{\pi}} \arctan \sqrt{2}-\frac{40}{\pi}\left[\frac{3}{2} I_{2}(a)-\frac{1}{4} I_{0}(a)\right] \\=& \mu+\frac{30 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})-\frac{60 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})+\frac{10}{\pi} I_{0}(a) \\=& \mu+\frac{30 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})-\frac{60 \sigma}{\pi \sqrt{\pi}}(\arctan \sqrt{2})+\frac{10 \sigma}{\sqrt{\pi}} \\=& \mu+\frac{10 \sigma}{\sqrt{\pi}}-\frac{30 \sigma}{\pi \sqrt{\pi}} \arctan \sqrt{2} \end{aligned}.$
 
 \subsection{Región de bimodalidad}
 
-Como vimos en las gráficas, la distribución beta-normal puede ser bimodal para ciertos valores de los parámetros $\alpha$ y $\beta$. La solución analítica de $\alpha$ y $\beta$, donde la distribución se vuelve bimodal, en muchos casos no puede ser resuelta algebraicamente, no obstante, existen soluciones numéricas, mediante el conteo  del número de raíces de la derivada de BN ($\alpha$, $\beta$, $\mu$, $\sigma$). A continuación, veremos una representación de la región en donde los parámetros vuelven bimodal a nuestra distribución, recordemos que $\mu$ y $\sigma$ tienen la misma interpretación que en una variable aleatoria normal, el posicionamiento de la media y la magnitud de la desviación estándar
-
+Como vimos en las gráficas, la distribución beta-normal puede ser bimodal para ciertos valores de los parámetros $\alpha$ y $\beta$. La solución analítica de $\alpha$ y $\beta$ para saber si la distribución es bimodal en muchos casos no puede ser resuelta algebraicamente, no obstante, existen indicadores como el coeficiente de bimodalidad que veremos más adelante que nos pueden ayudar a tratar este problema. A continuación, veremos una representación de la región en donde los parámetros vuelven bimodal a nuestra distribución, recordemos que $\mu$ y $\sigma$ tienen la misma interpretación que en una variable aleatoria normal, el posicionamiento de la media y la magnitud de la desviación estándar.
 
 \begin{figure}[H]
     \includegraphics[scale=.75]{reg_bimod.png}
     \centering
-    \caption{Región de Bimodalidad para BN($\alpha$,$\beta$,0,1) [FAMOYE, LEE \& EUGENE ]}
+    \caption{Región de Bimodalidad para BN($\alpha$,$\beta$,0,1) [FAMOYE, LEE \& EUGENE ].}
 \end{figure} 
 
 \subsection{Multimodalidad}
 
-Al igual que la bimodalidad, el término proviene de las palabras "multi" y "moda" y es una generalización de la definición de bimodalidad, pudiendo haber dos o más modas dentro de la distribución.
+Al igual que la bimodalidad, el término proviene de las palabras multi y moda y es una generalización de la definición de bimodalidad, pudiendo haber dos o más modas dentro de la distribución.
 
-La cantidad de parámetros de una distribución multimodal son un arma de doble filo, pues ayudan a explicar el comportamiento de un conjunto de datos específicos pero al añadir más información esta puede perder su capacidad de generalizar.
+La cantidad de parámetros de una distribución multimodal son un arma de doble filo, pues ayudan a explicar el comportamiento de un conjunto de datos específicos pero al añadir más información esta puede perder su capacidad de generalizar y hacer más compleja nuestra distribución.
 
 \chapter{Estimación y Ajuste} %
 \section{Introducción}
 
-Hay muchas formas de aproximar una variable aleatoria a observaciones que vemos en la naturaleza, muestras de características humanas y en general, conjuntos de datos que puedan ser medidos o contados, en esta sección, exploraremos los enfoques clásicos que nos han ayudado a tener una mayor certidumbre.
-
-Para ello dependeremos de dos conceptos importantes: Hipótesis Nula y p.valor.
-
-Una hipótesis es una afirmación expuesta a ser o no rechazada acerca de una característica de nuestra población, por ejemplo, que la media muestral es igual a 0 lo cual se denota como $H_{0}: \mu = 0$
+Hay muchas formas de aproximar una variable aleatoria a observaciones que vemos en la naturaleza, muestras de características humanas y en general, conjuntos de datos que puedan ser medidos o contados, en esta sección, exploraremos los enfoques clásicos que nos han ayudado a tener una mayor certidumbre sobre los parámetros que definen a estas variables aleatorias.
 
 \section{Estimación de parámetros}
 Antes de pensar en asignar una distribución a nuestros datos, es necesario conocer el valor de ciertos estadísticos de nuestra muestra que funjan como parámetros para la distribución que deseamos ajustar.
 
 \subsection{Máxima Verosimilitud}
 
-La estimación por máxima verosimilitud (EMV) es un método para estimar los parámetros de una muestra observada y ajustarlos a una función de probabilidad
+La estimación por máxima verosimilitud (EMV) es un método para estimar los parámetros de una muestra observada y ajustarlos a una función de probabilidad.
 
-Sea $(x_{1},...,x_{n})$ un vector aleatorio cuya distribución depende del parámetro desconocido $\theta$
+Sea $(x_{1},...,x_{n})$ un vector aleatorio cuya distribución depende del parámetro desconocido $\theta$.
 
-Definición:
+La función de verosimilitud del vector $(x_{1},...,x_{n})$ es:
 
-La función de verosimilitud del vector $(x_{1},...,x_{n})$ es $$L(\theta) = f_{X_{1},...,X_{n}}(x_{1},...,x_{n};\theta)$$
+$$L(\theta) = f_{X_{1},...,X_{n}}(x_{1},...,x_{n};\theta). $$
 
-si $X_{1},...,X_{n}$ son independientes, entonces
+si $X_{1},...,X_{n}$ son independientes, entonces,
 
-$$L(\theta) = \prod_{i=1}^{n}f_{X_{i}}(x_{i};\theta)$$
+$$L(\theta) = \prod_{i=1}^{n}f_{X_{i}}(x_{i};\theta).$$
 
-y si son idénticamente distribuidas
+y si son idénticamente distribuidas:
 
-$$L(\theta) = \prod_{i=1}^{n}f(x_{i};\theta)$$
+$$L(\theta) = \prod_{i=1}^{n}f(x_{i};\theta).$$
 
-El objetivo de este método es encontrar el valor de $\theta$ que maximice la función de verosimilitud, que representa la distribución conjunta de nuestro vector aleatorio, a este valor se le llama \"estimador de máxima verosimititud\" y será el valor que le habremos de asignar al parámetro $\theta$
+El objetivo de este método es encontrar el valor de $\theta$ que maximice la función de verosimilitud, que representa la distribución conjunta de nuestro vector aleatorio, a este valor se le llama \"estimador de máxima verosimititud\" y será el valor que le habremos de asignar al parámetro $\theta$.
 
 Recordemos que para encontrar el máximo de una función se debe hallar la derivada de esa función e igualarla a 0, también es válido aplicar transformaciones a la función siempre y cuando estas sean crecientes no afectando el valor máximo de la función, entonces podemos buscar los siguientes resultados:
 
-$$\frac{\partial (L(\theta))}{\partial \theta} = \frac{\partial (\prod_{i=1}^{n}f(x_{i};\theta))}{\partial \theta} = 0$$
+$$\frac{\partial (L(\theta))}{\partial \theta} = \frac{\partial (\prod_{i=1}^{n}f(x_{i};\theta))}{\partial \theta} = 0.$$
 
-De igual forma
+De igual forma,
 
-$$\frac{\partial (log(\prod_{i=1}^{n}f(x_{i};\theta)))}{\partial \theta} = \frac{\partial (\sum_{i=1}^{n}log(f(x_{i};\theta)))}{\partial \theta} = 0$$
+$$\frac{\partial (log(\prod_{i=1}^{n}f(x_{i};\theta)))}{\partial \theta} = \frac{\partial (\sum_{i=1}^{n}log(f(x_{i};\theta)))}{\partial \theta} = 0.$$
 
-A esta función también se le llama Log Verosimilitud.
-
-Veamos entonces el siguiente ejemplo:
+A esta función también se le llama Log Verosimilitud, veamos entonces el siguiente ejemplo:
 
 Sea $(x_{1},...,x_{n})$ una m.a proveniente de una distribución $X \sim N(\mu,\sigma)$, independientes e idénticamente distribuidas, ¿cuál es el EMV para el parámetro $\mu$?
 
 La función de densidad de una distribución normal es:
 
-$$f(x) =  \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma ^2 }}}$$
+$$f(x) =  \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma ^2 }}}. $$
 
 entonces,
 
-$$L(\mu) = \prod_{i=1}^{n} \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x_{i} - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x_{i} - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma ^2 }}}$$
+$$L(\mu) = \prod_{i=1}^{n} \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x_{i} - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x_{i} - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma ^2 }}}. $$
 
-Aplicaremos la derivada a la función de Log Verosimilitud para obtener el estadístico, obteniendo
+Aplicaremos la derivada a la función de Log Verosimilitud para obtener el estadístico, obteniendo:
 
-$$L(\mu) =  {(\frac{1}{{\sigma \sqrt {2\pi }}}})^n  exp( {-\frac{1}{2\sigma^2} \sum_{i=1}^{n} \left( {x_{i} - \mu } \right)^2 )}$$
+$$L(\mu) =  {(\frac{1}{{\sigma \sqrt {2\pi }}}})^n  exp( {-\frac{1}{2\sigma^2} \sum_{i=1}^{n} \left( {x_{i} - \mu } \right)^2 )}. $$
 
 entonces,
 
-$$log(L(\mu)) =  {-n log({{\sigma \sqrt {2\pi }}}}) - ( {\frac{1}{2\sigma^2} \sum_{i=1}^{n} \left( {x_{i} - \mu } \right)^2 )}$$
+$$log(L(\mu)) =  {-n log({{\sigma \sqrt {2\pi }}}}) - ( {\frac{1}{2\sigma^2} \sum_{i=1}^{n} \left( {x_{i} - \mu } \right)^2 )}. $$
 
 Ahora derivemos respecto al parámetro que deseamos, en este caso $\mu$ e igualemos a 0
 
-$$\frac{\partial log(L(\mu)))}{\partial \theta} = 0$$
+$$\frac{\partial log(L(\mu)))}{\partial \theta} = 0. $$
 
-$$log(L(\mu)) =  - ( {\frac{1}{2\sigma^2} \sum_{i=1}^{n} -2 \left( {x_{i} - \mu } \right) )} =  {\frac{1}{\sigma^2} \sum_{i=1}^{n} \left( {x_{i} - \mu } \right) } = 0$$
+$$log(L(\mu)) =  - ( {\frac{1}{2\sigma^2} \sum_{i=1}^{n} -2 \left( {x_{i} - \mu } \right) )} =  {\frac{1}{\sigma^2} \sum_{i=1}^{n} \left( {x_{i} - \mu } \right) } = 0. $$
 
 entonces, 
 
-$$ {\sum_{i=1}^{n} \left( {x_{i} - \mu } \right) } =  -n\mu + {\sum_{i=1}^{n} \left( {x_{i}} \right) } = 0 $$
+$$ {\sum_{i=1}^{n} \left( {x_{i} - \mu } \right) } =  -n\mu + {\sum_{i=1}^{n} \left( {x_{i}} \right) } = 0. $$
 
 que sucede si y solo si,
 
-$$\mu = \frac{\sum_{i=1}^{n} \left( {x_{i}} \right) }{n} = \bar{X} $$
+$$\mu = \frac{\sum_{i=1}^{n} \left( {x_{i}} \right) }{n} = \bar{X}. $$
 
 Por lo tanto, el EMV para el parámetro $\mu$ es la media de la distribución, que gráficamente se puede ver de la siguiente forma.
 
@@ -758,7 +737,7 @@ Por lo tanto, el EMV para el parámetro $\mu$ es la media de la distribución, q
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.7]{plot_zoomml.png}
-    \caption{Estimador de máxima verosimilitud para una distribución Normal(0,1)}
+    \caption{Estimador de máxima verosimilitud para una distribución Normal(0,1).}
 \end{figure}
 
 %\frac{\partial (\sum_{i=1}^{n}log(f(x_{i};\theta)))}{\partial \theta}
@@ -772,11 +751,11 @@ Sea X una v.a y sea k un entero mayor que 0. El k-ésimo momento de x, si existe
 
 Sea $x_{1},...,x_{n}$ una m.a. de la distribución $f(x;\theta)$ y sea k un entero mayor que 0, definimos al k-ésimo momento muestral como la variable aleatoria.
 
-$$\frac{\sum_{i=1}^{n} \left( {x_{i}^k} \right) }{n}$$
+$$\frac{\sum_{i=1}^{n} \left( {x_{i}^k} \right) }{n}. $$
 
 Este método consiste en igualar los momentos muestrales y los poblacionales y resolver el sistema de ecuaciones generado para los parámetros que se desean obtener, igualando tantas ecuaciones como número de parámetros a calcular.
 
-$$E(X^k) = \frac{\sum_{i=1}^{n} \left( {x_{i}^k} \right) }{n}$$
+$$E(X^k) = \frac{\sum_{i=1}^{n} \left( {x_{i}^k} \right) }{n}. $$
 
 Veamos ahora un ejemplo:
 
@@ -792,15 +771,15 @@ f(x) =
 
 Dado que solo deseamos obtener un parámetro, será necesario obtener el primer momento y resolver la siguiente ecuación para $k=1$.
 
-$$E(X) = \frac{\sum_{i=1}^{n} \left( {x_{i}} \right) }{n}$$
+$$E(X) = \frac{\sum_{i=1}^{n} \left( {x_{i}} \right) }{n}. $$
 
 Es sencillo ver que
 
-$$E(X) = \int_0^1 x \theta x^{\theta-1} = \theta [\frac{x^{\theta+1}}{\theta+1}]_{0}^{1} = \frac{\theta}{\theta+1}$$
+$$E(X) = \int_0^1 x \theta x^{\theta-1} = \theta [\frac{x^{\theta+1}}{\theta+1}]_{0}^{1} = \frac{\theta}{\theta+1}. $$
 
 entonces, $\frac{\widehat{\theta}}{\widehat{\theta}+1} = \bar{X}$ y despejando el parámetro desconocido $\widehat{\theta}$, llegamos a 
 
-$$\widehat{\theta} = \frac{\bar{X}}{\bar{X}+1}$$
+$$\widehat{\theta} = \frac{\bar{X}}{\bar{X}+1}. $$
 
 
 \section{Pruebas de Bondad y Ajuste}
@@ -809,19 +788,21 @@ Ya que sabemos maneras de estimar los parámetros para una distribución que que
 
 \subsection{Pruebas de hipótesis} % Esta parte la pondría en la sección anterior
 
-Una hipótesis es una proposición que se desea aceptar o rechazar con base en observaciones reales. Es imperativo remarcar que una hipótesis está en constante verificación, por lo que no se puede estar completamente convencido de que esta es acepada dada la naturaleza aleatoria de nuestros datos. Ahora recapitularemos brevemente las pruebas de hipótesis.
+Una hipótesis es una afirmación expuesta a ser o no rechazada acerca de una característica de nuestros datos y generalmente basada en observaciones reales, por ejemplo, que la media muestral es igual a 0 lo cual se denota como $H_{0}: \mu = 0$
+
+Es imperativo remarcar que una hipótesis está en constante verificación, por lo que no se puede estar completamente convencido de que esta es acepada dada la naturaleza aleatoria de nuestros datos. Ahora recapitularemos brevemente las pruebas de hipótesis.
 
 \subsubsection{Hipótesis nula}
 Ésta se denota como $H_0$, es la proposición que se desea rechazar, en la que se declara un valor y se contrasta con un parámetro o estimador de nuestra muestra observada, por ejemplo:
 
-$$ H_0: \mu = \mu_0$$
-$$ H_0: \mu \geq \mu_0$$
+$$ H_0: \mu = \mu_0. $$
+$$ H_0: \mu \geq \mu_0. $$
 
 \subsubsection{Hipótesis Alternativa}
 La Hipótesis Alternativa, se denota como $H_1$, esta se puede verificar en base a la evidencia de la muestra y su región debe abarcar el complemento de nuestra hipótesis nula siendo:
 
-$$ H_0: \mu \neq \mu_0$$
-$$ H_0: \mu < \mu_0$$
+$$ H_0: \mu \neq \mu_0. $$
+$$ H_0: \mu < \mu_0. $$
 
 Las hipótesis alternativas del anterior ejemplo respectivamente
 
@@ -848,20 +829,20 @@ La Probabilidad de cometer un Error Tipo I se conoce como Nivel de Significancia
 % Creo que aqui si debe hacer una descripción un poco más formal de la prueba
 Este test nos ayudará a ver las diferencias entre dos distribuciones de probabilidad distintas para determinar si tienen o no la misma distribución planteando las siguientes hipótesis:
 
-$$H_{0}: F_X(x) = F_Y(x), \forall x \in R $$
-$$H_{1}: F_X(x) \neq F_Y(x) $$
+$$H_{0}: F_X(x) = F_Y(x), \forall x \in R. $$
+$$H_{1}: F_X(x) \neq F_Y(x). $$
 
-En este caso, nos interesa no rechazar la hipótesis nula, es decir, que el p.valor sea mayor a $\alpha$, al que le asignaremos el valor de 0.05
+En este caso, nos interesa no rechazar la hipótesis nula, es decir, que el p.valor sea mayor a $\alpha$, al que le asignaremos el valor de 0.05, este valor no es absoluto y no hay un criterio estricto para definir si es o no suficiente para rechazar la hipótesis nula.
 
 Primero necesitamos definir la distribución empírica
 Sea $x_{1},...,x_{n}$ una m.a., la distribución empírica se define como
 
-$$F_e(x) = \frac{\#\{i | X_{i} \leq x\}}{n}$$
+$$F_e(x) = \frac{\#\{i | X_{i} \leq x\}}{n}. $$
 
 Es decir, la proporción de valores observados menores o iguales a x
 
 Por ejemplo, supongamos que tengo los datos observados $x_{1} = 3, x_{2} = 5, x_{3} = 1$, estos los ordeno de menor a mayor
-$x_{(1)} = 1, x_{(2)} = 3, x_{(3)} = 5$, entonces
+$x_{(1)} = 1, x_{(2)} = 3, x_{(3)} = 5$, entonces,
 
 \[
 F_e(x) =  
@@ -875,51 +856,57 @@ F_e(x) =
 
 El estadístico de Kolmogorov-Smirnov se define para toda $x \in R$ como
 
-$$D = max(F_e(x)-F(x))$$ 
+$$D = max(F_e(x)-F(x)). $$ 
 
 para distribuciones discretas y para continuas como:
 
-$$D = sup(F_e(x)-F(x))$$ 
+$$D = sup(F_e(x)-F(x)). $$ 
 
 Esta diferencia se ve representada a continuación
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.7]{plot_ks.png}
-    \caption{Estadístico de KS para dos distribuciones N(0,1) y N(2,2)}
+    \caption{Estadístico de KS para dos distribuciones N(0,1) y N(2,2).}
 \end{figure}
 
 Podemos considerar las diferencias que se encuentran por encima o por debajo de la distribución, denotándolas como:
 
-$$D^{+} = sup(F_e(x)-F(x))$$
-$$D^{-} = sup(F(x)-F_e(x))$$
+$$D^{+} = sup(F_e(x)-F(x)). $$
+$$D^{-} = sup(F(x)-F_e(x)). $$
 
-y con ello redefinir el estadístico D
+y con ello redefinir el estadístico $D$:
 
-$$D = max\{ \frac{j}{n} - F(x_{(j)}), F(x_{(j)}) - \frac{j-1}{n}  \}$$
+$$D = max\{ \frac{j}{n} - F(x_{(j)}), F(x_{(j)}) - \frac{j-1}{n}  \}. $$
 
-Posteriormente deberemos revisar que el valor D para calcular el p valor de la siguiente manera:
+Posteriormente deberemos revisar que el valor $D$ para calcular el p valor de la siguiente manera:
 
-$$p = P_{F}(D \geq d)$$
+$$p = P_{F}(D \geq d). $$
 
-Esto significa que el p valor dependerá de la distribución de D y de F que se esté planteando.
+También podemos ver el estadístico $D_{n,\alpha}$ el cual, si resulta ser mayor a $D$ podemos decir que se rechaza la hipótesis nula.
+
+Esto significa que el p.valor dependerá de la distribución de $D$ y de F que se esté planteando.
 
 Veamos entonces el siguiente ejemplo:
 
-Sea X una muestra aleatoria con los siguientes valores (esta muestra será utilizada para ejercicios posteriores y ya se encuentra ordenada para facilitar los cálculos)
+Sea X una muestra aleatoria con los siguientes valores (esta muestra será utilizada para ejercicios posteriores y ya se encuentra ordenada para facilitar los cálculos).
 
-$$X = (-2.736, -2.445, -1.816, -1.607, -1.358, -1.087, -0.853, -0.832, -0.818, -0.721, -0.613, -0.567, -0.439, -0.402, -0.258, -0.217, -0.16, -0.105, -0.006, 0.133, 0.242, 0.308, 0.33, 0.362, 0.683, 0.791, 0.794, 1.209, 1.284, 1.339)$$
+$X = (-2.736, -2.445, -1.816, -1.607, -1.358, -1.087, -0.853, -0.832, -0.818,$
+
+$-0.721, -0.613, -0.567, -0.439, -0.402, -0.258, -0.217, -0.16, -0.105, -0.006,$
+
+$0.133, 0.242, 0.308, 0.33, 0.362, 0.683, 0.791, 0.794, 1.209, 1.284, 1.339). $
 
 La obtención de dicha muestra se realizó mediante el código:
 \begin{lstlisting}[language=R]
-set.seed(31109); rnorm(30,0,1)
+set.seed(31109); X<-sort(rnorm(30,0,1))
 \end{lstlisting}
 
 ¿Proviene dicha muestra de una distribución Normal(0,1)?
 %%%%EJEMPLO KS https://www.famaf.unc.edu.ar/~kisbye/mys/clase17_pr.pdf
 %%https://www.ugr.es/~bioestad/_private/Tema_8.pdf
 
-Para este ejemplo el hecho de tener un primer valor muy bajo y al tamaño de la muestra, esto afectará el resultado final, sin embargo, procederemos con los cálculos.
+Para este ejemplo el hecho de tener un primer valor muy bajo al igual que el tamaño de la muestr afectará el resultado final, sin embargo, procederemos con los cálculos.
 
 
 \begin{tabular}{|l|l|l|l|l|}
@@ -935,35 +922,37 @@ Muestra & F. AC & $i/N$ & $Fn(X)$ & Diferencias \\ \hline
 
 Y la máxima diferencia D es:
 
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|}
 \hline
-24 & 0.800 & 0.641 & 0.159 \\ \hline
+0.362 & 24 & 0.800 & 0.641 & 0.159 \\ \hline
 \end{tabular}
+
+$D = 0.159$.
+
+Y dado que $D_{30,0.05} = 0.2417$, entonces $D < D_{n,\alpha}$, por lo tanto, no rechazamos la hipótesis nula con un nivel de confianza del 5\%, y entonces, la muestra pertenece a una distribución normal con un nivel de confianza del 95\%.
 
 
 %Falta concluir para sacar el pvalor
 %http://www.real-statistics.com/tests-normality-and-symmetry/statistical-tests-normality-symmetry/kolmogorov-smirnov-test/
 %Para finalizar, ...
 
-Por lo tanto, no rechazamos la hipótesis nula, y la muestra pertenece a una distribución normal con un nivel de confianza del 95%
-
 \subsection{Anderson-Darling}
 %https://www.itl.nist.gov/div898/handbook/eda/section3/eda35e.htm
 
 La prueba de Anderson-Darling es otra forma de contrastar valores observados respecto a una distribución y que comparte las hipótesis de la prueba de Kolmogorov-Smirnov:
 
-$$H_{0}: F_X(x) = F_Y(x), \forall x \in R $$
-$$H_{1}: F_X(x) \neq F_Y(x) $$
+$$H_{0}: F_X(x) = F_Y(x), \forall x \in R. $$
+$$H_{1}: F_X(x) \neq F_Y(x). $$
 
 Es decir, nos ayudará a determinar si una muestra observada proviene de cierta distribución de tamaño $N$.
 
 El estadístico de prueba se define como:
 
-$A^2= -N-S$
+$A^2= -N-S$.
 
 Donde N es el tamaño de muestra y S:
 
-$$S = \sum_{i=1}^N \frac{(2i-1)}{N}[ln(F(Y_i)) + ln(1-F(Y_{N+1−i}))]$$
+$$S = \sum_{i=1}^N \frac{(2i-1)}{N}[ln(F(Y_i)) + ln(1-F(Y_{N+1−i}))].$$
 
 Con $F$ como la función de distribución acumulada y las $Y_i$ ordenadas ascendentemente.
 
@@ -973,7 +962,7 @@ Utilizando la muestra aleatoria del ejercicio anterior, obtendremos los siguient
 \begin{tabular}{|l|l|l|l|}
 \hline
 
-No.Obs & De menor a mayor & CDF Teórica  & Ln F \\ \hline
+No.Obs & De menor a mayor & F Teórica  & Ln F \\ \hline
 1 & -2.7355 & 0.0031 & -5.7719 \\ \hline
 2 & -2.4454 & 0.0072 & -4.9290 \\ \hline
 3 & -1.8161 & 0.0346 & -3.3618 \\ \hline
@@ -1001,68 +990,61 @@ De mayor a menor & CDF Teórica $F(Yn1-i)$  & $LN(1-Y)$ & Suma \\ \hline
 
 Los estadísticos resultantes son los siguientes:
 
-$$S = 43.91795$$
-$$A^2 = -13.91795338$$
+$$A^2 = 1.3475. $$
 
-Finalmente, para la distribución Normal contamos con el estadístico de prueba ajustado
+Para la distribución Normal contamos con el estadístico de prueba ajustado con un nivel de confianza de 5\% (que queremos que sea mayor a nuestro estadístico $A^2$).
 %esta parte me causa algo de confusión, no comprendo bien de dóndesale la fórmula
-$$(1+\frac{4}{N}-\frac{25}{N^2})A_N^2 = 1.519943$$
+$$(1+\frac{4}{N}-\frac{25}{N^2})A_N^2 = 1.519943. $$
 
-Si vemos los niveles de confianza del estadístico para una distribución Normal(0,1), veremos:
+Si vemos los niveles de confianza del estadístico para una distribución Normal(0,1), con un nivel de confianza de 1\%, obtenemos:
 
-Con un nivel de confianza de 1\%, obtenemos
+$$(1+\frac{4}{N}-\frac{25}{N^2})A_N^2 = 1.029. $$
 
-$$(1+\frac{4}{N}-\frac{25}{N^2})A_N^2 = 1.029$$
-
-Por lo tanto, dado que nuestro estadístico supera dicho valor, tenemos una certeza de al menos 99\% de que nuestros datos provengan de una distribución Normal(0,1).
+Por lo tanto, tenemos una certeza de al menos 95\% de que nuestros datos provengan de una distribución Normal(0,1) pero no suficiente para tener una certeza del 99\%.
 
 %Esta parte la pondría como sección
-\subsection{Aplicación de transformaciones}
+\section{Aplicación de transformaciones}
 
-Otra forma de extender nuestro universo de distribuciones ajustables es agregando parámetros de escala y desplazamiento a aquellas distribuciones que están limitadas por su función indicadora y aplicando la función inversa de esos parámetros al momento de simular, aplicándoles una transformación lineal $T(X) = a*X+b$.
+Otra forma de extender nuestro universo de distribuciones ajustables es agregando parámetros de escala y desplazamiento a aquellas distribuciones que están limitadas por su función indicadora y aplicando la función inversa de esos parámetros al momento de simular, por medio de una transformación lineal $T(X) = a*X+b$.
 
 Un ejemplo de una de distribución que al aplicarle una transformación lineal conserva el kernel es la Cauchy, pues solo son modificados sus parámetros, lo que nos indica que estos representan desplazamiento y escala.
 
-Por ejemplo, sea X una v.a. continua con distribución Cauchy(1,0)
+Por ejemplo, sea X una v.a. continua con distribución Cauchy(1,0).
 
 ¿Como se distribuirá $a*X+b$?
 
-Si $X \sim Cauchy$, entonces su función de densidad está dada por
-$$f(x) = (\pi \gamma [1+(\frac{x-x_{0}}{\gamma})^2])^{-1}$$
+Si $X \sim Cauchy$, entonces su función de densidad está dada por:
+$$f(x) = (\pi \gamma [1+(\frac{x-x_{0}}{\gamma})^2])^{-1}.$$
 
-y al sustituir
+y al sustituir,
 
-$$f(x) = (\pi [1+({x})^2])^{-1}$$
+$$f(x) = (\pi [1+({x})^2])^{-1}.$$
 
 Para aplicar la transformación lineal, deberemos hacer uso de la técnica de la transformación, primero definimos $Y = g(X) = aX+b$, esta transformación al ser lineal, no afecta el rango en el que se encontraba definida, es decir, la variable Y puede tomar valores en los reales.
 
-Definimos $X = g^{-1}(X) = \frac{Y-b}{a}$ y el jacobiano como $\frac{\partial X}{\partial Y}= \frac{1}{a}$
+Definimos $X = g^{-1}(X) = \frac{Y-b}{a}$ y el jacobiano como $\frac{\partial X}{\partial Y}= \frac{1}{a}$.
 
 Entonces, la función de densidad de Y es:
 
-$$f_Y(y) = f_X(g^{-1}(X))|\frac{\partial X}{\partial Y}| =  (\pi a [1+({\frac{Y-b}{a}})^2])^{-1}$$
+$$f_Y(y) = f_X(g^{-1}(X))|\frac{\partial X}{\partial Y}| =  (\pi a [1+({\frac{Y-b}{a}})^2])^{-1}.$$
 
-Que sigue una distribución Cauchy con parámetros a y b, de escala y posición respectivamente
-
-No siempre es posible tener esta particularidad con distribuciones que tengan un solo parámetro, pensemos por ejemplo en una institución financiera que recibe ingresos debido a un producto que ofrecen, sin embargo, hay ocasiones en las que dicho producto no genera uilidades, la forma en la que se gana y se pierde el dinero es igual a una distribución exponencial como se muestra a continuación:
+Que sigue una distribución Cauchy con parámetros a y b, de escala y posición respectivamente. No siempre es posible tener esta particularidad con distribuciones que tengan un solo parámetro, pensemos por ejemplo en una institución financiera que recibe ingresos debido a un producto que ofrecen, sin embargo, hay ocasiones en las que dicho producto no genera uilidades, la forma en la que se gana y se pierde el dinero es igual a una distribución exponencial como se muestra a continuación:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=.7]{}
-    \caption{Distribución exponencial fuera de su rango usual}
+    \includegraphics[scale=1.1]{exp_dpl.png}
+    \caption{Distribución exponencial fuera de su rango usual.}
 \end{figure}
 
 Es importante considerar nuevos parámetros de los que podamos disponer, por lo que se aconseja realizar las siguientes transformaciones a partir de la función indicadora que acompañe a la distribución.
 
 Si ${x > 0}$, como el caso de la distribución exponencial, se debe realizar el ajuste sobre:
 
-$$Y = \frac{X - min(X)}{max(X)-min(X)}  $$ si algún valor de X se encuentra por debajo del 0
+$$Y = \frac{X - min(X)}{max(X)-min(X)}. $$ si algún valor de X se encuentra por debajo del 0.
 
-Si ${x \in [0,1]}$ como el caso de la distribución Beta o la Kumaraswamy
+Si ${x \in [0,1]}$ como el caso de la distribución Beta o la Kumaraswamy.
 
-$$Y = X + min(X) + \epsilon $$  si todos los valore de X son mayores que 0 
-
-(dadas las estructuras de programación actuales hay que definir el valor de $\epsilon$ como un número suficientemente pequeño en este caso $10^(-15)$, cuya única función sea ubicar los valores por encima del cero sin que afecte el valor de los parámetros estimados)
+$$Y = X + min(X) + \epsilon $$  si todos los valores de X son mayores que 0. Dadas las estructuras de programación actuales hay que definir el valor de $\epsilon$ como un número suficientemente pequeño en este caso $10^{-15}$, cuya única función sea ubicar los valores por encima del cero sin que afecte el valor de los parámetros estimados).
 
 
 
@@ -1078,11 +1060,19 @@ Las pruebas de bimodalidad o multimodalidad van estrechamente relacionadas a la 
 
 \section{Clasificación de outliers}
 
-Supongamos entonces que tenemos la siguiente información que representa la estatura de un grupo de personas
+Supongamos entonces que tenemos la siguiente información que representa la estatura en metros de un grupo de personas:
+
+$$ X = \{1.70, 1.56, 1.52, 1.53, 1.24, 1.45, 1.75, 1.63, 1.70, 1.38, 1.67, 1.41, 1.65, 1.54, 1.49, 2.11, 2.07\}.$$
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=1]{estatura.png}
+    \caption{Distribución de estaturas.}
+\end{figure}
 
 Es de esperar que la distribución de estos datos sea normal, por otro lado, contamos con dos observaciones atípicas.
 
-Este tipo de problemas suele suceder porque al momento de capturar la información esta no es homogénea, dado que se omitieron variables como la edad o el sexo y que de poder clasificarse, las pruebas anteriores pasarían sin problema, observando distribuciones distintas para adultos y niños, (otra forma de atacar el problema es incrementando el tamaño de muestra, probando con distribuciones de colas pesadas como Cauchy o transformar los datos para probar con nuevas distribuciones como Beta o Kumaraswamy).
+Este tipo de problemas suele suceder porque al momento de capturar la información esta no es homogénea, dado que se omitieron variables como la edad o el sexo y que de poder clasificarse, las pruebas anteriores pasarían sin problema, observando distribuciones distintas para adultos y niños, otra forma de atacar el problema es incrementando el tamaño de muestra, probando con distribuciones de colas pesadas como Cauchy o transformar los datos para probar con nuevas distribuciones como Beta o Kumaraswamy tal y como se mencionó en el capítulo anterior.
 
 Observemos entonces cómo se ajusta una distribución normal con y sin outliers.
 
@@ -1116,7 +1106,7 @@ En caso de tener una distribución conocida ya no sería necesario realizar el a
 
 Así, podemos definir el valor de $z$ como:
 
-$$z=\frac{x_i-\mu}{\sigma}$$
+$$z=\frac{x_i-\mu}{\sigma}.$$
 
 Lo primero que se realiza es la sustracción de la media para posicionar nuestra distribución en el valor $0$, lo que nos permite ver la simetría si es que la hay, posteriormente se divide entre la desviación estándar para que pueda ser escalada o más aproximable a una distribución normal.
 
@@ -1129,13 +1119,13 @@ Ahora veamos una tabla de probabilidades para la distribución normal estándar.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.8]{normal95.png}
-    \caption{Distribución Normal estándar con un $\alpha$ del $5\%$}
+    \caption{Distribución Normal estándar con un $\alpha$ del $5\%$. }
 \end{figure}
 
 \begin{table}[H]
 \centering
 \footnotesize
-\caption{Tabla de valores de la distribución normal estándar}
+\caption{Tabla de valores de la distribución normal estándar.}
 \label{my-label}
 \begin{tabular}{lllllllllll}
 z   & 0       & 0,01    & 0,02    & 0,03    & 0,04    & 0,05    & 0,06    & 0,07    & 0,08    & 0,09    \\
@@ -1170,29 +1160,28 @@ Esta es una medida de dispersión de los datos, la cual nos ayudará a determina
 
 Definimos el rango intercuartílico (RI) como la diferencia entre el primer y el tercer cuartil, es decir,
 
-$$RI = Q_3 - Q_1$$
+$$RI = Q_3 - Q_1. $$
 
 Y podemos decir que una observación es un outlier cuando se encuentra fuera del siguiente rango:
 
-$$Rango =  (Q_1-1.5RI,Q3+1.5RI)$$
+$$Rango =  (Q_1-1.5RI,Q3+1.5RI). $$
 
-Este método es comúnmente usado en los diagramas de cajas, veamos pues un ejemplo con nuestra muestra de datos
+Este método es comúnmente usado en los diagramas de cajas, veamos pues un ejemplo con nuestra muestra de datos:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.85]{Rango_Inter.png}
-    \caption{Boxplot y Distribución Normal de la semilla 31109}
+    \caption{Boxplot y Distribución Normal de la semilla 31109.}
 \end{figure}
 
 Primer cuantil $=-0.828$ 
 Tercer cuantil $=0.324$
-
 Rango intercuartílico $=1.152$
 
 Por lo que nuestra región sin outliers es
-$$\{X| X \notin (-2.56,  1.48 )\}$$
+$$\{X| X \notin (-2.56,  1.48 )\}. $$
 
-Es decir, el único outlier corresponde a la observación $ -2.74$, notemos también que nuestros puntos de corte son $-2.56 y  1.48 $
+Es decir, el único outlier corresponde a la observación $ -2.74$, notemos también que nuestros puntos de corte son $-2.56 y  1.48 $.
 
 \subsection{Otros métodos de clasificación}
 
@@ -1211,7 +1200,7 @@ El primer paso del algoritmo es colocar k puntos de forma aleatoria dentro de nu
 \begin{figure}[H]
     \centering
     \includegraphics[scale=1.3]{kmeans_illust.jpg}
-    \caption{Ilustración del algoritmo de K-medias de [Bishop 2006]}
+    \caption{Ilustración del algoritmo de K-medias de [Bishop 2006].}
 \end{figure}
 
 
@@ -1222,7 +1211,6 @@ Una de sus desventajas es que si el número de grupos es grande es posible que a
 La aplicación de los métodos para la detección de outliers en este caso nos puede ayudar a separar la distribución, una de estas aplicaciones es el cálculo de siniestros cuya suma asegurada es demasiado grande.
 
 Ejemplo de obtención de los puntos de corte:
-
 
 
 %\subsubsection{Propuesta de un nuevo método de clasificación}
@@ -1246,13 +1234,13 @@ Para el ejemplo generado se utilizaron las siguientes distribuciones empalmadas:
 
 \begin{figure}[H]
     \includegraphics[scale=.5]{multi_norm01.png}
-    \caption{Distribución Normal(0,1)}
+    \caption{Distribución Normal(0,1).}
         \label{}
 \end{figure} 
 
 \begin{figure}[H]
     \includegraphics[scale=.5]{multi_gamm92.png}
-    \caption{Distribución Gamma(9,2)}
+    \caption{Distribución Gamma(9,2).}
     \label{}
 \end{figure} 
 
@@ -1266,16 +1254,16 @@ Existen pruebas para la detección de la multimodalidad en una función de distr
 
 Uno de los métodos no paramétricos que podemos utilizar es la estimación estadística del Kernel, éste es una función que cumple con las mismas características que una función de densidad y que indica la forma que tendrá cada punto de nuestra distribución.
 
-1.-\[K(x) \geq 0\ \text{ }  \forall i \in S\]
+1.-\[K(x) \geq 0\ \text{ }  \forall i \in S.\]
 
-2.-\[\int_{-\infty}^{\infty}K(x)dx=1\]
+2.-\[\int_{-\infty}^{\infty}K(x)dx = 1.\]
 
 Cada observación de nuestra muestra tendrá la misma función kernel asociada, sin embargo, debemos asumir un supuesto distinto para el kernel que estemos utilizando, por ejemplo, el de tipo gaussiano implica que la distribución final se compondrá de la suma de variables aleatorias normales, es decir, incluso si nuestra función final es de cola pesada o triangular, al usar esta distribución asumimos que estas se forman de la suma de un conjunto de distribuciones normales  como se muestra en la siguiente gráfica.
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.8]{Kernel_norm.png}
-    \caption{Kernel Gaussiano}
+    \caption{Kernel Gaussiano.}
     \label{}
 \end{figure}
 
@@ -1286,37 +1274,35 @@ Debido a este problema, existen otros tipos de kernel para estimar la función d
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.34]{kernel_funct.png}
-    \caption{Tipos de Kernel}
+    \caption{Tipos de Kernel.}
     \label{}
 \end{figure}
 
 
-El problema a resolver consiste en tener un entendimiento mayor de nuestra información y en el caso de no hallar una función de densidad teórica que se ajuste a nuestros datos, emplear la estimación del Kernel con el requerimiento de cierto número de supuestos o restricciones que no veríamos en un modelo paramétrico
+El problema a resolver consiste en tener un entendimiento mayor de nuestra información y en el caso de no hallar una función de densidad teórica que se ajuste a nuestros datos, emplear la estimación del Kernel con el requerimiento de cierto número de supuestos o restricciones que no veríamos en un modelo paramétrico.
 
 El estadístico asociado es:
 
-$$\widehat{f}_h(x) = \frac{1}{nh}\sum_{i=1}^{n}K(\frac{x-X_i}{h})$$
+$$\widehat{f}_h(x) = \frac{1}{nh}\sum_{i=1}^{n}K(\frac{x-X_i}{h}). $$
 
 Donde $h$ es nuestro parámetro de afinamiento al cual denominamos ancho de banda, éste determinará la forma de nuestra función kernel de la siguiente forma:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.8]{Ancho_de_banda.png}
-    \caption{Función Normal-Gamma con diferentes anchos de banda}
+    \caption{Función Normal-Gamma con diferentes anchos de banda.}
     \label{}
 \end{figure}
 
 Como podemos observar, tanto el número de modas como la forma de nuestra distribución son dependientes del ancho de banda, así como la forma del kernel.
 
-La curva en color azul representa la verdadera forma de nuestra distribución, nosotros buscamos aquella h que minimice el error cuadrático medio de la integral (MISE), es decir, la h tal que nuestra distribución se aproxime más a su forma real, es decir
+La curva en color azul representa la verdadera forma de nuestra distribución, nosotros buscamos aquella h que minimice el error cuadrático medio de la integral (MISE), es decir, la h tal que nuestra distribución se aproxime más a su forma real, es decir,
 
-$$\operatorname{MISE}(h)=\mathrm{E}\left[\int\left(\hat{f}_{h}(x)-f(x)\right)^{2} d x\right]$$
+$$\operatorname{MISE}(h)=\mathrm{E}\left[\int\left(\hat{f}_{h}(x)-f(x)\right)^{2} d x\right].$$
 
-Para un número de modas $k \in N$, el ancho de banda crítico es el menor de los anchos de banda tal que la densidad del kernel tiene al menos $k$ modas
-%Esta sección queda pendiente debido a la documentación
-Entonces:
+Para un número de modas $k \in N$, el ancho de banda crítico es el menor de los anchos de banda tal que la densidad del kernel tiene al menos $k$ modas, entonces:
 
-$$h_k = inf\{ h: M(\widehat{f}_h) \geq k \}$$
+$$h_k = inf\{ h: M(\widehat{f}_h) \geq k \}.$$
 
 En donde $M(f_h)$ es el número de modas de $f_h$ y $f_h$ representa el estimador de la densidad del kernel de una muestra aleatoria $X = (X_1, ..., X_n)$.
 
@@ -1326,29 +1312,26 @@ Ya que contamos con nuestra función kernel definida, podemos encontrar la canti
 
 Conceptualmente, el cálculo de máximos y mínimos de una función se realiza por medio de la derivada, y dada la naturaleza del problema y que no contamos con una expresión analítica explícita para esta función procederemos a realizar el cálculo de forma numérica utilizando el kernel generado por la muestra.
 
-Inicialmente, es sencillo el cálculo de esta función, solo debemos elegir una función kernel y una vez generada la función de densidad contar la cantidad de veces que la distribución pasa de ser creciente a decreciente, es decir
-
-Identificación de máximos y mínimos en R:
-
+Inicialmente, es sencillo el cálculo de esta función, solo debemos elegir una función kernel y una vez generada la función de densidad contar la cantidad de veces que la distribución pasa de ser creciente a decreciente, es decir, la identificación de máximos y mínimos en R:
 
 Crearemos una muestra bimodal
 \begin{lstlisting}[language=R, breaklines]
 set.seed(31109);c(rnorm(30 ,0 ,1),rnorm(30,4))->a
 \end{lstlisting}
 
-Obtenemos el Kernel de la función
+Obtenemos el Kernel de la función:
 
 \begin{lstlisting}[language=R, breaklines]
 Dens<-density(a)\$y
 \end{lstlisting}
 
-Conteo de las veces que cambia de ser TRUE a FALSE
+Conteo de las veces que cambia de ser TRUE a FALSE.
 
 \begin{lstlisting}[language=R, breaklines]
 TF<-c(Dens<c(Dens[-1],0))
 \end{lstlisting}
 
-Se ven tres máximos y mínimos, lo cual coincide con los dos puntos máximos que tenemos y un mínimo local
+Se ven tres máximos y mínimos, lo cual coincide con los dos puntos máximos que tenemos y un mínimo local.
 
 \begin{lstlisting}[language=R, breaklines]
 Cambios<-sum(TF!=c(TF[-1],FALSE))
@@ -1359,20 +1342,16 @@ Es decir, pasa de ser creciente a decreciente, decreciente a creciente y nuevame
 \begin{lstlisting}[language=R, breaklines]
 Maxloc<-(Cambios+1)/2
 \end{lstlisting}
-
-
-
-
-Realizando el ejercicio anterior sobre la muestra que tratamos llegamos a la siguiente cantidad de modas..., lo que podemos utilizar para la separación de los grupos dando, los valores máximos obtenidos como los centroides del algoritmo de k medias o por consiguiente también es posible separar la muestra en particiones que sean definidas en los valores donde la función pasa de ser decreciente a creciente.
+%%%%%%%%%%%%%%%%%%%%%%%
+Realizando el ejercicio anterior sobre la muestra que tratamos llegamos a tres modas, lo que podemos utilizar para la separación de los grupos dando, los valores máximos obtenidos como los centroides del algoritmo de k medias o por consiguiente también es posible separar la muestra en particiones que sean definidas en los valores donde la función pasa de ser decreciente a creciente.
 
 Numéricamente debemos encontrar los puntos en donde nuestro kernel pasa de ser creciente a decreciente, también cabe señalar que no tenemos distribuciones con asíntotas, pues nuestros datos son finitos, por lo que los puntos máximos de nuestra función están bien definidos.
 
 Una de las ventajas de la solución numérica es que esta no incrementa su complejidad si cambiamos el ancho de banda de nuestro kernel, en cambio, la solución analítica implica un incremento significativo en la complejidad de la función.
-Al obtener la 
 
-¿Solución numérica o solución analítica?
+\subsubsection{¿Solución numérica o solución analítica?}
 
-Recordemos que para la obtención de una solución analítica deberemos asumir que la función kernel es una representación fiel de nuestros datos, sin embargo, el mayor problema de dicho método es que asumimos que nuestra distribución ya tiene una asociada una función, que es lo que estamos tratando de encontrar
+Recordemos que para la obtención de una solución analítica deberemos asumir que la función kernel es una representación fiel de nuestros datos, sin embargo, el mayor problema de dicho método es que asumimos que nuestra distribución ya tiene una asociada una función, que es lo que estamos tratando de encontrar.
 
 La solución numérica no necesita tener una función explícita asociada, más allá de la estimación del kernel.
 
@@ -1382,21 +1361,21 @@ Esta prueba se remite a distribuciones con dos modas, no obstante, nos ofrece un
 
 Como breve preámbulo, recordemos que la kurtosis es una medida para la forma de la distribución de una variable aleatoria y podemos estimarlo mediante la siguiente fórmula:
 
-$$\operatorname{Ku}[X]=\mathrm{E}\left[\left(\frac{X-\mu}{\sigma}\right)^{4}\right] = \frac{\mathrm{E}\left[(X-\mu)^{4}\right]}{\left(\mathrm{E}\left[(X-\mu)^{2}\right]\right)^{2}}$$
+$$\operatorname{Ku}[X]=\mathrm{E}\left[\left(\frac{X-\mu}{\sigma}\right)^{4}\right] = \frac{\mathrm{E}\left[(X-\mu)^{4}\right]}{\left(\mathrm{E}\left[(X-\mu)^{2}\right]\right)^{2}}. $$
 
 La asimetría como su nombre lo indica es una medida que indica que tan simétrica es una distribución de probabilidad respecto a su media. El valor de asimetría puede ser positivo o negativo, o indefinido y se calcula mediante el tercer momento estandarizado de la variable aleatoria, es decir:
 
-$$\operatorname{Sk}[X]=\mathrm{E}\left[\left(\frac{X-\mu}{\sigma}\right)^{3}\right] = \frac{\mathrm{E}\left[(X-\mu)^{3}\right]}{\left(\mathrm{E}\left[(X-\mu)^{2}\right]\right)^{3/2}}$$
+$$\operatorname{Sk}[X]=\mathrm{E}\left[\left(\frac{X-\mu}{\sigma}\right)^{3}\right] = \frac{\mathrm{E}\left[(X-\mu)^{3}\right]}{\left(\mathrm{E}\left[(X-\mu)^{2}\right]\right)^{3/2}}. $$
 
 El coeficiente de asimetría será calculado mediante la siguiente fórmula:
 
-$$b ={\frac  {Sk ^{2}+1}{Ku}}$$
+$$b ={\frac  {Sk ^{2}+1}{Ku}}. $$
 
 Como nos hemos percatado, una distribución bimodal no siempre tiene una expresión algebraica para ciertos parámetros de la función y su complejidad es muchas veces el freno para la realización de cálculos de estadísticos o de una función generadora de momentos, es por ello que utilizaremos una muestra aleatoria obtenida a través de una distribución bimodal.
 
 En caso de tener un número finito de observaciones, surge una segunda fórmula para el coeficiente de bimodalidad:
 
-$$b={\frac  {Sk^{2}+1}{eKu+{\frac  {3(n-1)^{2}}{(n-2)(n-3)}}}}$$
+$$b={\frac  {Sk^{2}+1}{eKu+{\frac  {3(n-1)^{2}}{(n-2)(n-3)}}}}. $$
 
 En donde $n$ es el tamaño de la muestra la muestra y $Sk$ y $eKu$ la asimetría de la muestra $eKu$ es el exceso de kurtosis de la muestra.
 
@@ -1407,40 +1386,46 @@ Es posible obtener valores mayores a 5/9 para distribuciones unimodales que teng
 
 Definiremos primero la obtención de los indicadores a partir de nuestra muestra finita de datos.
 
-$$Sk = \frac{\sqrt{n(n-1)}}{n-2} Sk$$
+$$Sk = \frac{\sqrt{n(n-1)}}{n-2} Sk. $$
 
 Donde Sk también representa la asimetría de la distribución (para una muestra finita de datos)
 
-$$eKu = (n-1) \frac{(n+1) Ku-3(n-1)}{(n-2)(n-3)}+3$$
+$$eKu = (n-1) \frac{(n+1) Ku-3(n-1)}{(n-2)(n-3)}+3. $$
 
 Veamos el siguiente ejemplo:
 La muestra es obtenida a partir del siguiente código en R:
-set.seed(31109);c(rnorm(700),rgamma(700,9,2))
 
+\begin{lstlisting}[language=R, breaklines]
+set.seed(31109);X<-c(rnorm(700),rgamma(700,9,2))
+\end{lstlisting}
 %Parrafo como una nota
-*Cabe resaltar que dicho código no representa una operación o transformación entre las funciónes Normal y Gamma utilizadas, sino la unión de dos muestras concatenadas entre sí.
+Cabe resaltar que dicho código no representa una operación o transformación entre las funciones Normal y Gamma utilizadas, sino la unión de dos muestras concatenadas entre sí.
 
-El coeficiente de asimetría cobra sentido a partir de los siguientes valores
+El coeficiente de asimetría (CA) cobra sentido a partir de los siguientes valores:
+
+
+Si CA<0: la distribución tiene una asimetría negativa, puesto que la media es menor que la moda.
+
+Si CA=0: la distribución es simétrica.
+
+Si CA>0: la distribución tiene una asimetría positiva, ya que la media es mayor que la moda.
 
 
 Veamos entonces los siguientes resultados:
 %imagen del coeficiente
 
-Primero probaremos con una distribución uniforme de tamaño $10,000$ con $X = 1, 2, ..., 9999, 10000$.
+Primero probaremos con una distribución uniforme de tamaño $10,000$ con $X = 1, 2, ..., 9999, 10000$, $n = 10,000$, $E(X)=5000.5$.
 
-$n = 10,000$
-$E(X)=5000.5$
-
-$$Sk= \frac{1/10000[{(1 - 5000.5)^3}+{(2 - 5000.5)^3}+...]}{1/10000[{(1 - 5000.5)^2}+{(2 - 5000.5)^2}+...]^{3/2}} \frac{\sqrt{10000(9999)}}{9998}$$
+$$Sk= \frac{1/10000[{(1 - 5000.5)^3}+{(2 - 5000.5)^3}+...]}{1/10000[{(1 - 5000.5)^2}+{(2 - 5000.5)^2}+...]^{3/2}} \frac{\sqrt{10000(9999)}}{9998}.$$
 
 $$eKu = (9999) \frac{(10001)\frac{\mathrm{E}\left[(X-5000.5)^{4}\right]}{\left(\mathrm{E}\left[(X-5000.5)^{2}\right]\right)^{2}} -3(9999)}{(9998)(9997)}+3 = \\
--1.201501$$
+-1.201501.$$
 
-Y finalmente
+Y finalmente,
 
-$$b={\frac  {0^{2}+1}{eKu+{\frac  {3(9999)^{2}}{(9998)(9997)}}}} = 0.5557409$$
+$$b={\frac  {0^{2}+1}{eKu+{\frac  {3(9999)^{2}}{(9998)(9997)}}}} = 0.5557409.$$
 
-Entre más incrementemos el tamaño de la muestra, el valor tenderá a 5/9
+Entre más incrementemos el tamaño de la muestra, el valor tenderá a 5/9.
 
 Ahora veamos los resultados de las pruebas para las siguientes distribuciones.
 
@@ -1448,25 +1433,25 @@ Ahora veamos los resultados de las pruebas para las siguientes distribuciones.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.6]{KuSk_Norm.png}
-    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal}
+    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal.}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.6]{Ku_Sk_eXP.png}
-    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal-Exponencial}
+    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal-Exponencial.}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.6]{Ku_Sk_NN.png}
-    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal-Normal}
+    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal-Normal.}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.6]{Ku_Sk_NG.png}
-    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal-Gamma}
+    \caption{Coeficiente de bimodalidad, Kurtosis y Asimetría Normal-Gamma.}
 \end{figure}
 
 
@@ -1520,21 +1505,21 @@ for tree={l sep+=.8cm,s sep+=.5cm,shape=rectangle, rounded corners, draw, align=
 
 Veamos entonces la información que nos ofrece cada camino a continuación:
 
-Recuadro 1.-	Dos posibles resultados:	Máxima Verosimilitud y Método de Momentos, el criterio que puede usarse es: Tomar los parámetros del primer o segundo método
+Recuadro 1.-	Dos posibles resultados:	Máxima Verosimilitud y Método de Momentos, el criterio que puede usarse es: Tomar los parámetros del primer o segundo método.
 
-Recuadro 1.-	Dos posibles resultados	Kolmogorov-Smirnov, Anderson-Darling	Qua pase al menos un Test, o que deba pasar ambos
+Recuadro 1.-	Dos posibles resultados	Kolmogorov-Smirnov, Anderson-Darling	Qua pase al menos un Test, o que deba pasar ambos.
 
-Recuadro 2.-	Un solo resultado	Criterio de Akaike	
+Recuadro 2.-	Un solo resultado	Criterio de Akaike.
 
 Recuadro 3.-	Tres posibles resultados	Desplazar la muestra a valores mayores que 0, estandarizarla o ajustarla dentro del intervalo (0,1).	
 
-Recuadros 4 y 6.-	Dos posibles resultados	Rango intercuartílico, Método Z	Separar Outliers  mediante el primer o segundo método
+Recuadros 4 y 6.-	Dos posibles resultados	Rango intercuartílico, Método Z	Separar Outliers  mediante el primer o segundo método.
 
-Recuadro 5.-	Dos posibles resultados	Contar el número de modas y criterio de bimodalidad	Si pasa el criterio de bimodalidad los resultados de K medias serán más acertados
+Recuadro 5.-	Dos posibles resultados	Contar el número de modas y criterio de bimodalidad	Si pasa el criterio de bimodalidad los resultados de K medias serán más acertados.
 
-Recuadro 7.-	Un solo resultado en el que separamos 	
+Recuadro 7.-	Un solo resultado en el que separamos.
 
-Recuadro 8.-	Al menos dos resultados posibles	K medias con K igual al número de modas	Contar el número de modas  por medio del número de máximos que tenga la función
+Recuadro 8.-	Al menos dos resultados posibles	K medias con K igual al número de modas	Contar el número de modas  por medio del número de máximos que tenga la función.
 
 \section{Variedad de casos}
 
@@ -1542,7 +1527,7 @@ A partir del árbol de decisión antes observado, podemos darnos cuenta de que p
 
 Es posible que existan más criterios y pruebas a incluir en cada recuadro, sin embargo, aquí se verán aquellas analizadas dentro del presente escrito.
 
-Los tenores de este procedimiento incluyen aplicar transformaciones, distintos métodos de estimación de parámetros y diversos test de ajuste de distribuciones
+Los tenores de este procedimiento incluyen aplicar transformaciones, distintos métodos de estimación de parámetros y diversos test de ajuste de distribuciones.
 
 Una sutil observación es que el proceso de separación de la distribución se aplica de forma recursiva hasta que todas las separaciones tengan una distribución asignada que haya pasado las pruebas.
 
@@ -1554,7 +1539,7 @@ Veremos entonces que si el nivel de profundidad es 1 quiere decir que tendremos 
 
 Si el nivel de profundidad es dos, significa que tendremos al menos tres grupos en los que se habrá separado la distribución, por lo que podemos definir la siguiente relación:
 
-$$\text{nivel de profundidad} < min\{\text{\# Grupos}\}$$
+$$\text{nivel de profundidad} < min\{\text{\# Grupos}\}.$$
 %explicar el nivel de profundidad como en inception
 
 Si el nivel de profundidad es mayor o igual a tres significa que serán ajustadas al menos cuatro distribuciones a nuestro modelo y tendremos ante nosotros una distribución multimodal.
@@ -1573,29 +1558,28 @@ Serán tomadas las siguientes consideraciones:
 %1
 Nuestros datos no tienen valores nulos o vacíos.
 %2
-Que el criterio de bimodalidad de una distribución no supere el valor de $5/9$ no significa que esta no lo sea, mientras tanto, un valor cercano a $1$ indica que la distribución debe ser separada
+Que el criterio de bimodalidad de una distribución no supere el valor de $5/9$ no significa que esta no lo sea, mientras tanto, un valor cercano a $1$ indica que la distribución debe ser separada.
 %3
-Serán probadas las siguientes distribuciones: Exponencial, Gamma, Log-Normal, Weibull, Normal, Cauchy, T y Beta
+Serán probadas las siguientes distribuciones: Exponencial, Gamma, Log-Normal, Weibull, Normal, Cauchy, T y Beta.
 %4
 El p.valor será aplicable para los test de Kolmogorov-Smirnov y Anderson-Darling, tomado dos criterios distintos, el primero será si pasó uno de ellos o si pasó ambos y se tomará un $\alpha = 0.05$ por defecto.
 %5
-Se realizará con 500 muestras distintas de tamaño 5000 cada una para asegurar la consistencia de los resultados y que sean generalizables
+Se realizará con 500 muestras distintas de tamaño 5000 cada una para asegurar la consistencia de los resultados y que sean generalizables.
 
 Trabajaremos con los datos generados a partir de la siguiente expresión en el software estadístico R:
 
-Primero generaremos muestras de tamaño $1,000$ a partir de los siguientes modelos
+Primero generaremos muestras de tamaño $1,000$ a partir de los siguientes modelos:
 
-Normal-Weibull
+Normal-Weibull.
 
 Código:
 \begin{lstlisting}[language=R, breaklines]
 R<-c(rnorm(500,0,1/4),rweibull(500,5,3/4))
 \end{lstlisting}
 
-
 Ahora analicemos una muestra con distribuciones más separadas entre sí.
 
-Exponencial-Weibull
+Exponencial-Weibull.
 
 Código:
 \begin{lstlisting}[language=R, breaklines]
@@ -1605,35 +1589,33 @@ R<-c(rexp(500,4),rweibull(500,5,3))
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.35]{density1.png}
-    \caption{Distribución de la variable generada R}
+    \caption{Distribución de la variable generada R.}
 \end{figure}
 
 %
-Para el planteamiento de la hipótesis nula en general,  realizaremos el planteamiento de la misma para cada una de las distribuciones, es decir, $H_0{norm}=F_X(x)$ donde X se distribuye normal, $H_0{gamma}=F_X(x)$ donde X se distribuye gamma, ..., $H_0{t}=F_X(x)$ donde X se distribuye t-student
+Para el planteamiento de la hipótesis nula en general,  realizaremos el planteamiento de la misma para cada una de las distribuciones, es decir, $H_0{norm}=F_X(x)$ donde X se distribuye normal, $H_0{gamma}=F_X(x)$ donde X se distribuye gamma, ..., $H_0{t}=F_X(x)$ donde X se distribuye t-student.
 
 Y finalmente, nuestra hipótesis general:
 %ver que sea coherente en la escritura esta hipótesis 
-$$H_0: H_0{norm} \cup H_0{gamma} \cup \text{ ... } \cup H_0{t}$$ 
+$$H_0: H_0{norm} \cup H_0{gamma} \cup \text{ ... } \cup H_0{t}.$$ 
 
 Esto quiere decir, que si alguna de estas hipótesis se cumple será suficiente para decir que nuestros datos se ajustan a una distribución conocida.
 
 Y diremos que nuestra distribución está compuesta por un subconjunto finito de distribuciones conocidas y se puede expresar como una distribución mixta.
 
-$$F(x)=\sum _{i=1}^{n}\,w_{i}\,P_{i}(x),$$
+$$F(x)=\sum _{i=1}^{n}\,w_{i}\,P_{i}(x). $$
 
-En donde $\Sigm w_i = 1$ donde $w_i$ representan los pesos que ocupan cada uno de los subconjuntos y $P_{i}(x)$ son las funciónes de distribución asociadas.
-
-
+En donde $\Sigm w_i = 1$ donde $w_i$ representan los pesos que ocupan cada uno de los subconjuntos y $P_{i}(x)$ son las funciones de distribución asociadas.
 
 Paso (1)
-Estimación de parámetros para distribuciones continuas del tipo: Exponencial, Beta, Gamma, Log-Normal, Normal, Weibull, Cauchy y T
+Estimación de parámetros para distribuciones continuas del tipo: Exponencial, Beta, Gamma, Log-Normal, Normal, Weibull, Cauchy y T.
 
 Resultados de las pruebas de bondad y ajuste:
 
-Previamente, se transformará la muestra a partir de la función indicadora de la distribución, es decir, se aplicarán las transformaciones de la sección 3.3.4 %revisar que no cabie en la versión final
+Previamente, se transformará la muestra a partir de la función indicadora de la distribución, es decir, se aplicarán las transformaciones de la sección 3.3.4. %revisar que no cabie en la versión final
 \begin{table}[H]
 \centering
-\caption{Resultados pruebas de Bondad y Ajuste 1}
+\caption{Resultados pruebas de Bondad y Ajuste.}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
 
@@ -1656,15 +1638,15 @@ beta & mme & 6.00E-07 & 2.33E-09 & 0.484 & 0.916 \\ \hline
 Paso 3
 Como podemos observar, ninguno de los métodos aplicados a las distribuciones no fue rechazado, por lo que podemos decir que todas las hipótesis fueron rechazadas y entonces, nuestra distribución no proviene de ningún modelo paramétrico conocido.
 
-Dado que las transformaciones fueron hechas para ajustar la distribución a las funciónes indicadoras de la función, podemos ir al siguiente paso.
+Dado que las transformaciones fueron hechas para ajustar la distribución a las funciones indicadoras de la función, podemos ir al siguiente paso.
 
-Ahora procederemos a realizar pruebas de identificación de outliers en la distribución y realizaremos nuevamente las pruebas
+Ahora procederemos a realizar pruebas de identificación de outliers en la distribución y realizaremos nuevamente las pruebas.
 
-Utilizando el método Z con los percentiles del 97.5\% igual a $3.741$ y del 2.5\% que corresponde al valor $0.012$ excluyendo el 5\% de nuestra distribución y de ajustar, recalcularemos esa proporción aplicando el mismo método
+Utilizando el método Z con los percentiles del 97.5\% igual a $3.741$ y del 2.5\% que corresponde al valor $0.012$ excluyendo el 5\% de nuestra distribución y de ajustar, recalcularemos esa proporción aplicando el mismo método.
 
 \begin{table}[H]
 \centering
-\caption{Pruebas de Bondad y Ajuste sin outliers}
+\caption{Pruebas de Bondad y Ajuste sin outliers.}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
 
@@ -1699,7 +1681,7 @@ Ahora realizaremos nuevamente el proceso para cada subconjunto de observaciones 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.35]{density2.png}
-    \caption{Separación del primer subconjunto con distribución desconocida}
+    \caption{Separación del primer subconjunto con distribución desconocida.}
 \end{figure}
 
 \begin{table}[H]
@@ -1725,11 +1707,10 @@ beta & mge & 0.000 & 0.314 & 0.911 & 4.501 & 0.000 & 1.535 \\ \hline
 \end{tabular}
 \end{table}
 
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.35]{density3.png}
-    \caption{Separación del segundo subconjunto con distribución desconocida}
+    \caption{Separación del segundo subconjunto con distribución desconocida.}
 \end{figure}
 
 \begin{table}[H]
@@ -1754,19 +1735,19 @@ beta & mme & 0.000 & 0.757 & 8.142 & 4.904 & 0.000 & 4.505 \\ \hline
 \end{tabular}
 \end{table}
 
-Vemos resultados favorables para ambas pruebas en ambas muestras teniendo como mejores candidatas las siguientes distribuciones
+Vemos resultados favorables para ambas pruebas en ambas muestras teniendo como mejores candidatas las siguientes distribuciones:
 
 Primera muestra:
 
-Distribuciones $gamma(1.024,3.739)$, $exp(3.622)$ y $weibull(1.011,0.275)$, siendo la primera aquella con la menor región de rechazo, con un p.valor de $0.879$, no obstante, la distribución exponencial nos ofrece un modelo más simple con un pequeño costo del p.valor
+Distribuciones $gamma(1.024,3.739)$, $exp(3.622)$ y $weibull(1.011,0.275)$, siendo la primera aquella con la menor región de rechazo, con un p.valor de $0.879$, no obstante, la distribución exponencial nos ofrece un modelo más simple con un pequeño costo del p.valor.
 
 Segunda muestra:
 
 Distribuciones $normal(2.811,0.582)$, $beta(8.142,4.904)$ (transformada) y finalmente $weibull(5.395,3.047)$, siendo nuevamente la primera aquella con la menor región de rechazo, con un p.valor de $0.813$ aunado a que es una distribución normal.
 
-Una de las observaciones que podemos destacar es la adición de dos nuevos campos, que indican parámetros de desplazamiento y escala, es decir, la aplicación de una transformación visto de la siguiente forma
+Una de las observaciones que podemos destacar es la adición de dos nuevos campos, que indican parámetros de desplazamiento y escala, es decir, la aplicación de una transformación visto de la siguiente forma.
 
-$$Y=X*Par22+Par21$$
+$$Y=X*Par22+Par21. $$
 
 En donde la única distribución que ameritó dicho cambio fue la beta, pues recordemos que se encuentra definida en el intervalo $[0,1]$, por lo que al aplicar la transformación, ahora es capaz de generar nuevos valores fuera de dicho rango.
 
@@ -1777,7 +1758,7 @@ Debido a que ambas muestras pasaron las pruebas de bondad y ajuste, no rechazamo
 
 \begin{table}[H]
 \centering
-\caption{Combinaciones posibles para Z}
+\caption{Combinaciones posibles para Z.}
 \begin{tabular}{|c|c|}
 \hline
 
@@ -1801,7 +1782,6 @@ Recordemos que nuestra muestra provenía de un modelo $X+Y$ donde $X$ de distrib
 
 Una de las características de este procedimiento es que a mayor cantidad de modas encontradas o cortes realizados, mayor será el número de soluciones posibles y al tener distintos posibles resultados, merece la pena preguntarnos cuál de ellos es el mejor de ellos.
 
-
 %El problema de la falta de informacióm
 
 %Analicemos los resultados anteriores, una de las formas de verificar nuestro modelo es ver si es generalizable, para ello separaremos una proporción de nuestros datos observados.
@@ -1809,7 +1789,6 @@ Una de las características de este procedimiento es que a mayor cantidad de mod
 %Para obtener el número preciso de K y dado que nuestra muestra es multimodal, deberemos contar el número de veces que nuestra. Veamos primero la nube de puntos origina
 
 %Al no ser multimodal y cambiemos el ancho de banda no afectará la muestra sino la funcón kernel generada por la misma, lo que nos arrojará información sobre las raices de la función, es decir, puntos precisos de corte de la misma.
-
 
 \section{Valuación del modelo}
 
@@ -1819,33 +1798,33 @@ Es preciso contar con un criterio de evaluación al ejecutar este procedimiento,
 
 Akaike describe su metodología como una forma de valorar la diferencia entre la exactitud y la complejidad de un modelo, tomando como criterio de complejidad el número de parámetros y la exactitud como el valor de máxima verosimilitud después de aplicar la función logaritmo por medio del cual obtenemos un criterio para elegir entre dos o más modelos, el criterio de Akaike (AIC) es definido como:
 
-$${\displaystyle {\mathit {AIC}}=2k-2\ln(L)}$$
+$${\displaystyle {\mathit {AIC}}=2k-2\ln(L)}. $$
 
 En donde $k$ es el número de parámetros de los que se compone nuestro modelo y $L$ es máximo valor obtenido por la función de verosimilitud. Es entonces que surge la interrogante: ¿cómo obtener un criterio de evaluación adecuado para cualquier modelo?
 
 Notemos dos cosas importantes, el criterio de Akaike al estar basado en la función de verosimilitud y retorna valores en los reales y dado que este representa la exactitud de nuestro modelo deberemos hacer un símil con nuestro proceso, es decir, emplear una medida de complejidad (el p.valor en este caso) y retornar valores en R, añadiendo la particularidad de que sea creciente y que retorne el valor 0 al evaluarla en .05, pues es el valor más empleado para determinar el rechazo o la aceptación de una prueba y segundo, no es necesario cambiar el criterio de complejidad, pues es sencillo conocer el número de parámetros que estamos utilizando.
 
-La función propuesta es
+La función propuesta es:
 
-$$f(x) = tan(\pi*(x-1/2))-c$$
+$$f(x) = tan(\pi*(x-1/2))-c.$$
 
-donde c corresponde a $f(0.05)$, es decir, $c = tan(\pi*(.05-1/2))$
+donde c corresponde a $f(0.05)$, es decir, $c = tan(\pi*(.05-1/2))$.
 
 Recordemos que la correspondencia exacta entre la complejidad y la precisión en el criterio de Akaike es que debe incrementarse significativamente (de forma exponencial) la precisión para compensar la asignación de un nuevo parámetro, análogamente, se debe incrementar significativamente un p.valor (tangencialmente) para justificar la inclusión de un nuevo parámetro.
 
 Ya que se respetan formalmente los conceptos concebidos por Akaike, procedemos a crear un Criterio de Ajuste (CA) por medio de la siguiente fórmula:
 
-$$CA = 2k-tan(\pi(x-1/2))+tan(\pi(.05-1/2))$$
+$$CA = 2k-tan(\pi(x-1/2))+tan(\pi(.05-1/2)).$$
 
 Donde k es el número de parámetros de la distribución y p es el p.valor del ajuste obtenido.
 
 En dónde k es el número de parámetros y p es el p.valor obtenido tras aplicar las pruebas de KS o AD.
 
-Al tratarse de un modelo mixto, definiremos el Criterio de Ajuste Mixto como la suma de los criterios de ajuste de cada partición multiplicado por su vector de peso correspondiente a la proporción de observaciones medidas, al igual que la función (2.2.2), es decir:
+Al tratarse de un modelo mixto, definiremos el Criterio de Ajuste Mixto como la suma de los criterios de ajuste de cada partición multiplicado por su vector de peso correspondiente a la proporción de observaciones medidas, al igual que la función (2.2.2), es decir,
 
 $${\displaystyle {\mathit {CA_{Mixto}}}=\sum_{i=1}^{p}w_i*CA_{i}}$$
 
-Donde $p$ es el número de particiones, por lo que 
+%Donde $p$ es el número de particiones, por lo que 
 
 Recordemos que el AIC puede arrojar valores negativos, por lo que es posible que, al añadir una partición y entonces más parámetros, mejore considerablemente el modelo, de la misma forma penalizamos la inclusión de modelos con una mayor cantidad de parámetros.
 
@@ -1861,7 +1840,7 @@ $${\displaystyle \mathrm {AICc} \,=\,\mathrm {AIC} +{\frac {2k^{2}+2k}{n-k-1}}}$
 
 Con $n$ igual al número de observaciones por partición.
 
-Veamos entonces el ejemplo con la variable con la que hemos estado trabajando, tal y como lo vimos en el capítulo 2, el estadístico de máxima verosimilitud para una variable aleatoria normal es $\bar{X}$, que para nuestro conjunto de datos es $-0.318$,  $k=2$ y $n=30$, por lo tanto.
+Veamos entonces el ejemplo con la variable con la que hemos estado trabajando, tal y como lo vimos en el capítulo 2, el estadístico de máxima verosimilitud para una variable aleatoria normal es $\bar{X}$, que para nuestro conjunto de datos es $-0.318$,  $k=2$ y $n=30$, por lo tanto,
 
 $$AIC = 2*2 - 2ln(-0.318) = 5.844$$
 
@@ -1888,7 +1867,6 @@ $$AICc = 5.844 + \frac{2*2^2+2*2}{30-2-1} = 6.288$$
 %% Como bien ejemplificas despues los estadisticos comunes para comparar la bondad de ajuste son los mismos que ya mencionaste anteriormente: KS-Test, Ad-Test, podrías agregar el criterio de Cramér-Von Mises, la prueba de Kuiper. te mando un paper de una opción un poco más elevada para comparar 2 modelos. 
 
 
-
 Sin embargo, ya que sabemos cuál es el mejor modelo para cada uno de nuestros grupos, aun queda la incógnita sobre cómo elegir el mejor resultado de todos los posibles.
 
 Habrá que considerar tres criterios:
@@ -1903,13 +1881,15 @@ La primera malinterpretación de los resultados puede relacionarse con la elecci
 
 Como ejemplo veremos la siguiente muestra:
 
+\begin{lstlisting}[language=R, breaklines]
 set.seed(31109);c(rexp(700,1))
+\end{lstlisting}
 
 Al aplicar la metodología descrita esperaríamos obtener una distribución exponencial como resultado, sin embargo, al revisar los resultados obtenemos:
 
 \begin{table}[H]
 \centering
-\caption{Resultados de pruebas de bondad y ajuste  con diferentes estimaciones de parámetros}
+\caption{Resultados de pruebas de bondad y ajuste  con diferentes estimaciones de parámetros.}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
 
@@ -1935,7 +1915,7 @@ Veamos rápidamente el ajuste de la función weibull respecto a la muestra origi
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.4]{expo_weibull.png}
-    \caption{Muestra Exponencial con ajuste de distribución Weibull}
+    \caption{Muestra Exponencial con ajuste de distribución Weibull.}
 \end{figure}
 
 Un segundo error que puede presentarse es aprender a distinguir entre información que no ha sido previamente procesada y la identificación de una distribución multimodal.
@@ -1949,7 +1929,7 @@ Si procediéramos con un ajuste inmediato, veríamos la presencia de una distrib
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{Petal_Lenght.png}
-    \caption{Ejemplo de la distribución del largo de un pétalo de tres especies distintas de flores}
+    \caption{Ejemplo de la distribución del largo de un pétalo de tres especies distintas de flores.}
 \end{figure}
 
 No obstante, merece la pena observar que contamos con una variable categórica correspondiente al número de flores.
@@ -1958,48 +1938,36 @@ La mejor separación es aquella que ya está definida por las variables categór
 
 Veremos los resultados de esta separación al aplicar los test de ajuste Anderson-Darling y Kolmogorov-Smirnov.
 
-Virginica
+Virginica:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{virginica.png}
-    \caption{Ejemplo de la distribución del largo de un pétalo de la flor del tipo virginica}
+    \caption{Ejemplo de la distribución del largo de un pétalo de la flor del tipo virginica.}
 \end{figure}
 
-Distribución asociada: lnorm(1.705, 0.101)
-
-Anderson-Darling: 0.836	
-
-Kolmogorov-Smirnov: 0.785
+Distribución asociada: lnorm(1.705, 0.101), Anderson-Darling: 0.836. Kolmogorov-Smirnov: 0.785.
 	
-Versicolor
+Versicolor:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{versicolor.png}
-    \caption{Ejemplo de la distribución del largo de un pétalo de la flor del tipo versicolor}
+    \caption{Ejemplo de la distribución del largo de un pétalo de la flor del tipo versicolor.}
 \end{figure}
 
-Distribución asociada: weibull(10.685, 4.469)
+Distribución asociada: weibull(10.685, 4.469), 
+Anderson-Darling: 0.982, Kolmogorov-Smirnov: 0.911.
 
-Anderson-Darling: 0.982
-
-Kolmogorov-Smirnov: 0.911
-
-Setosa
+Setosa:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{setosa.png}
-    \caption{Ejemplo de la distribución del largo de un pétalo de la flor del tipo setosa}
+    \caption{Ejemplo de la distribución del largo de un pétalo de la flor del tipo setosa.}
 \end{figure}
 
-Distribución asociada: gamma(86.105, 58.843)
-
-Anderson-Darling: 0.347
-
-Kolmogorov-Smirnov: 0.320
-
+Distribución asociada: gamma(86.105, 58.843), Anderson-Darling: 0.347, Kolmogorov-Smirnov: 0.320.
 
 \section{Ventajas}
 
@@ -2015,7 +1983,7 @@ Puede ayudarnos a visualizar si la información que estamos evaluando necesita u
 
 Amplía el panorama para una mejor evaluación de estadísticos locales y no uno global que pudiera tener un mayor error.
 
-Hay más de una forma de escribir una variable aleatoria multimodal, podemos verla como una combinación lineal de dos o más distribuciones, por ejemplo
+Hay más de una forma de escribir una variable aleatoria multimodal, podemos verla como una combinación lineal de dos o más distribuciones, por ejemplo:
 
 $Y = Norm*I + Gamma*I$
 
@@ -2026,15 +1994,14 @@ Se pueden combinar distribuciones de colas pesadas, añadiendo más familias con
 Se ofrece un modelo paramétrico para información a la que es casi imposible ajustar o cuyos p.valores son insuficientes.
 
 \section{Desventajas y Soluciones}
-Al tener un mayor número de cortes y parámetros, la función de distribución multimodal se ve afectada por el criterio de Akaike y el sesgo, por lo que se recomienda su uso buscando en principio distribuciones de un solo parámetro (como la exponencial), y un número pequeño de particiones para la distribución, es decir buscar que sea bimodal o multimodal .
+
+Al tener un mayor número de cortes y parámetros, la función de distribución multimodal se ve afectada por el criterio de Akaike y el sesgo, por lo que se recomienda su uso buscando en principio distribuciones de un solo parámetro (como la exponencial), y un número pequeño de particiones para la distribución, es decir buscar que sea bimodal o multimodal.
 
 Dependiendo del método de corte o división de la variable aleatoria se podrán obtener diferentes resultados para una sola muestra, para reducir el número de estos, se deben emplear diferentes tamaños de muestra y llegar a aquella que más se se parezca a la original y elegir las distribuciones con menor cantidad de parámetros.
 
 Por el momento solo y está enfocado en modelos univariantes, al añadir más dimensiones al modelo, el proceso se vuelve más robusto, debiendo añadir más criterios para los algoritmos de separación e introducir cópulas para no perder la correlación entre marginales.
 
-La definición formal de un modelo multimodal es difícil de describir debido a los problemas de distribuciones "demasiado combinadas"
-
-
+La definición formal de un modelo multimodal es difícil de describir debido a los problemas de distribuciones empalmadas entre sí.
 
 \chapter{Aplicaciones} %
 
@@ -2052,8 +2019,7 @@ La principal ventaja de conocer la distribución de los datos es la capacidad de
 
 Analizaremos un caso particular, este conjunto de datos contiene las transacciones realizadas con tarjetas de crédito en septiembre de 2013 por titulares europeos. La información cubre dos días en los que se presentaron 492 fraudes de 284,807 transacciones. El total de los datos está altamente desbalanceado, pues los fraudes representan el 0.172\% de todas las transacciones.
 
-La tabla contiene solo variables numéricas y será de nuestro interés estudiar cada una de ellas y en particular su relación con transacciones fraudulentas y no fraudulentas. La información del usuario se encuentra protegida debido a la sensibilidad de la información.
-Las variables para este análisis serán Tiempo y Cantidad. El Tiempo contiene los segundos transcurridos entre cada transacción y la primera transacción en el conjunto de datos. La Cantidad indica el monto de la transacción y finalmente, la variable Clase toma el valor 1 en caso de fraude y 0 en caso contrario.
+La tabla contiene solo variables numéricas y será de nuestro interés estudiar cada una de ellas y en particular su relación con transacciones fraudulentas y no fraudulentas. La información del usuario se encuentra protegida debido a la sensibilidad de la información. Las variables para este análisis serán Tiempo y Cantidad. El Tiempo contiene los segundos transcurridos entre cada transacción y la primera transacción en el conjunto de datos. La Cantidad indica el monto de la transacción y finalmente, la variable Clase toma el valor 1 en caso de fraude y 0 en caso contrario.
 
 Para efectos de este trabajo, nos remitiremos a observar la distribución de las variables Tiempo, Cantidad pues ambas son ejemplos de variables aleatorias continuas y mientras que Clase al ser categórica nos ayudará con la realización del análisis exploratorio comparando los resultados de nuestro modelo con el modelo usual.
 
@@ -2087,7 +2053,7 @@ Veamos primero un breve resumen estadístico de la totalidad de la muestra.
 
 \begin{table}[H]
 \centering
-\caption{Estadísticos originales}
+\caption{Estadísticos originales.}
 \begin{tabular}{|l|l|}
 \hline
 
@@ -2107,11 +2073,10 @@ Como podemos observar, la variable tiempo muestra una diferencia entre la Median
 
 También vemos que ambas muestras tienen su mínimo en el valor 0, por lo que no será necesario realizar transformaciones para ajustar distribuciones que se encuentren definidas en $\mathbb{R}$, pero será necesario sumar un épsilon para aquellas definidas en $\mathbb{R^{+}}$ como la exponencial, por ejemplo, veamos la distribución de las dos variables separando los fraudes (Clasificación 1) de la muestra original.
 
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.67]{dist_tm.png}
-    \caption{Distribuciones de las variables con y sin fraude}
+    \caption{Distribuciones de las variables con y sin fraude.}
 \end{figure}
 
 Con este primer esbozo podemos decir que la variable tiempo muestra claramente una distribución bimodal o incluso multimodal para las transacciones que resultaron ser fraudulentas y las que no así como una notable diferencia entre los valores cercanos a 30 mil y 100 mil,  por otro lado, la variable monto sugiere aplicar una transformación logarítmica o la sustracción de outliers empleando el método Z con el percentil del 99\%, para la transformación se aplicó el incremento de un valor épsilon igual a 0.001, es decir, $\mathcal{T}(x) = log(x+\epsilon)$, $\epsilon = 0.0001$ con el que nuestra transformación estará bien definida pues no tendrá valores en $-\infty$, entonces, veamos los resultados en la distribución a continuación.
@@ -2119,32 +2084,32 @@ Con este primer esbozo podemos decir que la variable tiempo muestra claramente u
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.57]{monto_t.png}
-    \caption{Distribuciones de la variable tiempo}
+    \caption{Distribuciones de la variable tiempo.}
 \end{figure}
 
-El logaritmo de la variable monto parece tener una distribución multimodal asociada para los dos tipos de clasificación, por lo que podríamos aplicar nuestro modelo, vemos también que al retirar el percentil del 99\% podemos tener una visión más reconocible de nuestra distribución, no obstante, no podemos reconocer una distribución log-normal o similares debido que la transformación \mathcal{T} muestra más de un máximo local
+El logaritmo de la variable monto parece tener una distribución multimodal asociada para los dos tipos de clasificación, por lo que podríamos aplicar nuestro modelo, vemos también que al retirar el percentil del 99\% podemos tener una visión más reconocible de nuestra distribución, no obstante, no podemos reconocer una distribución log-normal o similares debido que la transformación \mathcal{T} muestra más de un máximo local.
 
-Con el objetivo de mostrar la presencia de observaciones atípicas y elegir qué transformación utilizaremos, veremos los diagramas de caja para los casos propuestos .
+Con el objetivo de mostrar la presencia de observaciones atípicas y elegir qué transformación utilizaremos, veremos los diagramas de caja para los casos propuestos.
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{caja_t.png}
-    \caption{Fraude y no fraude (tiempo)}
+    \caption{Fraude y no fraude (tiempo).}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{caja_lm.png}
-    \caption{Fraude y no fraude (monto aplicando logaritmo)}
+    \caption{Fraude y no fraude (monto aplicando logaritmo).}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{caja_m97.png}
-    \caption{Fraude y no fraude (monto hasta el percentil 97.5\%)}
+    \caption{Fraude y no fraude (monto hasta el percentil 97.5\%).}
 \end{figure}
 
-Así como hay distribuciones cuyo valor esperado no existe (la distribución Cauchy es un ejemplo) también hay distribuciones multimodales con las que no hace sentido emplear diagramas de caja, pues los estadísticos observados no pueden describir la forma de la distribución, cabe aclarar que el caso en el que aplica es siempre y cuando las modas no se encuentran muy separadas,
+Así como hay distribuciones cuyo valor esperado no existe (la distribución Cauchy es un ejemplo) también hay distribuciones multimodales con las que no hace sentido emplear diagramas de caja, pues los estadísticos observados no pueden describir la forma de la distribución, cabe aclarar que el caso en el que aplica es siempre y cuando las modas no se encuentran muy separadas.
 
 También es posible que un outlier no sea coherente con la definición de observación atípica, pudiendo estar no en los extremos sino en el centro de la distribución multimodal, razón por la cual vemos tantas observaciones en el diagrama de caja del monto cuando podrían no serlo.
 
@@ -2157,7 +2122,7 @@ Recordemos que para el valor $0$ añadimos un épsilon, el valor de dicho épsil
 
 Para establecer si existe una diferencia emplearemos el test de Kolmogorov-Smirnov (no es necesario aplicarlo a las transformaciones pues esta será aplicada a ambas clases).
 
-Como resultado  obtuvimos que la máxima de las diferencias en la función de distribución (el estadístico) cobró un valor de $D = 0.27119$ con ello, $p.valor < 2.2e-16$, valor muy cercano a $0$ por lo que podemos rechazar la hipótesis nula y decir que ambas muestras provienen de una distinta distribución, de la misma manera rechazamos la hipótesis nula para la variable tiempo al haber obtenido $D = 0.16939$ y  $p.valor = 1.15e-12.$
+Como resultado  obtuvimos que la máxima de las diferencias en la función de distribución (el estadístico) cobró un valor de $D = 0.27119$ con ello, $p.valor < 2.2e-16$, valor muy cercano a $0$ por lo que podemos rechazar la hipótesis nula y decir que ambas muestras provienen de una distinta distribución, de la misma manera rechazamos la hipótesis nula para la variable tiempo al haber obtenido $D = 0.16939$ y  $p.valor = 1.15e-12$.
 
 Ahora bien, procederemos a realizar el análisis de las distribuciones, para ello se ha diseñado la paquetería "FitUltD" en el software estadístico R, la cual reproduce el modelo antes definido en este escrito arrojando los siguientes resultados:
 
@@ -2167,17 +2132,17 @@ Para este ejercicio hemos de enfocarnos primero en la variable tiempo, como prim
 
 $$min_{D_i^{+} \in D}\{D_i^{+}\}$$
 
-Donde D es el conjunto de estadísticos de pruebas de KS obtenidas de diferentes semillas generadoras de números aleatorios, es decir, usaremos la muestra que tenga la menor de las diferencias entre sus funciónes de distribución.
+Donde D es el conjunto de estadísticos de pruebas de KS obtenidas de diferentes semillas generadoras de números aleatorios, es decir, usaremos la muestra que tenga la menor de las diferencias entre sus funciones de distribución.
 
 Ahora aplicaremos el método diseñado para ajustar una distribución multimodal a nuestra muestra de datos con las siguientes características:
 
 P.valor mínimo aceptable para decir que ha pasado las pruebas Kolmogorov-Smirnov y Anderson-Darling: 0.01.
 
-Criterio para pasar las pruebas: No debe rechazar la hipótesis nula en ninguna de las pruebas
+Criterio para pasar las pruebas: No debe rechazar la hipótesis nula en ninguna de las pruebas.
 
 %¿Pertenecen a la misma distribución?
 
-Dado que hay números repetidos para una variable que conceptualmente es continua añadiremos un poco de ruido a la misma añadiendo números decimales al tiempo, es decir, sumaremos una v.a. uniforme -1,1.
+Dado que hay números repetidos para una variable que conceptualmente es continua añadiremos un poco de ruido a la misma añadiendo números decimales al tiempo, es decir, sumaremos una v.a. Uniforme(-1, 1).
 
 Esta suma afecta mínimamente a la distribución, pues esta maneja valores en las decenas de millar por lo que afectamos sus valores un 0.01\% con una distribución simétrica con media en 0.
 
@@ -2185,8 +2150,8 @@ Los resultados fueron los siguientes:
 
 Para la muestra de las transacciones no fraudulentas:
 
-Número de v.a's: 72
-D = 0.0061283, p.value = 0.6884
+Número de v.a's: 72.
+D = 0.0061283, p.value = 0.6884.
 
 \begin{table}[H]
 \centering
@@ -2200,12 +2165,12 @@ Min. & 1stQu. & Mediana & Media & 3rdQu. & Max. \\ \hline
 \end{tabular}
 \end{table}
 
-Gráfico
+%Gráfico
 
 Para las transacciones fraudulentas (492):
 
-Número de v.a's: 8
-D = 0.02681, p.value = 0.8839
+Número de v.a's: 8.
+D = 0.02681, p.value = 0.8839.
 
 \begin{table}[H]
 \centering
@@ -2219,14 +2184,14 @@ Min. & 1stQu. & Mediana & Media & 3rdQu. & Max. \\ \hline
 \end{tabular}
 \end{table}
 
-Gráfico
+%Gráfico
 
-En este caso vemos presencia de outliers que no hacen sentido, por lo que amerita conocer el tipo de distribuciones
+En este caso vemos presencia de outliers que no hacen sentido, por lo que amerita conocer el tipo de distribuciones.
 
-La presencia de la variable aleatoria Cauchy contribuye a la presencia de outliers al ser una distribución de cola pesada, por lo que volveremos a reproducir el análisis con la misma semilla, pero sin considerar esta variable aleatoria en el proceso y obteniendo los siguientes resultados
+La presencia de la variable aleatoria Cauchy contribuye a la presencia de outliers al ser una distribución de cola pesada, por lo que volveremos a reproducir el análisis con la misma semilla, pero sin considerar esta variable aleatoria en el proceso y obteniendo los siguientes resultados:
 
-Número de v.a's: 10
-D = 0.020117, p.value = 0.9906
+Número de v.a's: 10.
+D = 0.020117, p.value = 0.9906.
 
 Efectivamente, a pesar de haber incrementado el número de v.a's empleadas el estadístico se redujo y el p.valor incrementó considerablemente.
 
@@ -2243,7 +2208,7 @@ Min. & 1stQu. & Mediana & Media & 3rdQu. & Max. \\ \hline
  
 Vemos también la presencia de observaciones negativas y observaciones muy por encima del máximo de la muestra observada en la distribución, esto debido a que las distribuciones que se encuentran en los límites inferior y superior son Distribuciones normales, abarcando el 16.8\% y 16.4\% del total de la distribución respectivamente, afortunadamente contamos con más de una distribución que pasaron las pruebas de bondad y ajuste para escoger:
 %
-El rango analizado corresponde a  $[406, 40086]$
+El rango analizado corresponde a  $[406, 40086].$
 
 \begin{table}
 \centering
@@ -2265,22 +2230,16 @@ weibull & 0.197959097 & 0.289337981 & 2.900170045 & 28042.82241 & 1 & mge  \\ \h
  
 Podemos elegir entre la distribución beta multiplicada por un factor de escala lo cual prevendría los casos negativos pero con el costo de un bajo estimador de Anderson-Darling, más distribuciones normales con las que se presentaría el mismo problema o la distribución $weibull(2.9001, 28042.8224)$.
 
-El rango analizado corresponde a $[143354, 170348]$
+El rango analizado corresponde a $[143354, 170348]$.
 
-Para la distribución del límite superior realizamos el mismo análisis probando las siguientes distribuciones:
-
-gamma(489.72892,rate = 3.180806e-03)
-
-norm(153888.40799,	6.934835e+03)
-
-lnorm(11.94369,4.525698e-02)
+Para la distribución del límite superior realizamos el mismo análisis probando las siguientes distribuciones: gamma(489.729, rate = .003180806), norm(153888.408, 6934.835), lnorm(11.9437, .04.5257).
 
 El valor máximo para la distribución del tiempo es 172,792 a partir de 284,807 observaciones y viendo que el valor máximo de nuestra distribución LogNormal para una simulación del mismo número de observaciones fue 190,823, veremos si la cola de la Gamma y Normal se ajusta más a la muestra, es decir, la cola se encuentra por debajo de la distribución LogNormal.
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{colas.png}
-    \caption{Comparativo Distribuciones}
+    \caption{Comparativo Distribuciones.}
 \end{figure}
 
 
@@ -2301,7 +2260,6 @@ Min. & 1stQu. & Median & Mean & 3rdQu. & Max. \\ \hline
 
 Y al aplicar las pruebas de bondad ajuste con validación cruzada  obtenemos un p.valor medio de 0.9610299, es decir, perdemos .03 respecto al p.valor anterior pero ahora nuestros datos cobran un sentido real.
 
-
 No rechazamos que la muestra generada por el modelo planteado y el tiempo tienen una distribución distinta y destacando que el p.valor se encuentra muy por encima de .05.
 
 El primer resultado que podemos visualizar es la cantidad de variables aleatorias utilizadas a las que denominaremos componentes, en este caso hay 72 y 10 para las variables de tiempo sin y con fraude respectivamente, es decir, las muestras fueron divididas en 72 y 10 particiones, antes de proceder al análisis de estas, dado el amplio margen de no rechazo arrojado por Kolmogorov-Smirnov y al elevado número de componentes, merece la pena repetir el experimento cambiando los parámetros iniciales, en este caso serán el p.valor mínimo aceptable y el número de clústers con el que separa el algoritmo k medias.
@@ -2310,12 +2268,12 @@ A partir de qué p.valor mínimo aceptable se sigue cumpliendo la prueba de k.s 
 
 Probaremos entonces con los p.valores mínimos admisibles dentro del conjunto A:
 
-$$A = \{.05,.025,0.01,0.005,0.0025,0.001,0.0005,0.00025,0.0001,0.00005,0.000025,0.00001,0\}$$
+$$A = \{.05,.025,0.01,0.005,0.0025,0.001,0.0005,0.00025,0.0001,0.00005,0.000025,0.00001,0\}.$$
 
 El cambio en el número de clústers a 2 para los valores con los que hubo fraude arroja los siguientes resultados:
 
-Número de variables: 3
-D = 0.050813, p.value = 0.5491
+Número de variables: 3.
+D = 0.050813, p.value = 0.5491.
 
 \begin{table}[H]
 \centering
@@ -2343,7 +2301,7 @@ weibull & 0.268 & 0.569 & 0.85 & 13 & 151703.5 & mge & 132 & 121238 & 170348 \\ 
 
 Ahora vemos una mejora muy significativa, pasando de 10 particiones  a solamente 3, que a pesar de haber reducido el p.valor, se sigue rechazando la hipótesis nula con diferencia, veremos a continuación si un cambio en el p.valor sobre el modelo inicial o un cambio en ambos parámetros genera resultados similares.
 
-Veamos la gráfica con solo las tres variables aleatorias
+Veamos la gráfica con solo las tres variables aleatorias:
 
 \begin{table}[H]
 \centering
@@ -2373,13 +2331,13 @@ Vemos a continuación dos gráficos de la matriz de resultados completa aplicand
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.55]{newplot1.png}
-    \caption{Matriz de Resultados ejes XZ}
+    \caption{Matriz de Resultados ejes XZ.}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.55]{newplot2.png}
-    \caption{Matriz de Resultados ejes YZ}
+    \caption{Matriz de Resultados ejes YZ.}
 \end{figure}
 
 Notemos que el color representa el número de variables o número de componentes. La matriz nos indica que distintas combinaciones de parámetros pueden generar los mismos resultados, en particular observamos:
@@ -2389,15 +2347,13 @@ Notemos que el color representa el número de variables o número de componentes
     
     \item Un menor número de clústers no afectará los resultados finales si el p.valor inicial es muy bajo, esto porque al ser menos estrictos con las pruebas AD y KS no hay necesidad de hacer otra partición, razón por la cual vemos el mismo color.
     
-    \item Los modelos con un mayor número de particiones generalmente tienen un mayor p.valor final
+    \item Los modelos con un mayor número de particiones generalmente tienen un mayor p.valor final.
     
     \item El número total de clústers no parece añadir suficiente al p.valor, sin embargo, es seguro que aumenta en gran medida la complejidad del modelo.
     
 \end{enumerate}
 
 Cabe destacar que la cantidad de observaciones afecta los resultados, no obstante, vemos un fenómeno bastante llamativo, pues a pesar de que el p.valor inicial disminuye a valores menores a .02 (el p.valor con el que se decidió rechazar las pruebas AD y KS) aun así, nuestra muestra total sigue pasando las pruebas con un p.valor cercano a .20, es decir, el p.valor final es mayor a cualquiera de los p.valores iniciales en la vasta mayoría de los casos y con bastante diferencia. Pero no seamos ingenuos, pues en los valores extremos es claro que hay una mejora en el p.valor final al ir incrementando el p.valor inicial. Vemos pues el criterio de Akaike modificado para cada elemento de la matriz y decidamos cuales son los mejores parámetros iniciales para nuestro modelo.
-
-
 
 Ahora que hemos encontrado la mejor forma de clasificar este tipo de distribuciones, se reproducirá el ajuste para los valores en donde no hubo fraude obteniendo la siguiente matriz:
 
@@ -2421,13 +2377,12 @@ P.Valor.Inicial & Clústers & n\_vars & P.Valor(muestra) & P.Valor(total) & Crit
 \end{tabular}
 \end{table}
 
-
 De forma objetiva, el incremento del p.valor es de solamente un .03 entre el mejor y el peor modelo, no obstante, la complejidad es casi el doble, empleando nuestro criterio de elección del mejor modelo, podemos concluir que el modelo con 19 variables y un p.valor inicial de 0.00005, es el más óptimo y al revisarlo obtenemos el siguiente ajuste:
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=.37]{plot_TIEMPO0.png}
-    \caption{Ajuste de un modelo con 19 v.a. de transacciones no fraudulentas}
+    \caption{Ajuste de un modelo con 19 v.a. de transacciones no fraudulentas.}
 \end{figure}
 
 Recordemos que el ajuste del p.valor se está realizando con una muestra aleatoria representativa, es por eso que en la tabla los p.valores de la muestra son mayores a las del totalidad, sin embargo, ambos son suficientes para rechazar la hipótesis nula, aunado a ello, notamos que al ajustar 10,000 observaciones de la muestra aleatoria se incrementó también el número de variables y se redujo el p.valor, por lo que podemos decir que la cantidad de observaciones y la representatividad de la muestra juegan un papel importante en el modelo y podemos considerarlos como parámetros de entrada a ser evaluados.
@@ -2443,35 +2398,19 @@ Es de esperar que un modelo sobreajustado encaje muy bien con la muestra con la 
 
 \section{Otros campos de aplicación}
 
-Las distribuciones multimodales no suelen aplicarse con frecuencia debido a la complejidad al calcular sus parámetros, estas se pueden manifestar como fenómenos de diversa índole, por ejemplo:
+Las distribuciones multimodales no suelen aplicarse con frecuencia debido a la complejidad al calcular sus parámetros, estas se pueden manifestar como fenómenos de diversa índole, en la actualidad y en la práctica se suele acudir a la distribución empírica o distribuciones como poisson o binomial negativa para la frecuencia de los siniestros y weibull para la severidad, creando modelos compuestos para distribuciones conocidas como forma de estimar el monto de reclamaciones futura.
 
-    Finanzas
-
-La distribución de una tasa de interés a través del tiempo
-
-    Seguros
-
-El modelo básico que utilizan las instituciones de seguros para medir severidad y frecuencia son los modelos de riesgo individual y colectivo
-
-En la actualidad y en la práctica se suele acudir a la distribución empírica o distribuciones como poisson o binomial negativa para la frecuencia de los siniestros y weibull para la severidad, creando modelos compuestos para distribuciones conocidas como forma de estimar el monto de reclamaciones futura.
-
-Las funciónes de distribución como Log-Normal, Weibull o Gamma para medir la severidad del siniestro son útiles de forma teórica, no obstante, llegan a explicar de forma muy escueta la realidad de las reclamaciones, es en este factor en donde entra este modelo como una nueva propuesta, pues existen reclamaciones cuya suma asegurada se encuentra muy por encima de la media esperada, lo que provoca que su cola deba estudiarse como una parte separada.
+Las funciones de distribución como Log-Normal, Weibull o Gamma para medir la severidad del siniestro son útiles de forma teórica, no obstante, llegan a explicar de forma muy escueta la realidad de las reclamaciones, es en este factor en donde entra este modelo como una nueva propuesta, pues existen reclamaciones cuya suma asegurada se encuentra muy por encima de la media esperada, lo que provoca que su cola deba estudiarse como una parte separada.
 
 % Aquí me gustaría colocar un caso "famoso" o conocido de una reclamación muy fuerte, pero en la que se tenga información d otras pólizas, por ejemplo:
 
 %Distribución de los siniestros de las aseguradoras que respondieron al 911 (ok, déjame ver que úedo conseguir
 
-    Cobranza
+    %Cobranza: Para la cobranza de seguros el tiempo en días que tardará un cliente en realizar el pago de una prima figura como una variable aleatoria discreta, por lo que es posible estudiar a aquellos individuos cuya frecuencia de pago se vea incrementada o medir la probabilidad de que un individuo pague después de una fecha determinada.
 
-Para la cobranza de seguros el tiempo en días que tardará un cliente en realizar el pago de una prima figura como una variable aleatoria discreta, por lo que es posible estudiar a aquellos individuos cuya frecuencia de pago se vea incrementada o medir la probabilidad de que un individuo pague después de una fecha determinada
+    %Biología: La metilación del ADN en el genoma humano, la tasa de crecimiento de un ser humano así como sus tasas de mortalidad (incluyendo niños nacidos durante las primeras 3 semanas).
 
-    Biología
-
-La metilación del ADN en el genoma humano, la tasa de crecimiento de un ser humano así como sus tasas de mortalidad (incluyendo niños nacidos durante las primeras 3 semanas)
-
-    Epidemiología
-
-La distribución por edad de personas que han adquirido una enfermedad crónica.
+    %Epidemiología: La distribución por edad de personas que han adquirido una enfermedad crónica.
 
 \chapter{Conclusiones}  %
 
@@ -2485,7 +2424,7 @@ Una de las principales desventajas es el sobreajuste, en caso de que una muestra
 
 Antes de ejecutar el algoritmo, siempre hay que verificar que no haya variables categóricas que podamos usar a nuestro favor.
 
-Debido a la cantidad de tiempo de cómputo y a la estructura de las funciónes se decidió limitar el ajuste a variables aleatorias más empleadas, no obstante, es posible incorporar nuevas variables aleatorias.
+Debido a la cantidad de tiempo de cómputo y a la estructura de las funciones se decidió limitar el ajuste a variables aleatorias más empleadas, no obstante, es posible incorporar nuevas variables aleatorias.
 
 La importancia del entendimiento de nuestros datos es también un factor clave, por ejemplo, al hablar de tiempo, no es admisible encontrar valores negativos o extremadamente grandes, en contraste, el monto permite una mayor flexibilidad, pues es posible que el monto de la comisión sea mayor al monto extraído y entonces, admitir valores negativos cercanos a cero.
 
@@ -2494,15 +2433,15 @@ Debido a ello, se realizaron diversas mejoras y consideraciones para este modelo
 También es importante la corroboración de nuestros resultados contemplando distintos test durante el proceso, así como el empleo de técnicas como validación cruzada.
 
 \appendix
-\chapter{Anexo Código en R más d.}  %
+\chapter{Anexo Código en R}  %
 
 Se ha realizado un paquete en R exclusivo para este trabajo, disponible con el siguiente código: install.packages("FitUltD")
 
-Este incluye dos funciónes: FDist y FDistUlt.
+Este incluye dos funciones: FDist y FDistUlt.
 
-FDist que ajusta una distribución a una muestra de datos dada con la ventaja de que ajusta la función indicadora de esta a la forma en la que están dados los datos, el código comentado se encuentra a continuación
+FDist que ajusta una distribución a una muestra de datos dada con la ventaja de que ajusta la función indicadora de esta a la forma en la que están dados los datos, el código comentado se encuentra a continuación.
 
-Parámetros 
+Parámetros:
 
 Parámetro X: Muestra aleatoria observada.
 
@@ -2520,18 +2459,18 @@ Parámetro crit: Un entero positivo para definir qué criterio se usará. Si es 
 
 Parámetro DPQR: Si es TRUE crea la función de distribución, densidad y función cuantiles con los nombres dfit, pfit y qfit respectivamente.
 
-Resultado: Calcula el nombre de la distribución con sus respectivos parámetros, una función generadora de números aleatorios, una muestra aleatoria de dicha función, los resultados de las pruebas de Anderson-Darling y KS p.values, una gráfica entre la muestra real y la distribución asignada y una lista con las funciónes de densidad, distribución y cuantiles.
+Resultado: Calcula el nombre de la distribución con sus respectivos parámetros, una función generadora de números aleatorios, una muestra aleatoria de dicha función, los resultados de las pruebas de Anderson-Darling y KS p.values, una gráfica entre la muestra real y la distribución asignada y una lista con las funciones de densidad, distribución y cuantiles.
 
 Ejemplo:
 
 \begin{lstlisting}[language=R, breaklines]
 
 FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=TRUE){
-  #Crear variables que serán frecuentemente utilizadas como los valores únicos de X, la cardinalidad de estos y del conjunto X
+  #Crear variables que serán frecuentemente utilizadas como los valores únicos de X, la cardinalidad de estos y del conjunto X.
   uX<-unique(X)
   luX<-length(uX)
   lX<-length(X)
-  #Por defecto elimina los valores NA, amenos que exista un valor a imputar
+  #Por defecto elimina los valores NA, amenos que exista un valor a imputar.
   if(missing(inputNA)){X<-na.omit(X)}
   else{X<-ifelse(is.na(X),inputNA,X)}
   if(lX==0){
@@ -2544,7 +2483,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
     fun_g<-function(n=gen){return(rep(X[1],n))}
     return(list(paste0("norm(",X[1],",0)"),fun_g,rep(X[1],gen),data.frame(Dist="norm",AD_p.v=1,KS_p.v=1,Parm1=X[1],Parm2=0,estimateLL1=0,estimateLL2=1,method="assumption",PV_S=2,Obs=gen,Lim_inf=min(X),Lim_sup=max(X)),NULL))
   }
-  #Si hay dos valores equivale a una distribución binomial. con parámetro p igual a la proporción del primer valor en X
+  #Si hay dos valores equivale a una distribución binomial. con parámetro p igual a la proporción del primer valor en X.
   if (luX==2) {
     X<-sort(X)
     p<-length(X[X==uX[2]])/lX
@@ -2563,7 +2502,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
     }
     return(list(distribu,gene,MA[1:gen],data.frame(Dist="binom",AD_p.v=1,KS_p.v=1,Parm1=1,Parm2=p,estimateLL1=0,estimateLL2=1,method="assumption",PV_S=2,Obs=gen,Lim_inf=min(X),Lim_sup=max(X)),pl))
   }
-  #Si la distribución de desea evaluar como continua pero hay valores repetidos, se añadirán centesimales obtenidos de una distribución uniforme (-1,1) para evitar conflicots con la ejecución de las pruebas sin que se afecte la distrubución
+  #Si la distribución de desea evaluar como continua pero hay valores repetidos, se añadirán centesimales obtenidos de una distribución uniforme (-1,1) para evitar conflicots con la ejecución de las pruebas sin que se afecte la distrubución.
   if(lX!=luX & Cont){
     X<-jitter(X,amount = 1/100)
   }
@@ -2571,7 +2510,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
   if(!exists("Nombres")){
     Nombres=c("exp","pois","beta","gamma","lnorm","norm","weibull","nbinom","hyper","cauchy","binom","unif","t")
   }
-  #Se creará una lista con las funciónes de densidad, distribución, cuantiles y generadora de números aleatorios de las variables que se encuentran en el objeto "Nombres" así como si esta es continua o discreta y el dominio donde se encuentra bien definida
+  #Se creará una lista con las funciones de densidad, distribución, cuantiles y generadora de números aleatorios de las variables que se encuentran en el objeto "Nombres" así como si esta es continua o discreta y el dominio donde se encuentra bien definida.
   lnbs<-length(Nombres);lnb<-(1:lnbs)
   comb<-expand.grid(c("p","d","q","r"),Nombres);comb<-comb[order(comb[[1]]),]
   func<-purrr::map2(as.character(comb[[2]]),as.character(comb[[1]]),~get(paste0(.y,.x)))
@@ -2583,7 +2522,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
             d_c=c(1,0,1,1,1,1,1,0,0,1,0,1,1),
             indicadora=c("0","0","01","0","0","R","0","0","0","R","0","R","R")
   )
-  #Se separarán por medio de su dominio, las que son mayores que 0, las que se encuentran en los reales y las que se encuantran en el intervalo (0,1)
+  #Se separarán por medio de su dominio, las que son mayores que 0, las que se encuentran en los reales y las que se encuantran en el intervalo (0,1).
   DIS<-purrr::map(DIS,~subset(.x, DIS$d_c==as.numeric(Cont)))
   DIS_0<-purrr::map(DIS,~subset(.x, DIS$indicadora=="0"))
   DIS_R<-purrr::map(DIS,~subset(.x, DIS$indicadora=="R"))
@@ -2591,7 +2530,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
   if(sum(purrr::map_dbl(DIS_0,~length(.x)))==0){DIS_0<-NULL}
   if(sum(purrr::map_dbl(DIS_R,~length(.x)))==0){DIS_R<-NULL}
   if(sum(purrr::map_dbl(DIS_01,~length(.x)))==0){DIS_01<-NULL}
-  definimos parámetros de escala igual a 1 y deslazamiento igual a 0 así como un épsiloon
+  #Definimos parámetros de escala igual a 1 y deslazamiento igual a 0 así como un épsiloon.
   bt<-X
   despl<-0
   escala<-1
@@ -2614,7 +2553,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
   }else{
     b_01<-bt
   }
-  #Se creará la función que realiza el ajuste con los métodos de momentos y máxima verosimilitud de los paquetes fitdistplus y MASS
+  #Se creará la función que realiza el ajuste con los métodos de momentos y máxima verosimilitud de los paquetes fitdistplus y MASS.
   fit_b<-function(bt,dist="",Cont.=Cont){
     if(is.null(dist)){return(NULL)}
     Disc<-!Cont
@@ -2639,7 +2578,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
   suppressWarnings(try(aju_0<-purrr::map(DIS_0$Nombres,~fit_b(b_0,.x)),silent = TRUE))
   suppressWarnings(try(aju_R<-purrr::map(DIS_R$Nombres,~fit_b(bt,.x)),silent = TRUE))
   suppressWarnings(try(aju_01<-purrr::map(DIS_01$Nombres,~fit_b(b_01,.x)),silent = TRUE))
-  #Se unen los resultados  se descartan los que estén vacíos 
+  #Se unen los resultados  se descartan los que estén vacíos.
   AAA<-list(aju_0,aju_R,aju_01)
   descate<-purrr::map(AAA,~length(.x))!=0
   AAA<-AAA[descate]
@@ -2651,7 +2590,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
     aju<-AAA[[aju_ls]]
     aju<-aju[purrr::map_lgl(aju,~length(.x)>0)]
     bs<-bts[[aju_ls]]
-    #Para cada distribución de cada partición se realizan ambas pruebas
+    #Para cada distribución de cada partición se realizan ambas pruebas.
     for (comp in 1:length(aju)) {
       if(length(aju)==0 ||length(aju[[comp]])==0){next()}
       for (ress in 1:length(aju[[comp]])) {
@@ -2665,12 +2604,12 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
         dist_pfun<-try(get(paste0("p",distname)),silent = TRUE)
         dist_rfun<-try(get(paste0("r",distname)),silent = TRUE)
         if(assertthat::is.error(dist_rfun)){next()}
-        #Se extraen los parámetros de cada función y se reemlazan con los obtenidos por las estimaciones
+        #Se extraen los parámetros de cada función y se reemlazan con los obtenidos por las estimaciones.
         argumentos<-formalArgs(dist_pfun)
         argumentos<-argumentos[argumentos %in% names(evaluar$estimate)]
         num_param<-length(argumentos)
         evaluar$estimate<-evaluar$estimate[names(evaluar$estimate) %in% argumentos]
-        #Se aplican distintos casos dependiendo de la cantidad de parámetros de cada función
+        #Se aplican distintos casos dependiendo de la cantidad de parámetros de cada función.
         if(num_param==1){
           EAD<-try(AD<-ADGofTest::ad.test(bs,dist_pfun,evaluar$estimate[1]),silent = TRUE)
           KS<-try(stats::ks.test(bs,dist_pfun,evaluar$estimate[1]),silent = TRUE)
@@ -2719,7 +2658,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
             estimate3=0
             estimate4=1
           }
-          #Los resultados de cada ajuste que haya pasado las ruebas se acumulará dentro de una tabla
+          #Los resultados de cada ajuste que haya pasado las ruebas se acumulará dentro de una tabla.
           Compe<-rbind(Compe,data.frame(Dist=distname,AD_p.v=AD$p.value,KS_p.v=KS$p.value,
                                         Chs_p.v=Chs$p.value,
                                         Parm1=evaluar$estimate[1],Parm2=evaluar$estimate[2],
@@ -2732,20 +2671,20 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
       }
     }
   }
-  #En caso de no haber ninguna función que haya pasado la prueba se termina el algoritmo indicando que no hubo ajuste
+  #En caso de no haber ninguna función que haya pasado la prueba se termina el algoritmo indicando que no hubo ajuste.
   if (nrow(Compe)==0) {
     warning("No fit")
     return(NULL)
   }
   Compe$PV_S<-rowSums(Compe[,2:4])
   Compe<-cbind(Compe,data.frame(Obs=gen,Lim_inf=min(X),Lim_sup=max(X)))
-  #Se determina cuál fue el mejor ajuste a tarvés del p.valor de ambas pruebas, aquel que haya pasado ambas y en suma sea el número mayor
+  #Se determina cuál fue el mejor ajuste a tarvés del p.valor de ambas pruebas, aquel que haya pasado ambas y en suma sea el número mayor.
   WNR<-Compe[Compe$PV_S %in% max(Compe$PV_S),][1,]
   distW<-WNR$Dist
   paramsW<-WNR[1,names(Compe)[startsWith(names(Compe),"estim")]]
   paramsW<-paramsW[,!is.na(paramsW)]
   if(gen<=0){gen<-1}
-  #Se crea la función generadora de números aleatorios que incluye la operación inversa de escala y deslazamiento para que no haya problema
+  #Se crea la función generadora de números aleatorios que incluye la operación inversa de escala y deslazamiento para que no haya problema.
   generadora_r<-function(n=gen,dist=distW,params=paramsW){
     fn<-get(paste0("r",dist))
     formals(fn)[1]<-n
@@ -2754,7 +2693,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
     }
     fn()*params[,length(params)]+params[,length(params)-1]
   }
-  #Si el parámetro DPQR es verdadero, obtiene también las funciónes de densidad, distribución y de cuantiles
+  #Si el parámetro DPQR es verdadero, obtiene también las funciones de densidad, distribución y de cuantiles.
   if(DPQR){
     generadoras<-function(x,tipo,dist=distW,params=paramsW){
       fn<-get(paste0(tipo,dist))
@@ -2771,7 +2710,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
     qfit<-generadoras(1,"q")
     dfit<-generadoras(1,"d")
   }
-  #Se ejecutan las funciónes para generar los resultados obteniendo una tabla con la unión de estos
+  #Se ejecutan las funciones para generar los resultados obteniendo una tabla con la unión de estos.
   MA<-generadora_r()
   paramsAUX<-c()
   paramsW2<-data.frame()
@@ -2784,7 +2723,7 @@ FDist<-function(X,gen=1,Cont=TRUE,inputNA,plot=FALSE,p.val_min=.05,crit=2,DPQR=T
     distribu<-paste0(WNR$Dist,"(",paste0(paramsW2[,1:(length(paramsW2)-2)],collapse = ", "),")")
   }
   p<-c()
-  #Se crea una gráfica con la muestra aleatoria generada y X, es decir, los datos reales
+  #Se crea una gráfica con la muestra aleatoria generada y X, es decir, los datos reales.
   if(plot){
     DF<-rbind(data.frame(A="Fit",DT=MA),
               data.frame(A="Real",DT=X))
@@ -2807,7 +2746,7 @@ Parámetro X: Muestra de observaciones a ser ajustadas
 
 Parámetro n.obs: Un entero positivo, es el tamaño de la muestra aleatoria generada por la función.
 
-Parámetro ref: Número de clústers que serán usados por el algoritmo k-medias para hacer la searación de la distribución. En caso contrario utiliza la clasificación de mclust por default.
+Parámetro ref: Número de clústers que serán usados por el algoritmo k-medias para hacer la searación de la distribución. En caso contrario utiliza la clasificación de mclust por defecto.
 
 Parámetro crt: Criterio para decidir si se pasan ambas pruebas (KS y AD) para rechazar la hipótesis nula o si solamente una es suficienete.
 
@@ -2817,25 +2756,25 @@ Parámetro subplot FALSE: Si es TRUE, genera una gráfica de cada una de las par
 
 Parámetro $p.val_min$: P. valor mínimo aceptable no rechazar la hipótesis nula.
 
-Resultado: Una lista que contiene las funciónes generadoras de números aleatorios de cada partición, una muestra aleatoria, una tabla con los resultados de las pruebas de KS y AD, las gráficas correspondientes y una tabal con todos los otros posibles resultados que hayan pasado las pruebas.
+Resultado: Una lista que contiene las funciones generadoras de números aleatorios de cada partición, una muestra aleatoria, una tabla con los resultados de las pruebas de KS y AD, las gráficas correspondientes y una tabal con todos los otros posibles resultados que hayan pasado las pruebas.
 
 Ejemplo:
 
 \begin{lstlisting}[language=R, breaklines]
 
 FDistUlt<-function(X,n.obs=length(X),ref="OP",crt=1,plot=FALSE,subplot=FALSE,p.val_min=.05){
-  #Primero reviso si ref es un número, en caso de serlo revisar que no sea tan grande (1/3 de la muestra total), para poder ejecutar el algoritmo de k-medias sin errores
+  #Primero reviso si ref es un número, en caso de serlo revisar que no sea tan grande (1/3 de la muestra total), para poder ejecutar el algoritmo de k-medias sin errores.
   if(!is.numeric(ref)){}else{
     if(ref>length(X)/3){warning("Number of clusters must be less than input length/3")
       return(NULL)}}
-  #Dada la naturaleza recursiva del algoritmo, definiremos una función internamente que realice el proceso de separación de clústers
+  #Dada la naturaleza recursiva del algoritmo, definiremos una función internamente que realice el proceso de separación de clústers.
   desc<-function(X,fns=FALSE,ref.=ref,crt.=crt,subplot.=subplot,p.val_min.=p.val_min){
     eval<-function(X,fns.=fns,crt.=crt,subplot.=subplot,p.val_min.=p.val_min){
     #Se evalua la muestra en la función que da como resultado si pasó o no la prueba, en caso de no pasarla, regresa el valor NULL como respuesta.
       FIT<-FDist(X,length(X),crit = crt,plot = subplot,p.val_min=p.val_min)
       FIT
     }
-    #Definimos la función que divide la muestra con base en los resultados de KS y AD de la función anterior
+    #Definimos la función que divide la muestra con base en los resultados de KS y AD de la función anterior.
     div<-function(X,ref.=ref){
       df<-data.frame(A=1:length(X),B=X)
       #El primer criterio de separación será si X contiene valores discretos y continuos, realizando pruebas con las respectivas distribuciones.
@@ -2843,9 +2782,9 @@ FDistUlt<-function(X,n.obs=length(X),ref="OP",crt=1,plot=FALSE,subplot=FALSE,p.v
       if(any(Enteros)){
         if(all(Enteros)){
           if(!is.numeric(ref)){
-          #En caso de no hber colocdo un número de clústers específico, se utilizará la función Mclust para obtener el mejor número de gruos utilizando el método del codo como criterio
+          #En caso de no hber colocdo un número de clústers específico, se utilizará la función Mclust para obtener el mejor número de gruos utilizando el método del codo como criterio.
             mod1<-mclust::Mclust(X,modelNames=c("E", "V"))$classification
-          #En caso de retornar un solo grupo, se volverá a hacer el análisis con dos grupos por default
+          #En caso de retornar un solo grupo, se volverá a hacer el análisis con dos grupos por defecto.
             if(length(table(mod1))==1){
               df$CL<-kmeans(df,2)$cluster
             }else{
@@ -2870,12 +2809,12 @@ FDistUlt<-function(X,n.obs=length(X),ref="OP",crt=1,plot=FALSE,subplot=FALSE,p.v
           df$CL<-kmeans(df,ref)$cluster
         }
       }
-      #Se realizará la partición de la muestra empleando la variable clúster de k-medias como criterio
+      #Se realizará la partición de la muestra empleando la variable clúster de k-medias como criterio.
       CLS<-purrr::map(unique(df$CL),~df[df$CL==.x,2])
       CLS
       return(CLS)
     }
-    Se aplicará la función anterior a X
+    #Se aplicará la función anterior a X.
     suppressWarnings(EV<-eval(X,fns))
     #Si no hubo ajuste, es decir, si se regresa el valor null volverá a hacer nuevas particiones hasta que ajuste o hasta llegar a un tamaño de muestra menor a 50, en cuyo caso asignará la distribución normal a los datos.
     if(is.null(EV)){
@@ -2883,7 +2822,7 @@ FDistUlt<-function(X,n.obs=length(X),ref="OP",crt=1,plot=FALSE,subplot=FALSE,p.v
         DV<-purrr::map(div(X),~desc(.x,fns))
         return(DV)
       }else{
-      #Si los datos son NULL (no hubo ajuste) y el namaño de muestra no es mayor a 50 entonces asignará la distribución normal y todo lo que ello implica (los parámetros de dicha distribución serán la media y la desviación estándar de X)
+      #Si los datos son NULL (no hubo ajuste) y el namaño de muestra no es mayor a 50 entonces asignará la distribución normal y todo lo que ello implica (los parámetros de dicha distribución serán la media y la desviación estándar de X).
         FN<-rnorm
         formals(FN)[1]<-length(X)
         formals(FN)[2]<-mean(X)
@@ -2908,24 +2847,24 @@ FDistUlt<-function(X,n.obs=length(X),ref="OP",crt=1,plot=FALSE,subplot=FALSE,p.v
     }
   }
   superficie<-flattenlist(FCNS)
-  #Se separarán los elementos de la lista única generada con base en sus características
-  #Primero se separan las funciónes
+  #Se separarán los elementos de la lista única generada con base en sus características.
+  #Primero se separan las funciones.
   FUN<-superficie[purrr::map_lgl(superficie,~"function" %in% class(.x))]
-  #Después se separan las funciónes del tipo gl, es decir, funciónes generadoras de números aleatorios
+  #Después se separan las funciones del tipo gl, es decir, funciones generadoras de números aleatorios.
   Global_FUN<-superficie[purrr::map_lgl(superficie,~"gl_fun" %in% class(.x))]
-  #Después las de tipo texto, que contienen el nombre de las distribuciones utilizadas
+  #Después las de tipo texto, que contienen el nombre de las distribuciones utilizadas.
   Dist<-unlist(superficie[purrr::map_lgl(superficie,is.character)])
-  #Después las de tipo gráfico en caso de haberlas
+  #Después las de tipo gráfico en caso de haberlas.
   PLTS<-superficie[purrr::map_lgl(superficie,ggplot2::is.ggplot)]
-  #Las de tipo tabla wnr, es decir, las tablas que contienen las distribuciones con los mejores p.valores
+  #Las de tipo tabla wnr, es decir, las tablas que contienen las distribuciones con los mejores p.valores.
   dfss<-superficie[purrr::map_lgl(superficie,~"data.frame.wnr" %in% class(.x))]
-  #Finalmente las funciónes tipo tabla, es decir, todos los posibles resultados generados que pasaron las pruebas AD y/o  (dependiendo del criterio) KS
+  #Finalmente las funciones tipo tabla, es decir, todos los posibles resultados generados que pasaron las pruebas AD y/o  (dependiendo del criterio) KS.
   dfss_all<-superficie[purrr::map_lgl(superficie,~is.data.frame(.x) & !"data.frame.wnr" %in% class(.x))]
-  #Se unen todas las tablas con las mejores distribuciones de cada partición para generar la distribución total
+  #Se unen todas las tablas con las mejores distribuciones de cada partición para generar la distribución total.
   PV<-do.call("rbind",dfss[purrr::map_lgl(dfss,~ncol(.x)==12)])
   Len<-MA<-c()
   repp<-floor(n.obs/length(X))+1
-  #Se genera la muestra aleatoria con base en las funciónes generadoras de números aleatorias
+  #Se genera la muestra aleatoria con base en las funciones generadoras de números aleatorias.
   for (OBS in 1:repp) {
     for (mst in 1:length(FUN)) {
       ljsd<-FUN[[mst]]()
@@ -2936,25 +2875,25 @@ FDistUlt<-function(X,n.obs=length(X),ref="OP",crt=1,plot=FALSE,subplot=FALSE,p.v
     }
   }
   MA<-sample(MA,n.obs)
-  #Crea una tabla con todas las distribuciones no vacías
+  #Crea una tabla con todas las distribuciones no vacías.
   pv1<-data.frame(Distribution=Dist[nchar(Dist)!=0],Dist_Prop=Len[nchar(Dist)!=0])
   p.v<-try(cbind(pv1,PV))
   if(assertthat::is.error(pv1)){p.v<-pv1}
   cp<-plt<-c()
-  #Genera una gráfica (si es que aplica) de la diferencia en distribución entre la muestra aleatoria y los valores reales
+  #Genera una gráfica (si es que aplica) de la diferencia en distribución entre la muestra aleatoria y los valores reales.
   if(plot){
     DF<-rbind(data.frame(A="Fit",DT=MA),
               data.frame(A="Real",DT=X))
     plt <- ggplot2::ggplot(DF,ggplot2::aes(x=DF$DT,fill=DF$A)) + ggplot2::geom_density(alpha=0.55)+ggplot2::ggtitle("Original Dist.")
     plt
   }
-  #En caso de existir las graficas para cada partición las une en una sola
+  #En caso de existir las graficas para cada partición las une en una sola.
   TPlts<-c()
   if(subplot){
     cp<-cowplot::plot_grid(plotlist = PLTS, ncol = floor(sqrt(length(PLTS))))
   }
   TPlts<-list(plt,cp)
-  #Regresa los resultados en una única lista 
+  #Regresa los resultados en una única lista.
   return(list(unlist(FUN),MA,p.v,TPlts,Global_FUN,dfss_all))
 }
 
