@@ -1,3 +1,5 @@
+#Ejercico del dia de la crisis
+
 cambio<-read.csv("C:/Users/CUBO/Downloads/Datos históricos USD_MXN (1).csv")
 crudo<-read.csv("C:/Users/CUBO/Downloads/Datos históricos Futuros petróleo crudo WTI (2).csv")
 cambio<-cambio[-261,]
